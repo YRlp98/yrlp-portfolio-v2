@@ -112,6 +112,11 @@ export default {
           link: "https://en.wikipedia.org/wiki/JavaScript",
         },
         {
+          title: "TypeScript",
+          width: "70",
+          link: "https://www.typescriptlang.org/",
+        },
+        {
           title: "Node.js",
           width: "40",
           link: "https://en.wikipedia.org/wiki/Node.js",
@@ -137,6 +142,11 @@ export default {
           title: "Adobe Illustrator",
           width: "50",
           link: "https://en.wikipedia.org/wiki/Adobe_Illustrator",
+        },
+        {
+          title: "Adobe Premiere Pro",
+          width: "50",
+          link: "https://www.adobe.com/products/premiere.html",
         },
       ],
       softwareSkills: [
@@ -179,6 +189,14 @@ export default {
         {
           title: "Linux",
           link: "https://en.wikipedia.org/wiki/Linux",
+        },
+        {
+          title: "SEO",
+          link: "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        },
+        {
+          title: "Performance Optimization",
+          link: "https://web.dev/learn/performance",
         },
       ],
     };
