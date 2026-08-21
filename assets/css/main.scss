@@ -94,27 +94,23 @@ body {
 
     // Mobile
     .default-margin {
-        margin: 0 20px;
+        width: calc(100% - 40px);
+        max-width: 1200px;
+        margin-inline: auto;
+        box-sizing: border-box;
     }
 
     // Tablet (768px)
     @include mediaQueryMin("md") {
         .default-margin {
-            margin: 0 25px;
+            width: calc(100% - 50px);
         }
     }
 
     // Desktop (1280px)
     @include mediaQueryMin("xl") {
         .default-margin {
-            margin: 0 40px;
-        }
-    }
-
-    // Desktop - Large (1400px)
-    @include mediaQueryMin("xl-2") {
-        .default-margin {
-            margin: 0 300px;
+            width: calc(100% - 80px);
         }
     }
 }
