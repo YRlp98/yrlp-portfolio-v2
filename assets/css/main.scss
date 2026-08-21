@@ -172,6 +172,150 @@ a {
     }
 }
 
+// English-only layout corrections. Persian keeps the original RTL component rules.
+html[data-locale="en"] {
+    .aboutMe-container .aboutMeInfo {
+        width: max-content !important;
+        max-width: 100%;
+        margin-right: 0 !important;
+        margin-left: auto !important;
+    }
+
+    .aboutMe-container>.socialNetwork {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        transform: none !important;
+    }
+
+    .aboutMe-container>.socialNetwork .items {
+        width: 100%;
+        justify-content: flex-start !important;
+    }
+
+    .aboutMeInfo-container .items {
+        direction: ltr !important;
+        border-right: 0 !important;
+        border-left: 1px solid var(--green-1) !important;
+        padding-right: 0 !important;
+        padding-left: 20px !important;
+    }
+
+    .aboutMeInfo-container .items .item img {
+        margin-left: 0 !important;
+        margin-right: 10px !important;
+    }
+
+    .homeTitle-container {
+        align-items: flex-start !important;
+        border-right: 0 !important;
+        border-left: 2px solid var(--green-1) !important;
+        padding-right: 0 !important;
+        padding-left: 20px !important;
+    }
+
+    .iconListCard-container,
+    .imageListCard-container,
+    .titleSubCard-container {
+        justify-content: flex-start !important;
+    }
+
+    .iconListCard-container .iconListCard,
+    .imageListCard-container .imageListCard {
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+    }
+
+    .iconListCard-container .titleSubCard,
+    .imageListCard-container .titleSubCard {
+        margin-right: 0 !important;
+        margin-left: 15px !important;
+    }
+
+    .titleSubCard-container .titleSubCard {
+        align-items: flex-start !important;
+    }
+
+    .titleSubCard-container h4 {
+        text-align: left !important;
+    }
+
+    .titleSubCard-container .descriptiont {
+        flex-direction: row !important;
+    }
+
+    .titleSubCard-container .descriptiont img {
+        margin-left: 0 !important;
+        margin-right: 5px !important;
+    }
+
+    .experience-container .catTitle {
+        text-align: left !important;
+    }
+
+    .experience-container .subExperiences .titleSubCard {
+        margin-right: 0 !important;
+        margin-left: 55px !important;
+    }
+
+    .experience-container .subExperiences .titleSubCard::after {
+        right: auto !important;
+        left: -35px !important;
+    }
+
+    .experience-container .subExperiences .titleSubCard:not(:first-child)::before {
+        right: auto !important;
+        left: -32px !important;
+    }
+
+    .blog-container .blog .blog-cards {
+        direction: ltr !important;
+    }
+
+    @include mediaQueryMin("md") {
+
+        .aboutMe-container .aboutMe-title,
+        .aboutMe-container .aboutMe-text {
+            width: calc(100% - 310px);
+            right: auto !important;
+            left: 0 !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+            text-align: left !important;
+        }
+
+        .aboutMe-container>.socialNetwork {
+            width: calc(100% - 310px);
+            margin-right: auto !important;
+            margin-left: 0 !important;
+        }
+
+        .navbar-container .navbar .navbar-items {
+            direction: ltr !important;
+            order: 1;
+        }
+
+        .navbar-container .navbar .navbar-more-wrap {
+            order: 2;
+        }
+
+        .navbar-container .navbar .navbar-more-wrap .settingsMenu {
+            inset-inline-start: auto !important;
+            left: auto !important;
+            right: 0 !important;
+        }
+
+        .education-container .education-carts {
+            flex-direction: row !important;
+        }
+
+        .experience-container .other {
+            right: auto !important;
+            left: 50% !important;
+        }
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     html,

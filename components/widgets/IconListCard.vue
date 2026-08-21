@@ -4,11 +4,7 @@
       <div class="icon">
         <img src="/icons/education.svg" alt="education icon" />
       </div>
-      <TitleSubCard
-        class="titleSubCard"
-        :title="title"
-        :description="description"
-      />
+      <TitleSubCard class="titleSubCard" :title="title" :description="description" />
     </a>
   </div>
 </template>

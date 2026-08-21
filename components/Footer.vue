@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-container">
+  <div class="footer-container" :class="{ 'is-ltr': activeLang === 'en' }">
     <div class="socialNetwork-container">
       <div class="socialNetwork default-margin">
         <h2>{{ $t("homePageFollowMeSN") }}</h2>
@@ -26,7 +26,7 @@
         <li>
           <nuxt-link class="item" :to="$localePath('/projects')">{{
             $t("projects")
-          }}</nuxt-link>
+            }}</nuxt-link>
         </li>
         <li>
           <nuxt-link class="item" :to="$localePath('/blog')">{{ $t("blog") }}</nuxt-link>
@@ -121,6 +121,14 @@ export default {
       color: var(--gray-1);
       direction: rtl;
     }
+  }
+}
+
+.footer-container.is-ltr {
+
+  .footer p,
+  .footer ul {
+    direction: ltr;
   }
 }
 

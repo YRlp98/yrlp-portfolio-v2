@@ -27,7 +27,7 @@
         <li>
           <nuxt-link class="item" :to="$localePath('/projects')">{{
             $t("projects")
-            }}</nuxt-link>
+          }}</nuxt-link>
         </li>
         <li>
           <nuxt-link class="item" :to="$localePath('/blog')">{{ $t("blog") }}</nuxt-link>
