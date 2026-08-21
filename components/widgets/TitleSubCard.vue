@@ -3,8 +3,8 @@
     <div class="titleSubCard">
       <h4>{{ title }}</h4>
       <div class="descriptiont">
-        <!-- <img src="/images/icons/calendar_gray.svg" /> -->
-        <img :src="`/images/icons/${icon}.svg`" :alt="icon"/>
+        <!-- <img src="/icons/calendar_gray.svg" /> -->
+        <img :src="`/icons/${icon}.svg`" :alt="icon"/>
         <p>{{ description }}</p>
       </div>
     </div>

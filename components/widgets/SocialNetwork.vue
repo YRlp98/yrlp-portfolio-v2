@@ -2,31 +2,31 @@
   <div class="socialNetwork-container">
     <div class="items">
       <a href="https://www.linkedin.com/in/yrlp98/" target="_blank">
-        <img src="/images/icons/linkedin.svg" alt="LinkedIn"
+        <img src="/icons/linkedin.svg" alt="LinkedIn"
       /></a>
       <a href="https://github.com/YRlp98" target="_blank">
-        <img src="/images/icons/github.svg" alt="GitHub"
+        <img src="/icons/github.svg" alt="GitHub"
       /></a>
       <a href="https://dribbble.com/YRlp98" target="_blank">
-        <img src="/images/icons/dribbble.svg" alt="Dribble"
+        <img src="/icons/dribbble.svg" alt="Dribble"
       /></a>
       <a href="https://www.behance.net/yrlp98" target="_blank">
-        <img src="/images/icons/behance.svg" alt="Behance"
+        <img src="/icons/behance.svg" alt="Behance"
       /></a>
       <a href="https://x.com/YRlp98" target="_blank">
-        <img src="/images/icons/x.svg" alt="X"
+        <img src="/icons/x.svg" alt="X"
       /></a>
             <!-- <a
         href="https://www.youtube.com/channel/UCZd51HzXf_YThh9wfZy_1YA"
         target="_blank"
       >
-        <img src="/images/icons/youtube.svg" alt="Youtube"
+        <img src="/icons/youtube.svg" alt="Youtube"
       /></a> -->
       <!-- <a href="https://www.facebook.com/YRlp98/" target="_blank">
-        <img src="/images/icons/facebook.svg" alt="Facebook"
+        <img src="/icons/facebook.svg" alt="Facebook"
       /></a> -->
       <!-- <a href="https://www.instagram.com/y.rlp/" target="_blank">
-        <img src="/images/icons/instagram.svg" alt="Instagram"
+        <img src="/icons/instagram.svg" alt="Instagram"
       /></a> -->
     </div>
   </div>

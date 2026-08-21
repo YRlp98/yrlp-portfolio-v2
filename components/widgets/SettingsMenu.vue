@@ -5,13 +5,13 @@
       <ul class="menu-bar">
         <li>
           <a @click="onChangeTheme()" :class="{ active: isDark }" href="#">
-            <img src="/images/icons/dark.svg" alt="dark mode" />
+            <img src="/icons/dark.svg" alt="dark mode" />
             Dark Mode
           </a>
         </li>
         <li>
           <a @click="onChangeTheme()" :class="{ active: !isDark }" href="#">
-            <img src="/images/icons/light.svg" alt="light mode" />
+            <img src="/icons/light.svg" alt="light mode" />
             Light Mode
           </a>
         </li>
@@ -27,7 +27,7 @@
             @click="$emit('close')"
           >
             <img
-              :src="`/images/icons/${locale.code}.svg`"
+              :src="`/icons/${locale.code}.svg`"
               :alt="locale.name"
             />
             {{ locale.name }}
