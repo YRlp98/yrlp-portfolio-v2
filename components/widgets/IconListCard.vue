@@ -2,7 +2,7 @@
   <div class="iconListCard-container">
     <a class="iconListCard" :href="link" target="_blank">
       <div class="icon">
-        <img src="/images/icons/education.svg" alt="education icon" />
+        <img src="/icons/education.svg" alt="education icon" />
       </div>
       <TitleSubCard
         class="titleSubCard"
@@ -30,7 +30,7 @@ export default {
     // iconUrl: {
     //   type: String,
     //   required: true,
-    //   default: "~/assets/images/icons/education.svg",
+    //   default: "~/assets/icons/education.svg",
     // },
     iconAlt: {
       type: String,

@@ -93,28 +93,24 @@ body {
     background: var(--gray-2);
 
     // Mobile
-    .defualt-margin {
-        margin: 0 20px;
+    .default-margin {
+        width: calc(100% - 40px);
+        max-width: 1200px;
+        margin-inline: auto;
+        box-sizing: border-box;
     }
 
     // Tablet (768px)
     @include mediaQueryMin("md") {
-        .defualt-margin {
-            margin: 0 25px;
+        .default-margin {
+            width: calc(100% - 50px);
         }
     }
 
     // Desktop (1280px)
     @include mediaQueryMin("xl") {
-        .defualt-margin {
-            margin: 0 40px;
-        }
-    }
-
-    // Desktop - Large (1400px)
-    @include mediaQueryMin("xl-2") {
-        .defualt-margin {
-            margin: 0 300px;
+        .default-margin {
+            width: calc(100% - 80px);
         }
     }
 }

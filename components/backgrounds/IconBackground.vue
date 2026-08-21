@@ -1,242 +1,10 @@
 <template>
   <section>
-    <div class="rep" v-for="repeat in repeats" :key="repeat">
-      <div class="row">
+    <div class="rep" v-for="(repeat, repeatIndex) in rows" :key="repeatIndex">
+      <div class="row" v-for="(row, rowIndex) in repeat" :key="rowIndex">
         <div>
-          <i class="fa fa-bug" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-android"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fab fa-hooli"></i>
-          <i class="fab fa-pied-piper-pp"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-html5"></i>
-          <i class="fa fa-bug" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-android"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-html5"></i>
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <i class="fab fa-pied-piper-pp"></i>
-          <i class="fab fa-html5"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-hooli"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-android"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-bug" aria-hidden="true"></i>
-          <i class="fab fa-html5"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-pied-piper-pp"></i>
-          <i class="fab fa-hooli"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-android"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-bug" aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <i class="fab fa-pied-piper-pp"></i>
-          <i class="fab fa-html5"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-hooli"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-android"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-bug" aria-hidden="true"></i>
-          <i class="fab fa-html5"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-pied-piper-pp"></i>
-          <i class="fab fa-hooli"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-android"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-bug" aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <i class="fab fa-pied-piper-pp"></i>
-          <i class="fab fa-html5"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-hooli"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-android"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-bug" aria-hidden="true"></i>
-          <i class="fab fa-html5"></i>
-          <i class="fas fa-tablet"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fa fa-desktop" aria-hidden="true"></i>
-          <i class="fab fa-stack-overflow"></i>
-          <i class="fas fa-pizza-slice"></i>
-          <i class="fab fa-microsoft"></i>
-          <i class="fa fa-database" aria-hidden="true"></i>
-          <i class="fab fa-pied-piper-pp"></i>
-          <i class="fab fa-hooli"></i>
-          <i class="fab fa-git-alt"></i>
-          <i class="fas fa-gamepad"></i>
-          <i class="fab fa-android"></i>
-          <i class="fab fa-vuejs"></i>
-          <i class="fab fa-js-square"></i>
-          <i class="fa fa-terminal" aria-hidden="true"></i>
-          <i class="fa fa-life-ring" aria-hidden="true"></i>
-          <i class="fa fa-rocket" aria-hidden="true"></i>
-          <i class="fas fa-code"></i>
-          <i class="fa fa-paint-brush" aria-hidden="true"></i>
-          <i class="fab fa-figma"></i>
-          <i class="fa fa-language" aria-hidden="true"></i>
-          <i class="fa fa-laptop" aria-hidden="true"></i>
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <i class="fab fa-apple"></i>
-          <i class="fa fa-code-fork" aria-hidden="true"></i>
-          <i class="fa fa-coffee" aria-hidden="true"></i>
-          <i class="fa fa-bug" aria-hidden="true"></i>
+          <i v-for="(icon, iconIndex) in row" :key="`${repeatIndex}-${rowIndex}-${iconIndex}`" :class="icon"
+            aria-hidden="true"></i>
         </div>
       </div>
     </div>
@@ -244,17 +12,89 @@
 </template>
 
 <script>
+const icons = [
+  "fa-solid fa-bug",
+  "fa-solid fa-coffee",
+  "fa-solid fa-code-branch",
+  "fa-brands fa-apple",
+  "fa-solid fa-graduation-cap",
+  "fa-solid fa-laptop",
+  "fa-solid fa-language",
+  "fa-brands fa-figma",
+  "fa-solid fa-paintbrush",
+  "fa-solid fa-code",
+  "fa-solid fa-rocket",
+  "fa-solid fa-life-ring",
+  "fa-solid fa-terminal",
+  "fa-brands fa-square-js",
+  "fa-brands fa-vuejs",
+  "fa-brands fa-android",
+  "fa-solid fa-gamepad",
+  "fa-brands fa-git-alt",
+  "fa-brands fa-hooli",
+  "fa-brands fa-pied-piper-pp",
+  "fa-solid fa-database",
+  "fa-brands fa-microsoft",
+  "fa-solid fa-pizza-slice",
+  "fa-brands fa-stack-overflow",
+  "fa-solid fa-desktop",
+  "fa-brands fa-css3-alt",
+  "fa-solid fa-tablet",
+  "fa-brands fa-html5",
+  "fa-brands fa-chrome",
+  "fa-brands fa-firefox-browser",
+  "fa-brands fa-safari",
+  "fa-brands fa-discord",
+  "fa-brands fa-telegram",
+  "fa-brands fa-slack",
+  "fa-solid fa-envelope",
+  "fa-brands fa-dribbble",
+  "fa-brands fa-github",
+  "fa-brands fa-spotify",
+  "fa-brands fa-youtube",
+  "fa-solid fa-mobile-screen-button",
+  "fa-brands fa-tailwind-css",
+  "fa-brands fa-yahoo",
+  "fa-brands fa-steam",
+];
+
+const shuffle = (items) => {
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+
+  return shuffled;
+};
+
+const createRows = (randomize = false) =>
+  Array.from({ length: 10 }, (_, repeatIndex) =>
+    Array.from({ length: 4 }, (_, rowIndex) => {
+      const row = Array.from(
+        { length: 56 },
+        (_, iconIndex) => icons[(repeatIndex * 4 + rowIndex + iconIndex) % icons.length],
+      );
+
+      return randomize ? shuffle(row) : row;
+    }),
+  );
+
 export default {
   name: "IconBackground",
   data() {
     return {
-      repeats: 10,
+      rows: createRows(),
     };
+  },
+  mounted() {
+    this.rows = createRows(true);
   },
 };
 </script>
 
-<style  lang="scss" scoped>
+<style lang="scss" scoped>
 section {
   position: absolute;
   inset: 0;
@@ -282,7 +122,7 @@ section {
       padding: 0 5px;
       user-select: none;
       cursor: default;
-      
+
 
       &:hover {
         transition: 0s;

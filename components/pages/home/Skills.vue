@@ -1,6 +1,6 @@
 <template>
   <div class="skills-container" id="homeSkills">
-    <div class="main-skills-container defualt-margin">
+    <div class="main-skills-container default-margin">
       <h2 :style="{ textAlign: `${changeAlign(activeLang)}` }">
         {{ $t("homePageSkillsMain") }}
       </h2>
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="other-skills-container defualt-margin">
+    <div class="other-skills-container default-margin">
       <h2 :style="{ textAlign: `${changeAlign(activeLang)}` }">
         {{ $t("homePageSkillsOther") }}
       </h2>
@@ -114,7 +114,7 @@
         </div>
       </div>
     </div>
-    <TitleBackground class="titleBackground defualt-margin" title="skills" />
+    <TitleBackground class="titleBackground default-margin" title="skills" />
   </div>
 </template>
 

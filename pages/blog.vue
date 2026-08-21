@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-container defualt-margin" :style="{ direction: `${changeDirection(activeLang)}` }">
+  <div class="blog-container default-margin" :style="{ direction: `${changeDirection(activeLang)}` }">
     <h1 class="title">{{ $t("blog") }}</h1>
     <div class="blog-cards">
       <BlogCard class="blogCard" v-for="blog in blogs" :key="blog.id" :blog="blog" />
@@ -65,12 +65,18 @@ export default {
     margin-top: 80px;
     display: grid;
     gap: 30px;
-
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    grid-template-columns: 1fr;
 
     .blogCard {
       width: 100%;
-      margin: 0 auto;
+    }
+
+    @include mediaQueryMin("md") {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mediaQueryMin("xl") {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 }

@@ -75,19 +75,21 @@ export default {
     .blog-cards {
       margin-top: 40px;
       margin-bottom: 40px;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
       justify-content: center;
 
       .blogCard {
-        margin: 10px auto;
-        width: max(310px);
+        width: 100%;
+      }
 
-        // Tablet
-        @include mediaQueryMin("md") {
-          margin: 10px min(10px);
-          width: min(400px);
-        }
+      @include mediaQueryMin("md") {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      @include mediaQueryMin("xl") {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
   }

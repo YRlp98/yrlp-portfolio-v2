@@ -30,8 +30,9 @@ export default {
 
 <style lang="scss" scoped>
 .projectCard-container {
-  width: 300px;
+  width: 100%;
   height: 215px;
+  box-sizing: border-box;
   border-radius: 5px;
   padding: 22px;
   background: transparent;

@@ -25,8 +25,9 @@ export default {
 <style lang="scss" scoped>
 .blogCard-container {
   position: relative;
-  width: 340px;
+  width: 100%;
   height: 400px;
+  box-sizing: border-box;
   border-radius: 5px;
   background: transparent;
   display: flex;
@@ -52,6 +53,7 @@ export default {
 
     .blogCard-info {
       width: 100%;
+      box-sizing: border-box;
       padding: 20px 20px;
       text-align: right;
       z-index: 9;

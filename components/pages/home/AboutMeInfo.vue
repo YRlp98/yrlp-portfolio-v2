@@ -2,19 +2,19 @@
   <div class="aboutMeInfo-container">
     <div class="items">
       <div class="item">
-        <img src="/images/icons/calendar.svg" alt="Birthday" />
+        <img src="/icons/calendar.svg" alt="Birthday" />
         {{ $t("homePageAboutMeBirthday") }}
       </div>
       <a class="item" href="https://en.wikipedia.org/wiki/Iran" target="_blank">
-        <img src="/images/icons/location.svg" alt="Location" />
+        <img src="/icons/location.svg" alt="Location" />
         {{ $t("iran") }}</a
       >
       <a class="item" href="mailto: hello@yrlp.ir" target="_blank">
-        <img src="/images/icons/email.svg" alt="Email" />
+        <img src="/icons/email.svg" alt="Email" />
         {{ $t("emailAddress") }}</a
       >
       <a class="item" href="https://t.me/YRlp98" target="_blank">
-        <img src="/images/icons/telegram.svg" alt="Telegram" />
+        <img src="/icons/telegram.svg" alt="Telegram" />
         {{ $t("telegramId") }}</a
       >
     </div>
