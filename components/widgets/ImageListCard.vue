@@ -4,12 +4,7 @@
       <div class="image">
         <img :src="imageUrl" :alt="imageAlt" />
       </div>
-      <TitleSubCard
-        class="titleSubCard"
-        :title="title"
-        :description="description"
-        icon="line"
-      />
+      <TitleSubCard class="titleSubCard" :title="title" :description="description" icon="line" />
     </a>
   </div>
 </template>
@@ -63,6 +58,13 @@ export default {
     justify-content: flex-end;
     align-items: center;
     text-decoration: none;
+    cursor: pointer;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+
+    &:hover {
+      filter: drop-shadow(0 0 0.75rem rgba(53, 233, 37, 0.45));
+      opacity: 0.95;
+    }
 
     img {
       height: 50px;
