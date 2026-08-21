@@ -7,16 +7,13 @@
       </div>
       <a class="item" href="https://en.wikipedia.org/wiki/Iran" target="_blank">
         <img src="/icons/location.svg" alt="Location" />
-        {{ $t("iran") }}</a
-      >
+        {{ $t("iran") }}</a>
       <a class="item" href="mailto: hello@yrlp.ir" target="_blank">
         <img src="/icons/email.svg" alt="Email" />
-        {{ $t("emailAddress") }}</a
-      >
+        {{ $t("emailAddress") }}</a>
       <a class="item" href="https://t.me/YRlp98" target="_blank">
         <img src="/icons/telegram.svg" alt="Telegram" />
-        {{ $t("telegramId") }}</a
-      >
+        {{ $t("telegramId") }}</a>
     </div>
   </div>
 </template>
@@ -41,14 +38,16 @@ export default {
       justify-content: center;
       text-decoration: none;
       font-size: 0.938rem;
-      color: white;
+      color: var(--color-text);
       cursor: pointer;
       margin: 7.5px 0;
+      transition: transform 0.3s ease;
 
       img {
         height: 17px;
         width: 17px;
         margin-left: 10px;
+        filter: var(--icon-monochrome-filter);
       }
 
       &:hover {

@@ -21,14 +21,14 @@ export default {
   margin-left: -20px;
   top: 50%;
   margin-top: -35px;
-  box-shadow: inset 0 0 0 1px #fff;
+  box-shadow: inset 0 0 0 1px var(--color-text);
   border-radius: 25px;
 
   &::before {
     content: "";
     width: 8px;
     height: 8px;
-    background: #fff;
+    background: var(--color-text);
     margin-left: -4px;
     top: 8px;
     border-radius: 4px;
@@ -41,6 +41,7 @@ export default {
     0% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
       transform: translateY(46px);

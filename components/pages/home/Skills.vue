@@ -7,37 +7,15 @@
       <div class="main-skills">
         <!-- Web -->
         <div class="skills">
-          <IconTitle
-            class="iconTitle"
-            color="#a0d039"
-            icon="web"
-            alt="web"
-            title="Web"
-          />
-          <SkillProgress
-            class="skillProgress"
-            v-for="skill in webSkills"
-            :key="skill.id"
-            :skill="skill"
-            color="#a0d039"
-          />
+          <IconTitle class="iconTitle" color="#a0d039" icon="web" alt="web" title="Web" />
+          <SkillProgress class="skillProgress" v-for="skill in webSkills" :key="skill.id" :skill="skill"
+            color="#a0d039" />
         </div>
         <!-- UI/UX -->
         <div class="skills">
-          <IconTitle
-            class="iconTitle"
-            color="#65d7bb"
-            icon="uiux"
-            alt="UI/UX Design"
-            title="UI/UX Design"
-          />
-          <SkillProgress
-            class="skillProgress"
-            v-for="skill in uiSkills"
-            :key="skill.id"
-            :skill="skill"
-            color="#65d7bb"
-          />
+          <IconTitle class="iconTitle" color="#65d7bb" icon="uiux" alt="UI/UX Design" title="UI/UX Design" />
+          <SkillProgress class="skillProgress" v-for="skill in uiSkills" :key="skill.id" :skill="skill"
+            color="#65d7bb" />
         </div>
       </div>
     </div>
@@ -48,61 +26,23 @@
       <div class="other-skills">
         <!-- Software engineering -->
         <div class="skills">
-          <IconTitle
-            class="iconTitle"
-            color="#a98ff3"
-            icon="software_engineering"
-            alt="Software engineering"
-            title="Software engineering"
-          />
-          <SkillSimple
-            class="skillSimple"
-            v-for="skill in softwareSkills"
-            :key="skill.id"
-            :skill="skill"
-          />
+          <IconTitle class="iconTitle" color="#a98ff3" icon="software_engineering" alt="Software engineering"
+            title="Software engineering" />
+          <SkillSimple class="skillSimple" v-for="skill in softwareSkills" :key="skill.id" :skill="skill" />
         </div>
         <!-- Mobile -->
         <div class="skills">
-          <IconTitle
-            class="iconTitle"
-            color="#FF4E4E"
-            icon="mobile"
-            alt="Mobile"
-            title="Mobile"
-          />
-          <SkillSimple
-            class="skillSimple"
-            v-for="skill in mobileSkills"
-            :key="skill.id"
-            :skill="skill"
-          />
+          <IconTitle class="iconTitle" color="#FF4E4E" icon="mobile" alt="Mobile" title="Mobile" />
+          <SkillSimple class="skillSimple" v-for="skill in mobileSkills" :key="skill.id" :skill="skill" />
         </div>
         <!-- Others -->
         <div class="skills">
-          <IconTitle
-            class="iconTitle"
-            color="#E5D64C"
-            icon="others"
-            alt="Others"
-            title="Others"
-          />
-          <SkillSimple
-            class="skillSimple"
-            v-for="skill in othersSkills"
-            :key="skill.id"
-            :skill="skill"
-          />
+          <IconTitle class="iconTitle" color="#E5D64C" icon="others" alt="Others" title="Others" />
+          <SkillSimple class="skillSimple" v-for="skill in othersSkills" :key="skill.id" :skill="skill" />
         </div>
         <!-- Languages -->
         <div class="skills">
-          <IconTitle
-            class="iconTitle"
-            color="#279BDD"
-            icon="language"
-            alt="languages"
-            title="languages"
-          />
+          <IconTitle class="iconTitle" color="#279BDD" icon="language" alt="languages" title="languages" />
           <div class="languages lanMargin">
             <h4>. Persian</h4>
             <p>(Native)</p>
@@ -114,7 +54,9 @@
         </div>
       </div>
     </div>
-    <TitleBackground class="titleBackground default-margin" title="skills" />
+    <div class="titleBackground-anchor default-margin">
+      <TitleBackground class="titleBackground" title="skills" />
+    </div>
   </div>
 </template>
 
@@ -170,6 +112,11 @@ export default {
           link: "https://en.wikipedia.org/wiki/JavaScript",
         },
         {
+          title: "TypeScript",
+          width: "70",
+          link: "https://www.typescriptlang.org/",
+        },
+        {
           title: "Node.js",
           width: "40",
           link: "https://en.wikipedia.org/wiki/Node.js",
@@ -195,6 +142,11 @@ export default {
           title: "Adobe Illustrator",
           width: "50",
           link: "https://en.wikipedia.org/wiki/Adobe_Illustrator",
+        },
+        {
+          title: "Adobe Premiere Pro",
+          width: "50",
+          link: "https://www.adobe.com/products/premiere.html",
         },
       ],
       softwareSkills: [
@@ -237,6 +189,14 @@ export default {
         {
           title: "Linux",
           link: "https://en.wikipedia.org/wiki/Linux",
+        },
+        {
+          title: "SEO",
+          link: "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        },
+        {
+          title: "Performance Optimization",
+          link: "https://web.dev/learn/performance",
         },
       ],
     };
@@ -322,29 +282,42 @@ export default {
 
       h4 {
         font-size: 1.125rem;
-        color: white;
+        color: var(--color-text);
       }
 
       p {
         font-size: 0.75rem;
-        color: white;
+        color: var(--color-text-muted);
         margin-left: 5px;
       }
     }
   }
 
-  .titleBackground {
-    z-index: 1;
-    left: -120px;
-    top: 280px;
-    transform: rotate(-90deg);
+  .titleBackground-anchor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    .titleBackground {
+      z-index: 1;
+      left: -1.25rem;
+      top: 6rem;
+      transform: rotate(-90deg) translateX(-100%);
+      transform-origin: top left;
+    }
   }
 }
 
-// Tablet
-@include mediaQueryMin("md") {
-  .titleBackground {
-    margin-top: 100px;
+:global(html[data-theme="light"] .skills-container) {
+  background-image: url("../../../assets/images/wave3-light.svg"),
+    url("../../../assets/images/wave1-light.svg"),
+    linear-gradient(var(--color-surface), var(--color-surface));
+}
+
+@media (min-width: 90rem) {
+  .skills-container .titleBackground-anchor .titleBackground {
+    left: -7.5rem;
+    top: 16rem;
   }
 }
 </style>

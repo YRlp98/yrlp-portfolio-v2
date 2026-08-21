@@ -27,7 +27,7 @@
         <li>
           <nuxt-link class="item" :to="$localePath('/projects')">{{
             $t("projects")
-            }}</nuxt-link>
+          }}</nuxt-link>
         </li>
         <li>
           <nuxt-link class="item" :to="$localePath('/blog')">{{ $t("blog") }}</nuxt-link>
@@ -104,7 +104,7 @@ export default {
         position: absolute;
         inset: 0;
         z-index: -1;
-        background-color: rgba(19, 19, 19, 0.55);
+        background-color: var(--color-glass);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
       }
@@ -129,6 +129,7 @@ export default {
             font-size: 1rem;
             font-weight: regular;
             cursor: pointer;
+            transition: color 0.3s ease;
 
             &:hover {
               color: var(--green-1);
@@ -155,6 +156,7 @@ export default {
         transition: transform 0.2s ease, filter 0.2s ease;
 
         img {
+          filter: var(--icon-monochrome-filter);
           transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
         }
 
@@ -165,7 +167,7 @@ export default {
           img {
             transform: scale(1.04);
             opacity: 0.95;
-            filter: brightness(1.08);
+            opacity: 0.82;
           }
         }
 

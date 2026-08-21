@@ -18,10 +18,16 @@ export default {
     Navbar,
     Footer,
   },
-  data() {
-    return {
-      activeLocale: "fa",
-    };
+  setup() {
+    const { locale } = useI18n();
+
+    useHead(() => ({
+      htmlAttrs: {
+        lang: locale.value === "fa" ? "fa" : "en",
+        dir: locale.value === "en" ? "ltr" : undefined,
+        'data-locale': locale.value,
+      },
+    }));
   },
 };
 </script>

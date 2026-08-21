@@ -4,12 +4,7 @@
     <div class="projectCard-info">
       <h2>{{ project.title }}</h2>
       <div class="projectCard-tags">
-        <div
-          class="tags"
-          v-for="tag in project.tags"
-          :style="{ backgroundColor: tag.color }"
-          :key="tag"
-        >
+        <div class="tags" v-for="tag in project.tags" :style="{ backgroundColor: tag.color }" :key="tag">
           {{ tag.value }}
         </div>
       </div>
@@ -39,7 +34,7 @@ export default {
   position: relative;
   display: flex;
   align-items: flex-end;
-  transition: 0.4s ease-out;
+  transition: transform 0.4s ease;
   box-shadow: 0px 7px 10px rgba(black, 0.5);
   text-decoration: none;
   z-index: 9;
@@ -85,6 +80,7 @@ export default {
     top: 0;
     left: 0;
     border-radius: 5px;
+    transition: filter 0.4s ease;
   }
 
   .projectCard-info {

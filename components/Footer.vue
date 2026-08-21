@@ -1,14 +1,11 @@
 <template>
-  <div class="footer-container">
+  <div class="footer-container" :class="{ 'is-ltr': activeLang === 'en' }">
     <div class="socialNetwork-container">
       <div class="socialNetwork default-margin">
         <h2>{{ $t("homePageFollowMeSN") }}</h2>
         <SocialNetwork class="socialNetwork" />
       </div>
-      <TitleBackground
-        title="social network"
-        class="titleBackground default-margin"
-      />
+      <TitleBackground title="social network" class="titleBackground default-margin" />
     </div>
 
     <div class="footer default-margin">
@@ -29,7 +26,7 @@
         <li>
           <nuxt-link class="item" :to="$localePath('/projects')">{{
             $t("projects")
-          }}</nuxt-link>
+            }}</nuxt-link>
         </li>
         <li>
           <nuxt-link class="item" :to="$localePath('/blog')">{{ $t("blog") }}</nuxt-link>
@@ -92,7 +89,7 @@ export default {
 
       h2 {
         z-index: 1;
-        color: white;
+        color: var(--color-text);
         font-size: 1.375;
       }
 
@@ -127,6 +124,14 @@ export default {
   }
 }
 
+.footer-container.is-ltr {
+
+  .footer p,
+  .footer ul {
+    direction: ltr;
+  }
+}
+
 // Tablet
 @include mediaQueryMin("md") {
   .footer-container {
@@ -151,6 +156,7 @@ export default {
             font-size: 1rem;
             font-weight: regular;
             cursor: pointer;
+            transition: color 0.3s ease;
 
             &:hover {
               color: var(--green-1);

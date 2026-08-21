@@ -18,4 +18,8 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+:global(html[data-theme="light"] .wave) {
+  background-image: url("../../assets/images/wave2-light.svg");
+}
 </style>

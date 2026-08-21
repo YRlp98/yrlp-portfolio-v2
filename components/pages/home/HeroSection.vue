@@ -1,5 +1,5 @@
 <template>
-	<div class="heroSection-container" id="#homeHeroSection">
+	<div class="heroSection-container" :class="{ 'is-ltr': activeLang === 'en' }" id="#homeHeroSection">
 		<div class="heroSection-content" :style="{ direction: `${changeDirection(activeLang)}` }">
 			<div class="heroSection-welcome" ref="heroWelcome">
 				<div class="heroTitle">
@@ -74,7 +74,7 @@ export default {
 		pointer-events: none;
 
 		.heroTitle {
-			color: white;
+			color: var(--color-text);
 			font-weight: normal;
 			font-size: 25px;
 
@@ -104,6 +104,15 @@ export default {
 		top: 90vh;
 		transform: scale(0.65);
 		z-index: 101;
+	}
+}
+
+.heroSection-container.is-ltr {
+	direction: ltr;
+
+	.heroSection-welcome .heroTitle div {
+		margin-right: 0;
+		margin-left: 8px;
 	}
 }
 

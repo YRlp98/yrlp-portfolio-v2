@@ -72,11 +72,11 @@ export default {
   computed: {
     tags() {
       return [
-        { key: "All", name: this.$t("All"), color: "#ffffff" },
-        { key: "Designing", name: this.$t("Designing"), color: "#FB4B8A" },
-        { key: "Web", name: this.$t("Web"), color: "#4D848B" },
-        { key: "Mobile", name: this.$t("Mobile"), color: "#38AF76" },
-        { key: "Others", name: this.$t("Others"), color: "#FB4B4B" },
+        { key: "All", name: this.$t("All"), color: "var(--color-text)" },
+        { key: "Designing", name: this.$t("Designing"), color: "var(--tag-design)" },
+        { key: "Web", name: this.$t("Web"), color: "var(--tag-web)" },
+        { key: "Mobile", name: this.$t("Mobile"), color: "var(--tag-mobile)" },
+        { key: "Others", name: this.$t("Others"), color: "var(--tag-other)" },
       ];
     },
     filterdProjects: function () {
@@ -134,10 +134,11 @@ export default {
         border-radius: 5px;
         user-select: none;
         cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
 
         &:hover {
           background-color: var(--green-1);
-          color: var(--gray-2);
+          color: var(--color-accent-contrast);
         }
       }
     }

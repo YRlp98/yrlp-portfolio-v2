@@ -4,7 +4,7 @@
       <h4>{{ title }}</h4>
       <div class="descriptiont">
         <!-- <img src="/icons/calendar_gray.svg" /> -->
-        <img :src="`/icons/${icon}.svg`" :alt="icon"/>
+        <img :src="`/icons/${icon}.svg`" :alt="icon" />
         <p>{{ description }}</p>
       </div>
     </div>
@@ -45,10 +45,11 @@ export default {
 
   h4 {
     font-size: 1.063rem;
-    color: white;
+    color: var(--color-text);
     text-align: right;
     min-width: 300px;
   }
+
   .descriptiont {
     display: flex;
     flex-direction: row-reverse;
@@ -58,6 +59,7 @@ export default {
       height: 15px;
       width: 15px;
       margin-left: 5px;
+      filter: var(--icon-monochrome-filter);
     }
 
     p {
