@@ -3,21 +3,21 @@
 		<HeroSection class="heroSection" />
 		<div class="aboutMe-container">
 			<WaveBackground class="waveBackground" />
-			<AboutMe class="defualt-margin" />
+			<AboutMe class="default-margin" />
 		</div>
-		<div class="defualt-margin education-container">
+		<div class="default-margin education-container">
 			<Education />
 		</div>
-		<div class="defualt-margin experience-container">
+		<div class="default-margin experience-container">
 			<Experience />
 		</div>
 		<div class="skills-container">
 			<Skills />
 		</div>
-		<div class="defualt-margin projects-container">
+		<div class="default-margin projects-container">
 			<Projects />
 		</div>
-		<div class="defualt-margin blog-container">
+		<div class="default-margin blog-container">
 			<Blog />
 		</div>
 	</div>

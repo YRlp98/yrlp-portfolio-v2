@@ -93,27 +93,27 @@ body {
     background: var(--gray-2);
 
     // Mobile
-    .defualt-margin {
+    .default-margin {
         margin: 0 20px;
     }
 
     // Tablet (768px)
     @include mediaQueryMin("md") {
-        .defualt-margin {
+        .default-margin {
             margin: 0 25px;
         }
     }
 
     // Desktop (1280px)
     @include mediaQueryMin("xl") {
-        .defualt-margin {
+        .default-margin {
             margin: 0 40px;
         }
     }
 
     // Desktop - Large (1400px)
     @include mediaQueryMin("xl-2") {
-        .defualt-margin {
+        .default-margin {
             margin: 0 300px;
         }
     }

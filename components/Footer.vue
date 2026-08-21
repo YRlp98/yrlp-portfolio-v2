@@ -1,17 +1,17 @@
 <template>
   <div class="footer-container">
     <div class="socialNetwork-container">
-      <div class="socialNetwork defualt-margin">
+      <div class="socialNetwork default-margin">
         <h2>{{ $t("homePageFollowMeSN") }}</h2>
         <SocialNetwork class="socialNetwork" />
       </div>
       <TitleBackground
         title="social network"
-        class="titleBackground defualt-margin"
+        class="titleBackground default-margin"
       />
     </div>
 
-    <div class="footer defualt-margin">
+    <div class="footer default-margin">
       <ul :style="{ direction: `${changeDirection(activeLang)}` }">
         <li>
           <nuxt-link class="item" :to="$localePath('/')">{{ $t("home") }}</nuxt-link>

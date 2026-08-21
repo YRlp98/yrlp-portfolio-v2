@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar-container" :class="{ 'is-scrolled': isScrolled }">
-    <div class="navbar defualt-margin">
+    <div class="navbar default-margin">
       <div class="navbar-more-wrap">
         <span class="navbar-more" @click.stop="isOpen = !isOpen">
           <img src="/images/icons/more.svg" alt="More icon" />

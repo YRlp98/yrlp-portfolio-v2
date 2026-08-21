@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-container defualt-margin" :style="{ direction: `${changeDirection(activeLang)}` }">
+  <div class="blog-container default-margin" :style="{ direction: `${changeDirection(activeLang)}` }">
     <h1 class="title">{{ $t("blog") }}</h1>
     <div class="blog-cards">
       <BlogCard class="blogCard" v-for="blog in blogs" :key="blog.id" :blog="blog" />

@@ -1,5 +1,5 @@
 <template>
-  <div class="projects-container defualt-margin" :style="{ direction: `${changeDirection(activeLang)}` }">
+  <div class="projects-container default-margin" :style="{ direction: `${changeDirection(activeLang)}` }">
     <h1 class="title">{{ $t("projects") }}</h1>
     <div class="filter" :style="{ direction: `${changeDirection(activeLang)}` }">
       <p>{{ $t("show") }}:</p>
