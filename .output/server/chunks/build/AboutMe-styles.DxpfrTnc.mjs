@@ -1,8 +1,0 @@
-const AboutMe_vue_vue_type_style_index_0_scoped_dd9ec491_lang = ".aboutMe-container[data-v-dd9ec491]{direction:rtl;display:flex;flex-direction:column;z-index:1}.aboutMe-container .aboutMe-title[data-v-dd9ec491]{font-size:2.125rem;font-weight:700}.aboutMe-container .aboutMe-avatar[data-v-dd9ec491]{margin-top:40px;position:relative}.aboutMe-container .aboutMe-avatar .square[data-v-dd9ec491]{border:2px solid var(--green-1);border-radius:5px;height:170px;position:absolute;right:15px;top:15px;width:170px;z-index:-1}.aboutMe-container .aboutMe-avatar img[data-v-dd9ec491]{border-radius:5px;box-shadow:0 25px 20px -20px #000000e6;height:170px;width:170px}.aboutMe-container .aboutMe-text[data-v-dd9ec491]{font-size:1.063;line-height:28px;margin-top:40px}.aboutMe-container .aboutMeInfo[data-v-dd9ec491],.aboutMe-container .socialNetwork[data-v-dd9ec491]{margin-top:40px}.aboutMe-container .titleBackground[data-v-dd9ec491]{left:-200px;top:230px;transform:rotate(-90deg)}@media(min-width:768px){.aboutMe-container[data-v-dd9ec491]{position:relative}.aboutMe-container .aboutMe-title[data-v-dd9ec491]{margin-right:90px;position:absolute;right:220px;top:40px;z-index:1}.aboutMe-container .aboutMe-text[data-v-dd9ec491]{margin-right:90px;position:absolute;right:220px;top:80px;z-index:1}.aboutMe-container .socialNetwork[data-v-dd9ec491]{margin-top:80px;z-index:99}.aboutMe-container .titleBackground[data-v-dd9ec491]{left:0;top:40px;transform:rotate(0)}}";
-
-const AboutMeStyles_DxpfrTnc = [
-  AboutMe_vue_vue_type_style_index_0_scoped_dd9ec491_lang
-];
-
-export { AboutMeStyles_DxpfrTnc as default };
-//# sourceMappingURL=AboutMe-styles.DxpfrTnc.mjs.map

@@ -109,4 +109,8 @@ export default defineNuxtConfig({
     ],
     sitemap: ['https://yrlp.ir/sitemap.xml'],
   },
+
+  devtools: {
+    enabled: true,
+  },
 })

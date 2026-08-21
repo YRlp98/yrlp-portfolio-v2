@@ -1,8 +1,0 @@
-const BlogCard_vue_vue_type_style_index_0_scoped_64d91005_lang = ".blogCard-container[data-v-64d91005]{background:transparent;background:var(--gray-2);border-radius:5px;box-shadow:0 7px 10px #00000080;display:flex;flex-direction:column;height:400px;position:relative;text-decoration:none;transition:.4s ease-out;width:340px;z-index:9}.blogCard-container[data-v-64d91005]:hover{transform:translateY(10px)}.blogCard-container .blogCard img[data-v-64d91005]{border-radius:5px 5px 0 0;height:225px;-o-object-fit:cover;object-fit:cover;width:100%}.blogCard-container .blogCard .blogCard-info[data-v-64d91005]{padding:20px;text-align:right;width:100%;z-index:9}.blogCard-container .blogCard .blogCard-info h2[data-v-64d91005]{color:#fff;font-size:1.375rem}.blogCard-container .blogCard .blogCard-info h2[data-v-64d91005],.blogCard-container .blogCard .blogCard-info p[data-v-64d91005]{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;direction:rtl;max-width:90%;overflow:hidden;text-overflow:ellipsis}.blogCard-container .blogCard .blogCard-info p[data-v-64d91005]{color:var(--gray-1);font-size:1rem;margin-top:20px}";
-
-const BlogCardStyles_rCS_ty7x = [
-  BlogCard_vue_vue_type_style_index_0_scoped_64d91005_lang
-];
-
-export { BlogCardStyles_rCS_ty7x as default };
-//# sourceMappingURL=BlogCard-styles.rCS_ty7x.mjs.map
