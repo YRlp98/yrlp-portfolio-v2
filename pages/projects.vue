@@ -134,6 +134,7 @@ export default {
         border-radius: 5px;
         user-select: none;
         cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
 
         &:hover {
           background-color: var(--green-1);

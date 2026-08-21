@@ -27,7 +27,7 @@
         <li>
           <nuxt-link class="item" :to="$localePath('/projects')">{{
             $t("projects")
-            }}</nuxt-link>
+          }}</nuxt-link>
         </li>
         <li>
           <nuxt-link class="item" :to="$localePath('/blog')">{{ $t("blog") }}</nuxt-link>
@@ -129,6 +129,7 @@ export default {
             font-size: 1rem;
             font-weight: regular;
             cursor: pointer;
+            transition: color 0.3s ease;
 
             &:hover {
               color: var(--green-1);

@@ -118,14 +118,13 @@ section {
     i {
       color: rgba(0, 0, 0, 0.5);
       opacity: 0.5;
-      transition: 1s;
+      transition: color 0.35s ease, text-shadow 0.35s ease;
       padding: 0 5px;
       user-select: none;
       cursor: default;
 
 
       &:hover {
-        transition: 0s;
         color: var(--green-1);
         text-shadow: 0 0 120px var(--green-1);
       }

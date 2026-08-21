@@ -22,14 +22,8 @@
       <p>Language</p>
       <ul class="menu-bar">
         <li v-for="locale in availableLocales" :key="locale.code">
-          <nuxt-link
-            :to="switchLocalePath(locale.code)"
-            @click="$emit('close')"
-          >
-            <img
-              :src="`/icons/${locale.code}.svg`"
-              :alt="locale.name"
-            />
+          <nuxt-link :to="switchLocalePath(locale.code)" @click="$emit('close')">
+            <img :src="`/icons/${locale.code}.svg`" :alt="locale.name" />
             {{ locale.name }}
           </nuxt-link>
         </li>
@@ -86,7 +80,7 @@ function onChangeTheme() {
       font-size: 0.813rem;
       padding: 4px 10px;
       border-radius: 5px;
-      transition: all 0.2s ease;
+      transition: transform 0.3s ease, background-color 0.3s ease;
 
       img {
         margin-right: 10px;

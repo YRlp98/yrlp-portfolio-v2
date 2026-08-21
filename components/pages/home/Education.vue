@@ -4,20 +4,12 @@
       <HomeTitle :title="$t('education')" />
       <div class="education-carts">
         <div class="firstColumn">
-          <IconListCard
-            class="iconListCard"
-            :title="$t('homePageEducationAssociate')"
-            :description="$t('homePageEducationAssociateDate')"
-            link="https://mkz.tvu.ac.ir/"
-          />
+          <IconListCard class="iconListCard" :title="$t('homePageEducationAssociate')"
+            :description="$t('homePageEducationAssociateDate')" link="https://mkz.tvu.ac.ir/" />
         </div>
         <div class="secondColumn">
-          <IconListCard
-            class="iconListCard"
-            :title="$t('homePageEducationBachelor')"
-            :description="$t('homePageEducationBachelorDate')"
-            link="https://mkz.tvu.ac.ir/"
-          />
+          <IconListCard class="iconListCard" :title="$t('homePageEducationBachelor')"
+            :description="$t('homePageEducationBachelorDate')" link="https://mkz.tvu.ac.ir/" />
         </div>
       </div>
     </div>
@@ -50,9 +42,9 @@ export default {
 
       .iconListCard {
         margin-top: 40px;
+        transition: transform 0.4s ease-in-out;
 
         &:hover {
-          transition: all 0.4s ease-in-out;
           transform: scale(1.1);
         }
       }

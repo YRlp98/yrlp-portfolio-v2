@@ -32,7 +32,7 @@ export default {
   background: transparent;
   display: flex;
   flex-direction: column;
-  transition: 0.4s ease-out;
+  transition: transform 0.4s ease;
   background: var(--gray-2);
   box-shadow: 0px 7px 10px rgba(black, 0.5);
   text-decoration: none;
@@ -62,6 +62,7 @@ export default {
         color: white;
         font-size: 1.375rem;
         display: -webkit-box;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
@@ -75,6 +76,7 @@ export default {
         font-size: 1rem;
         color: var(--gray-1);
         display: -webkit-box;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;

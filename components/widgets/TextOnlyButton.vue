@@ -31,7 +31,7 @@ export default {
   padding: 16px 32px;
   padding-bottom: 14px; // To fix font padding issue
   border-radius: 5px;
-  transition: color 0.5s ease-in, transform 0.5s ease-in, box-shadow 0.5s ease-in;
+  transition: color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
 
   &:hover {
     color: var(--green-1);

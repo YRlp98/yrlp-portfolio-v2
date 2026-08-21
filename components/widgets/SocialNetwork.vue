@@ -2,21 +2,16 @@
   <div class="socialNetwork-container">
     <div class="items">
       <a href="https://www.linkedin.com/in/yrlp98/" target="_blank">
-        <img src="/icons/linkedin.svg" alt="LinkedIn"
-      /></a>
+        <img src="/icons/linkedin.svg" alt="LinkedIn" /></a>
       <a href="https://github.com/YRlp98" target="_blank">
-        <img src="/icons/github.svg" alt="GitHub"
-      /></a>
+        <img src="/icons/github.svg" alt="GitHub" /></a>
       <a href="https://dribbble.com/YRlp98" target="_blank">
-        <img src="/icons/dribbble.svg" alt="Dribble"
-      /></a>
+        <img src="/icons/dribbble.svg" alt="Dribble" /></a>
       <a href="https://www.behance.net/yrlp98" target="_blank">
-        <img src="/icons/behance.svg" alt="Behance"
-      /></a>
+        <img src="/icons/behance.svg" alt="Behance" /></a>
       <a href="https://x.com/YRlp98" target="_blank">
-        <img src="/icons/x.svg" alt="X"
-      /></a>
-            <!-- <a
+        <img src="/icons/x.svg" alt="X" /></a>
+      <!-- <a
         href="https://www.youtube.com/channel/UCZd51HzXf_YThh9wfZy_1YA"
         target="_blank"
       >
@@ -50,6 +45,7 @@ export default {
 
     a {
       margin-right: 20px;
+      transition: transform 0.3s ease;
 
       img {
         width: 20px;
