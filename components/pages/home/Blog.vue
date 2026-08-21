@@ -67,6 +67,7 @@ export default {
       margin-top: 40px;
       margin-bottom: 40px;
       display: grid;
+      direction: rtl;
       grid-template-columns: 1fr;
       gap: 20px;
       justify-content: center;
