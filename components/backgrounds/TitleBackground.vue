@@ -26,8 +26,8 @@ export default {
     text-transform: uppercase;
     font-size: 6.25rem;
     font-weight: 800;
-    color: black;
-    opacity: 0.15;
+    color: var(--color-title-watermark);
+    opacity: 0.18;
     user-select: none;
     white-space: nowrap;
     direction: ltr;

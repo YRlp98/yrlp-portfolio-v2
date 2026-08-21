@@ -50,6 +50,7 @@ export default {
       img {
         width: 20px;
         height: 20px;
+        filter: var(--icon-monochrome-filter);
       }
 
       &:hover {

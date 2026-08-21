@@ -116,7 +116,7 @@ export default {
           z-index: 2;
           width: 8px;
           height: 8px;
-          background-color: white;
+          background-color: var(--color-text);
           right: -35px;
           top: 10px;
           border-radius: 50%;
@@ -130,7 +130,7 @@ export default {
           width: 1px;
           right: -32px;
           top: 30px;
-          background: white;
+          background: var(--color-text);
         }
       }
     }

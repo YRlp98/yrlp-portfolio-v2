@@ -282,12 +282,12 @@ export default {
 
       h4 {
         font-size: 1.125rem;
-        color: white;
+        color: var(--color-text);
       }
 
       p {
         font-size: 0.75rem;
-        color: white;
+        color: var(--color-text-muted);
         margin-left: 5px;
       }
     }
@@ -306,6 +306,12 @@ export default {
       transform-origin: top left;
     }
   }
+}
+
+:global(html[data-theme="light"] .skills-container) {
+  background-image: url("../../../assets/images/wave3-light.svg"),
+    url("../../../assets/images/wave1-light.svg"),
+    linear-gradient(var(--color-surface), var(--color-surface));
 }
 
 @media (min-width: 90rem) {

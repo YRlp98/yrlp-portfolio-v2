@@ -2,8 +2,8 @@
 @font-face {
     font-family: 'PeydaWeb';
     src: local('PeydaWeb-Black'),
-         url('../fonts/PeydaWeb-Black.woff2') format('woff2'),
-         url('../fonts/PeydaWeb-Black.woff') format('woff');
+        url('../fonts/PeydaWeb-Black.woff2') format('woff2'),
+        url('../fonts/PeydaWeb-Black.woff') format('woff');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -12,8 +12,8 @@
 @font-face {
     font-family: 'PeydaWeb';
     src: local('PeydaWeb-ExtraBold'),
-         url('../fonts/PeydaWeb-ExtraBold.woff2') format('woff2'),
-         url('../fonts/PeydaWeb-ExtraBold.woff') format('woff');
+        url('../fonts/PeydaWeb-ExtraBold.woff2') format('woff2'),
+        url('../fonts/PeydaWeb-ExtraBold.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -22,8 +22,8 @@
 @font-face {
     font-family: 'PeydaWeb';
     src: local('PeydaWeb-Medium'),
-         url('../fonts/PeydaWeb-Medium.woff2') format('woff2'),
-         url('../fonts/PeydaWeb-Medium.woff') format('woff');
+        url('../fonts/PeydaWeb-Medium.woff2') format('woff2'),
+        url('../fonts/PeydaWeb-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -32,8 +32,8 @@
 @font-face {
     font-family: 'PeydaWeb';
     src: local('PeydaWeb-Regular'),
-         url('../fonts/PeydaWeb-Regular.woff2') format('woff2'),
-         url('../fonts/PeydaWeb-Regular.woff') format('woff');
+        url('../fonts/PeydaWeb-Regular.woff2') format('woff2'),
+        url('../fonts/PeydaWeb-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -42,21 +42,67 @@
 @font-face {
     font-family: 'PeydaWeb';
     src: local('PeydaWeb-SemiBold'),
-         url('../fonts/PeydaWeb-SemiBold.woff2') format('woff2'),
-         url('../fonts/PeydaWeb-SemiBold.woff') format('woff');
+        url('../fonts/PeydaWeb-SemiBold.woff2') format('woff2'),
+        url('../fonts/PeydaWeb-SemiBold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 :root {
-    // Colors
-    --white-1: #f5f5f5;
-    --white-2: #f6f8f5;
-    --gray-1: #8c8c8c;
-    --gray-2: #222222;
-    --gray-3: #131313;
-    --green-1: #35e925;
+    color-scheme: dark;
+
+    // Semantic theme colors
+    --color-bg: #222222;
+    --color-surface: #131313;
+    --color-surface-elevated: #292929;
+    --color-text: #f5f5f5;
+    --color-text-muted: #a3a3a3;
+    --color-accent: #35e925;
+    --color-accent-contrast: #10200d;
+    --color-border: rgba(255, 255, 255, 0.16);
+    --color-glass: rgba(19, 19, 19, 0.78);
+    --color-glass-hover: rgba(255, 255, 255, 0.1);
+    --color-hero-glyph: rgba(0, 0, 0, 0.5);
+    --color-title-watermark: #000000;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.22);
+    --shadow-card: 0 7px 18px rgba(0, 0, 0, 0.42);
+    --icon-monochrome-filter: none;
+    --tag-design: #fb6a9d;
+    --tag-web: #78b4bc;
+    --tag-mobile: #54cf91;
+    --tag-other: #ff6868;
+
+    // Backwards-compatible aliases used throughout the existing components
+    --white-1: var(--color-text);
+    --white-2: var(--color-text);
+    --gray-1: var(--color-text-muted);
+    --gray-2: var(--color-bg);
+    --gray-3: var(--color-surface);
+    --green-1: var(--color-accent);
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --color-bg: #f7f9f6;
+    --color-surface: #e9eee7;
+    --color-surface-elevated: #ffffff;
+    --color-text: #172017;
+    --color-text-muted: #596359;
+    --color-accent: #176d12;
+    --color-accent-contrast: #ffffff;
+    --color-border: rgba(23, 32, 23, 0.16);
+    --color-glass: rgba(255, 255, 255, 0.88);
+    --color-glass-hover: rgba(23, 32, 23, 0.08);
+    --color-hero-glyph: rgba(23, 32, 23, 0.2);
+    --color-title-watermark: #607060;
+    --shadow-soft: 0 10px 30px rgba(32, 49, 32, 0.12);
+    --shadow-card: 0 7px 20px rgba(32, 49, 32, 0.16);
+    --icon-monochrome-filter: brightness(0) saturate(100%) opacity(0.78);
+    --tag-design: #a71950;
+    --tag-web: #285f67;
+    --tag-mobile: #12673f;
+    --tag-other: #ac2424;
 }
 
 * {
@@ -67,7 +113,8 @@
     scroll-behavior: smooth;
 
     *::selection {
-        background: green;
+        color: var(--color-accent-contrast);
+        background: var(--color-accent);
     }
 
     *::after {
@@ -89,8 +136,10 @@ body {
     overflow-x: hidden !important;
     overflow-y: auto;
     font-family: "PeydaWeb", "Courier New", Courier, monospace;
-    color: var(--white-1);
-    background: var(--gray-2);
+    min-height: 100%;
+    color: var(--color-text);
+    background: var(--color-bg);
+    transition: color 0.25s ease, background-color 0.25s ease;
 
     // Mobile
     .default-margin {
@@ -112,5 +161,29 @@ body {
         .default-margin {
             width: calc(100% - 80px);
         }
+    }
+}
+
+button,
+a {
+    &:focus-visible {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 3px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html,
+    body {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }

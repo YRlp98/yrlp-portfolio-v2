@@ -17,6 +17,7 @@ export default defineNuxtConfig({
             'Yousef Roshandel is a passionate Front-End Developer and UI/UX Designer creating modern, user-friendly websites. یوسف روشندل، توسعه‌دهنده فرانت‌اند و طراح UI/UX با اشتیاق برای خلق تجربه‌های دیجیتال مدرن و کاربرپسند.',
         },
         { name: 'format-detection', content: 'telephone=no' },
+        { name: 'theme-color', content: '#131313' },
         { name: 'apple-mobile-web-app-title', content: 'YRlp' },
         {
           property: 'og:title',
@@ -43,6 +44,22 @@ export default defineNuxtConfig({
             'sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==',
           crossorigin: 'anonymous',
           referrerpolicy: 'no-referrer',
+        },
+      ],
+      script: [
+        {
+          innerHTML: `(function () {
+            try {
+              var savedTheme = localStorage.getItem('theme');
+              var theme = savedTheme === 'light' || savedTheme === 'dark'
+                ? savedTheme
+                : 'dark';
+              document.documentElement.dataset.theme = theme;
+              document.documentElement.style.colorScheme = theme;
+              var themeColor = document.querySelector('meta[name="theme-color"]');
+              if (themeColor) themeColor.setAttribute('content', theme === 'light' ? '#f7f9f6' : '#131313');
+            } catch (error) {}
+          })();`,
         },
       ],
     },

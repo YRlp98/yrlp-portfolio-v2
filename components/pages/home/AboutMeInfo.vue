@@ -38,7 +38,7 @@ export default {
       justify-content: center;
       text-decoration: none;
       font-size: 0.938rem;
-      color: white;
+      color: var(--color-text);
       cursor: pointer;
       margin: 7.5px 0;
       transition: transform 0.3s ease;
@@ -47,6 +47,7 @@ export default {
         height: 17px;
         width: 17px;
         margin-left: 10px;
+        filter: var(--icon-monochrome-filter);
       }
 
       &:hover {

@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .skillProgress-container {
   .skillProgress-title {
     display: flex;
@@ -45,7 +45,7 @@ export default {
 
     h4 {
       font-size: 1.125rem;
-      color: white;
+      color: var(--color-text);
     }
 
     a {
@@ -55,6 +55,7 @@ export default {
         height: 16px;
         width: 16px;
         cursor: pointer;
+        filter: var(--icon-monochrome-filter);
       }
     }
   }

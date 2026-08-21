@@ -116,7 +116,7 @@ section {
     transform: rotate(-30deg);
 
     i {
-      color: rgba(0, 0, 0, 0.5);
+      color: var(--color-hero-glyph);
       opacity: 0.5;
       transition: color 0.35s ease, text-shadow 0.35s ease;
       padding: 0 5px;

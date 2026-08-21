@@ -74,7 +74,7 @@ export default {
 		pointer-events: none;
 
 		.heroTitle {
-			color: white;
+			color: var(--color-text);
 			font-weight: normal;
 			font-size: 25px;
 

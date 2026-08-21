@@ -26,7 +26,7 @@ export default {
   z-index: 2;
   display: inline-block;
   text-decoration: none;
-  color: white;
+  color: var(--color-text);
   background-color: var(--gray-3);
   padding: 16px 32px;
   padding-bottom: 14px; // To fix font padding issue

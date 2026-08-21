@@ -94,12 +94,9 @@ export default {
   cursor: pointer;
   z-index: 1000;
   border-radius: 12px;
-  background: linear-gradient(180deg,
-      rgba(22, 22, 22, 0.58) 0%,
-      rgba(22, 22, 22, 0.42) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: var(--color-glass);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
   backdrop-filter: blur(10px) saturate(170%);
   -webkit-backdrop-filter: blur(10px) saturate(170%);
   transition: transform 0.2s ease, box-shadow 0.2s ease,
@@ -113,7 +110,7 @@ export default {
   position: absolute;
   width: 16px;
   height: 2px;
-  background-color: white;
+  background-color: var(--color-text);
   transition-duration: 0.25s;
 }
 
@@ -129,18 +126,15 @@ export default {
 
 .menu__btn:hover {
   transform: translateY(-2px) scale(1.02);
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0.08) 100%);
-  border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: var(--color-surface-elevated);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-soft);
 }
 
 .menu__btn:hover>span,
 .menu__btn:hover>span::before,
 .menu__btn:hover>span::after {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--color-accent);
 }
 
 .menu__btn:active {
@@ -163,7 +157,7 @@ export default {
   overscroll-behavior: contain;
   list-style: none;
   background-color: var(--gray-3);
-  box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-soft);
   transition-duration: 0.25s;
 
   .settings-menu {
@@ -181,7 +175,7 @@ export default {
 .menu__item {
   display: block;
   padding: 12.5px 24px;
-  color: white;
+  color: var(--color-text);
   text-decoration: none;
   transition-duration: 0.25s;
   cursor: pointer;

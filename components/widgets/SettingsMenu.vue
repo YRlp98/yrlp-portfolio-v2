@@ -4,16 +4,16 @@
       <p>Theme</p>
       <ul class="menu-bar">
         <li>
-          <a @click="onChangeTheme()" :class="{ active: isDark }" href="#">
-            <img src="/icons/dark.svg" alt="dark mode" />
+          <button type="button" @click="setTheme('dark')" :class="{ active: isDark }" :aria-pressed="isDark">
+            <img src="/icons/dark.svg" alt="" />
             Dark Mode
-          </a>
+          </button>
         </li>
         <li>
-          <a @click="onChangeTheme()" :class="{ active: !isDark }" href="#">
-            <img src="/icons/light.svg" alt="light mode" />
+          <button type="button" @click="setTheme('light')" :class="{ active: !isDark }" :aria-pressed="!isDark">
+            <img src="/icons/light.svg" alt="" />
             Light Mode
-          </a>
+          </button>
         </li>
       </ul>
     </div>
@@ -37,16 +37,13 @@ const emit = defineEmits(['close'])
 
 const { locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
-
-const isDark = ref(true)
+const { isDark, setTheme, initializeTheme } = useTheme()
 
 const availableLocales = computed(() =>
   locales.value.filter((l) => l.code !== locale.value)
 )
 
-function onChangeTheme() {
-  isDark.value = !isDark.value
-}
+onMounted(initializeTheme)
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +52,9 @@ function onChangeTheme() {
   display: flex;
   flex-direction: column;
   width: 215px;
-  background-color: rgba(19, 19, 19, 0.55);
+  color: var(--color-text);
+  background-color: var(--color-glass);
+  box-shadow: var(--shadow-soft);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   // border-radius: 8px;
@@ -72,12 +71,20 @@ function onChangeTheme() {
   li {
     line-height: 2.188rem;
 
-    a {
+    a,
+    button {
+      width: 100%;
+      box-sizing: border-box;
+      border: 0;
       text-decoration: none;
-      color: white;
+      color: var(--color-text);
+      background: transparent;
       display: flex;
       align-items: center;
+      font-family: inherit;
       font-size: 0.813rem;
+      line-height: 1.7;
+      cursor: pointer;
       padding: 4px 10px;
       border-radius: 5px;
       transition: transform 0.3s ease, background-color 0.3s ease;
@@ -89,12 +96,13 @@ function onChangeTheme() {
       }
     }
 
-    a:hover {
+    a:hover,
+    button:hover {
       transform: scale(1.05);
     }
 
     .active {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: var(--color-glass-hover);
     }
   }
 

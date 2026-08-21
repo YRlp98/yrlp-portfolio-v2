@@ -33,8 +33,8 @@ export default {
   display: flex;
   flex-direction: column;
   transition: transform 0.4s ease;
-  background: var(--gray-2);
-  box-shadow: 0px 7px 10px rgba(black, 0.5);
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-card);
   text-decoration: none;
   z-index: 9;
   border-radius: 5px;
@@ -59,7 +59,7 @@ export default {
       z-index: 9;
 
       h2 {
-        color: white;
+        color: var(--color-text);
         font-size: 1.375rem;
         display: -webkit-box;
         line-clamp: 2;
