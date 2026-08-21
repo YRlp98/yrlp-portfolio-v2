@@ -145,20 +145,25 @@ export default {
 
   .projects-cards {
     margin-top: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 
     .projectCard {
-      margin: 10px auto;
-      width: max(260px);
+      width: 100%;
 
       // Tablet
       @include mediaQueryMin("md") {
-        margin: 10px min(10px);
-        width: min(340px);
         height: min(245px);
       }
+    }
+
+    @include mediaQueryMin("md") {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mediaQueryMin("xl") {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 }

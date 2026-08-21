@@ -65,12 +65,18 @@ export default {
     margin-top: 80px;
     display: grid;
     gap: 30px;
-
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    grid-template-columns: 1fr;
 
     .blogCard {
       width: 100%;
-      margin: 0 auto;
+    }
+
+    @include mediaQueryMin("md") {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mediaQueryMin("xl") {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 }
