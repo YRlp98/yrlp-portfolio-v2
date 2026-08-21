@@ -5,19 +5,10 @@
     </h2>
     <div class="blog">
       <div class="blog-cards">
-        <BlogCard
-          class="blogCard"
-          v-for="blog in blogs"
-          :key="blog.id"
-          :blog="blog"
-        />
+        <BlogCard class="blogCard" v-for="blog in blogs" :key="blog.id" :blog="blog" />
       </div>
       <div>
-        <TextOnlyButton
-          :text="$t('viewAll')"
-          link="/blog"
-          class="textOnlyButton"
-        />
+        <TextOnlyButton :text="$t('viewAll')" link="/blog" class="textOnlyButton" />
       </div>
     </div>
     <TitleBackground title="Blog" class="titleBackground" />
@@ -96,9 +87,17 @@ export default {
 
   .titleBackground {
     z-index: 1;
-    left: -120px;
-    top: 100px;
-    transform: rotate(-90deg);
+    left: -1.25rem;
+    top: -4rem;
+    transform: rotate(-90deg) translateX(-100%);
+    transform-origin: top left;
+  }
+}
+
+@media (min-width: 90rem) {
+  .blog-container .titleBackground {
+    left: -7.5rem;
+    top: -2rem;
   }
 }
 </style>

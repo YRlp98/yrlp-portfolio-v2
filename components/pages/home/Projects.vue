@@ -5,19 +5,10 @@
     </h2>
     <div class="projects">
       <div class="projects-cards">
-        <ProjectCard
-          class="projectCard"
-          v-for="project in projects"
-          :key="project.id"
-          :project="project"
-        />
+        <ProjectCard class="projectCard" v-for="project in projects" :key="project.id" :project="project" />
       </div>
       <div>
-        <TextOnlyButton
-          :text="$t('viewAll')"
-          link="/projects"
-          class="textOnlyButton"
-        />
+        <TextOnlyButton :text="$t('viewAll')" link="/projects" class="textOnlyButton" />
       </div>
     </div>
     <TitleBackground title="Projects" class="titleBackground" />
@@ -101,9 +92,17 @@ export default {
 
   .titleBackground {
     z-index: 1;
-    left: -200px;
-    top: 240px;
-    transform: rotate(-90deg);
+    left: -1.25rem;
+    top: -4rem;
+    transform: rotate(-90deg) translateX(-100%);
+    transform-origin: top left;
+  }
+}
+
+@media (min-width: 90rem) {
+  .projects-container .titleBackground {
+    left: -7.5rem;
+    top: 1.25rem;
   }
 }
 </style>
