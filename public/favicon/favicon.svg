@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc" width="512" height="512"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><title id="title">YR favicon</title><desc id="desc">Minimal geometric YR monogram on a dark background.</desc><rect width="512" height="512" rx="72" fill="#131313"></rect><g fill="#35E925" transform="translate(70 145) scale(1.367647)">
+    <path d="M 0 0
+H 53
+Q 57 0 60 4
+L 98 54
+L 75 86
+Z"></path>
+    <path d="M 152 1
+H 219
+C 250 1 272 22 272 51
+V 61
+C 272 86 257 104 231 111
+L 272 161
+H 226
+L 169 90
+C 166 86 167 82 170 79
+C 173 76 176 76 181 76
+H 221
+C 230 76 235 70 235 61
+V 52
+C 235 42 230 36 220 36
+H 172
+L 117 113
+V 161
+H 75
+V 109
+Z"></path>
+  </g></svg>

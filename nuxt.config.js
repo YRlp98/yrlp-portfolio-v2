@@ -17,6 +17,7 @@ export default defineNuxtConfig({
             'Yousef Roshandel is a passionate Front-End Developer and UI/UX Designer creating modern, user-friendly websites. یوسف روشندل، توسعه‌دهنده فرانت‌اند و طراح UI/UX با اشتیاق برای خلق تجربه‌های دیجیتال مدرن و کاربرپسند.',
         },
         { name: 'format-detection', content: 'telephone=no' },
+        { name: 'apple-mobile-web-app-title', content: 'YRlp' },
         {
           property: 'og:title',
           content: 'Yousef Roshandel | Front-End Developer & UI/UX Designer',
@@ -30,7 +31,11 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', href: '/favicon/favicon-96x96.png', sizes: '96x96' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon/favicon.svg' },
+        { rel: 'shortcut icon', href: '/favicon/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/favicon/site.webmanifest' },
         {
           rel: 'stylesheet',
           href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
@@ -105,4 +110,3 @@ export default defineNuxtConfig({
     sitemap: ['https://yrlp.ir/sitemap.xml'],
   },
 })
-
