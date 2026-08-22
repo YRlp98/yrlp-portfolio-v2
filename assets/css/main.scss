@@ -59,6 +59,7 @@
     --color-text: #f5f5f5;
     --color-text-muted: #a3a3a3;
     --color-accent: #35e925;
+    --color-accent-hover-start: #1b7513;
     --color-accent-contrast: #10200d;
     --color-border: rgba(255, 255, 255, 0.16);
     --color-glass: rgba(19, 19, 19, 0.78);
@@ -90,6 +91,7 @@
     --color-text: #172017;
     --color-text-muted: #596359;
     --color-accent: #176d12;
+    --color-accent-hover-start: #0c3709;
     --color-accent-contrast: #ffffff;
     --color-border: rgba(23, 32, 23, 0.16);
     --color-glass: rgba(255, 255, 255, 0.88);
@@ -302,6 +304,7 @@ html[data-locale="en"] {
     }
 
     @media (max-width: 767px) {
+
         .skills-container .titleBackground-anchor .titleBackground,
         .projects-container .titleBackground,
         .blog-container .titleBackground {

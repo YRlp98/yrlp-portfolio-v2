@@ -4,7 +4,7 @@
       <div class="row" v-for="(row, rowIndex) in repeat" :key="rowIndex">
         <div>
           <i v-for="(icon, iconIndex) in row" :key="`${repeatIndex}-${rowIndex}-${iconIndex}`" :class="icon"
-            aria-hidden="true"></i>
+            @mouseenter="handleIconEnter" @mouseleave="handleIconLeave" aria-hidden="true"></i>
         </div>
       </div>
     </div>
@@ -91,6 +91,14 @@ export default {
   mounted() {
     this.rows = createRows(true);
   },
+  methods: {
+    handleIconEnter(event) {
+      event.currentTarget.classList.remove("icon-fading");
+    },
+    handleIconLeave(event) {
+      event.currentTarget.classList.add("icon-fading");
+    },
+  },
 };
 </script>
 
@@ -126,10 +134,6 @@ section {
       line-height: 1;
       transition-delay: 0s;
 
-      &:not(:hover) {
-        transition-delay: 0.35s;
-      }
-
       &:hover {
         transition-delay: 0s;
         transition-duration: 0s, 0s, 0.45s, 0s, 0s;
@@ -138,6 +142,10 @@ section {
         transform: scale(1.12);
         text-shadow: 0 0 32px var(--green-1);
         animation: icon-hover-brighten 0.9s ease-out forwards;
+      }
+
+      &.icon-fading {
+        animation: icon-hover-fade 0.45s ease 0.35s both;
       }
     }
 
@@ -161,13 +169,29 @@ section {
 
 @keyframes icon-hover-brighten {
   from {
-    color: color-mix(in srgb, var(--green-1) 50%, black);
-    text-shadow: 0 0 16px color-mix(in srgb, var(--green-1) 50%, black);
+    color: var(--color-accent-hover-start);
+    text-shadow: 0 0 16px var(--color-accent-hover-start);
   }
 
   to {
     color: var(--green-1);
     text-shadow: 0 0 32px var(--green-1);
+  }
+}
+
+@keyframes icon-hover-fade {
+  from {
+    color: var(--green-1);
+    text-shadow: 0 0 32px var(--green-1);
+    opacity: 0.75;
+    transform: scale(1.12);
+  }
+
+  to {
+    color: var(--color-hero-glyph);
+    text-shadow: none;
+    opacity: 0.5;
+    transform: scale(1);
   }
 }
 </style>
