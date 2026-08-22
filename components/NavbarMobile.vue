@@ -169,12 +169,17 @@ export default {
   .settings-menu {
     position: relative;
     margin-top: 8px;
-    margin-inline-start: 24px;
+    margin-inline-start: 0;
 
     .settingsMenu {
       position: relative;
       top: 0;
       box-shadow: none;
+
+      :deep(.settings-menu-container) {
+        background-color: transparent;
+        padding-inline-start: 0;
+      }
     }
   }
 }
