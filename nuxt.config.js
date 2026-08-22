@@ -113,7 +113,7 @@ export default defineNuxtConfig({
   // Sitemap (v6+)
   sitemap: {
     siteUrl: 'https://yrlp.ir',
-    urls: ['/en', '/fa'],
+    urls: ['/', '/en', '/projects', '/en/projects', '/blog', '/en/blog'],
   },
 
   // Robots (v5+)

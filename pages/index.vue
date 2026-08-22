@@ -35,21 +35,7 @@ import Blog from "../components/pages/home/Blog.vue";
 
 export default {
 	setup() {
-		const route = useRoute()
-		const canonicalUrl = computed(() => 'https://yrlp.ir' + route.path)
-
-		useHead({
-			title: 'Yousef Roshandel | Front-End Developer & UI/UX Designer',
-			meta: [
-				{ name: 'description', content: 'Yousef Roshandel is a passionate Front-End Developer and UI/UX Designer creating modern, user-friendly websites and digital experiences.' },
-				{ property: 'og:title', content: 'Yousef Roshandel | Front-End Developer & UI/UX Designer' },
-				{ property: 'og:description', content: 'Yousef Roshandel is a passionate Front-End Developer and UI/UX Designer creating modern, user-friendly websites and digital experiences.' },
-				{ property: 'og:url', content: () => canonicalUrl.value },
-			],
-			link: [
-				{ rel: 'canonical', href: () => canonicalUrl.value },
-			],
-		})
+		useSiteSeo('home')
 	},
 
 	components: {
