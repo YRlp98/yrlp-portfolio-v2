@@ -116,17 +116,28 @@ section {
     transform: rotate(-30deg);
 
     i {
+      display: inline-block;
       color: var(--color-hero-glyph);
       opacity: 0.5;
-      transition: color 0.35s ease, text-shadow 0.35s ease;
-      padding: 0 5px;
+      transition: color 0.45s ease, text-shadow 0.45s ease,
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+      padding: 8px 10px;
       user-select: none;
-      cursor: default;
+      line-height: 1;
+      transition-delay: 0s;
 
+      &:not(:hover) {
+        transition-delay: 0.35s;
+      }
 
       &:hover {
+        transition-delay: 0s;
+        transition-duration: 0s, 0s, 0.45s, 0s, 0s;
         color: var(--green-1);
-        text-shadow: 0 0 120px var(--green-1);
+        opacity: 1;
+        transform: scale(1.12);
+        text-shadow: 0 0 32px var(--green-1);
+        animation: icon-hover-brighten 0.9s ease-out forwards;
       }
     }
 
@@ -145,6 +156,18 @@ section {
     //     transform: translateX(-10%);
     //   }
     // }
+  }
+}
+
+@keyframes icon-hover-brighten {
+  from {
+    color: color-mix(in srgb, var(--green-1) 50%, black);
+    text-shadow: 0 0 16px color-mix(in srgb, var(--green-1) 50%, black);
+  }
+
+  to {
+    color: var(--green-1);
+    text-shadow: 0 0 32px var(--green-1);
   }
 }
 </style>
