@@ -14,26 +14,26 @@
         <img src="/images/yr-logo-transparent.svg" alt="YR" />
       </nuxt-link>
 
-      <ul :style="{ direction: `${changeDirection(activeLang)}` }">
-        <li>
+      <ul>
+        <li class="footer-nav-home">
           <nuxt-link class="item" :to="$localePath('/')">{{ $t("home") }}</nuxt-link>
         </li>
-        <li>
+        <li class="footer-nav-about">
           <span class="item" @click="goto($localePath('/#homeAboutMe'))">
             {{ $t("aboutMe") }}
           </span>
         </li>
-        <li>
+        <li class="footer-nav-skills">
           <span class="item" @click="goto($localePath('/#homeSkills'))">
             {{ $t("skills") }}
           </span>
         </li>
-        <li>
+        <li class="footer-nav-projects">
           <nuxt-link class="item" :to="$localePath('/projects')">{{
             $t("projects")
-          }}</nuxt-link>
+            }}</nuxt-link>
         </li>
-        <li>
+        <li class="footer-nav-blog">
           <nuxt-link class="item" :to="$localePath('/blog')">{{ $t("blog") }}</nuxt-link>
         </li>
       </ul>
@@ -55,18 +55,16 @@ export default {
     TitleBackground,
   },
   setup() {
-    const { changeDirection, changeAlign } = useDirection()
+    const i18n = useI18n()
+    const { changeAlign } = useDirection()
     return {
-      changeDirection,
+      activeLang: computed(() => i18n.locale.value),
       changeAlign,
     }
   },
   data() {
     return {
     };
-  },
-  computed: {
-    activeLang() { return useI18n().locale.value; },
   },
   methods: {
     goto(id) {
@@ -160,6 +158,15 @@ export default {
     direction: ltr;
   }
 
+  .footer ul {
+    flex-direction: row;
+  }
+
+  .footer ul li,
+  .footer ul .item {
+    direction: ltr;
+  }
+
   @include mediaQueryMin("md") {
     .footer {
       grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
@@ -182,6 +189,33 @@ export default {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
   }
+}
+
+// The footer uses a left-to-right flex row for predictable placement. Reverse
+// only the Persian item order so "صفحه اصلی" stays the first/rightmost link.
+.footer-container:not(.is-ltr) .footer ul {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.footer-container:not(.is-ltr) .footer-nav-blog {
+  order: 1;
+}
+
+.footer-container:not(.is-ltr) .footer-nav-projects {
+  order: 2;
+}
+
+.footer-container:not(.is-ltr) .footer-nav-skills {
+  order: 3;
+}
+
+.footer-container:not(.is-ltr) .footer-nav-about {
+  order: 4;
+}
+
+.footer-container:not(.is-ltr) .footer-nav-home {
+  order: 5;
 }
 
 // Tablet
@@ -220,7 +254,8 @@ export default {
         overflow: visible;
         scrollbar-width: none;
         display: flex;
-        direction: rtl;
+        direction: ltr;
+        flex-direction: row;
 
         &::-webkit-scrollbar {
           display: none;
@@ -230,6 +265,7 @@ export default {
           list-style: none;
           display: flex;
           min-width: 0;
+          direction: rtl;
 
           .item {
             min-width: 0;
