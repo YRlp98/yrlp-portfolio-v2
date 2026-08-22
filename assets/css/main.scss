@@ -59,6 +59,7 @@
     --color-text: #f5f5f5;
     --color-text-muted: #a3a3a3;
     --color-accent: #35e925;
+    --color-accent-hover-start: #1b7513;
     --color-accent-contrast: #10200d;
     --color-border: rgba(255, 255, 255, 0.16);
     --color-glass: rgba(19, 19, 19, 0.78);
@@ -90,6 +91,7 @@
     --color-text: #172017;
     --color-text-muted: #596359;
     --color-accent: #176d12;
+    --color-accent-hover-start: #0c3709;
     --color-accent-contrast: #ffffff;
     --color-border: rgba(23, 32, 23, 0.16);
     --color-glass: rgba(255, 255, 255, 0.88);
@@ -174,11 +176,40 @@ a {
 
 // English-only layout corrections. Persian keeps the original RTL component rules.
 html[data-locale="en"] {
+    .aboutMe-container .titleBackground {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+    .skills-container .titleBackground-anchor .titleBackground,
+    .projects-container .titleBackground,
+    .blog-container .titleBackground {
+        right: -1.25rem !important;
+        left: auto !important;
+        transform-origin: top right !important;
+        transform: rotate(-90deg) translateX(-100%) !important;
+    }
+
+    .footer-container.is-ltr .socialNetwork-container .titleBackground h2 {
+        text-align: right !important;
+    }
+
+    .aboutMe-container .aboutMe-avatar {
+        direction: ltr;
+        text-align: left;
+    }
+
+    .aboutMe-container .aboutMe-avatar .square {
+        right: auto;
+        left: 15px;
+    }
+
     .aboutMe-container .aboutMeInfo {
         width: max-content !important;
         max-width: 100%;
-        margin-right: 0 !important;
-        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-left: 0 !important;
+        transform: none !important;
     }
 
     .aboutMe-container>.socialNetwork {
@@ -272,13 +303,35 @@ html[data-locale="en"] {
         direction: ltr !important;
     }
 
+    @media (max-width: 767px) {
+
+        .skills-container .titleBackground-anchor .titleBackground,
+        .projects-container .titleBackground,
+        .blog-container .titleBackground {
+            right: 0 !important;
+            transform: rotate(90deg) translateX(100%) !important;
+        }
+    }
+
     @include mediaQueryMin("md") {
+        .aboutMe-container .titleBackground {
+            top: 2rem !important;
+        }
+
+        .skills-container .titleBackground-anchor .titleBackground {
+            top: -2rem !important;
+        }
+
+        .projects-container .titleBackground,
+        .blog-container .titleBackground {
+            top: -8rem !important;
+        }
 
         .aboutMe-container .aboutMe-title,
         .aboutMe-container .aboutMe-text {
             width: calc(100% - 310px);
-            right: auto !important;
-            left: 0 !important;
+            right: 0 !important;
+            left: auto !important;
             margin-right: 0 !important;
             margin-left: 0 !important;
             text-align: left !important;
@@ -286,8 +339,8 @@ html[data-locale="en"] {
 
         .aboutMe-container>.socialNetwork {
             width: calc(100% - 310px);
-            margin-right: auto !important;
-            margin-left: 0 !important;
+            margin-right: 0 !important;
+            margin-left: auto !important;
         }
 
         .navbar-container .navbar .navbar-items {
@@ -312,6 +365,27 @@ html[data-locale="en"] {
         .experience-container .other {
             right: auto !important;
             left: 50% !important;
+        }
+    }
+
+    @media (min-width: 90rem) {
+
+        .skills-container .titleBackground-anchor .titleBackground,
+        .projects-container .titleBackground,
+        .blog-container .titleBackground {
+            right: -7.5rem !important;
+        }
+
+        .skills-container .titleBackground-anchor .titleBackground {
+            top: -12rem !important;
+        }
+
+        .projects-container .titleBackground {
+            top: -30rem !important;
+        }
+
+        .blog-container .titleBackground {
+            top: -18rem !important;
         }
     }
 }

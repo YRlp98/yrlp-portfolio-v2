@@ -168,6 +168,7 @@ export default {
     .settingsMenu {
       position: relative;
       top: 0;
+      box-shadow: none;
     }
   }
 }
