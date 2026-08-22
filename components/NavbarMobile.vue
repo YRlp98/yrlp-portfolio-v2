@@ -1,13 +1,13 @@
 <template>
   <div class="hamburger-menu">
-    <input id="menu__toggle" type="checkbox" />
+    <input id="menu__toggle" ref="menuToggle" type="checkbox" />
     <label class="menu__btn" for="menu__toggle">
       <span></span>
     </label>
 
     <ul class="menu__box">
       <li>
-        <nuxt-link class="menu__item" :to="$localePath('/')">{{ $t("home") }}</nuxt-link>
+        <nuxt-link class="menu__item" :to="$localePath('/')" @click="closeMenu">{{ $t("home") }}</nuxt-link>
       </li>
       <li>
         <span class="menu__item" @click="goto($localePath('/#homeAboutMe'))">
@@ -20,13 +20,13 @@
         </span>
       </li>
       <li>
-        <nuxt-link class="menu__item" :to="$localePath('/projects')">{{ $t("projects") }}</nuxt-link>
+        <nuxt-link class="menu__item" :to="$localePath('/projects')" @click="closeMenu">{{ $t("projects") }}</nuxt-link>
       </li>
       <li>
-        <nuxt-link class="menu__item" :to="$localePath('/blog')">‌{{ $t("blog") }}</nuxt-link>
+        <nuxt-link class="menu__item" :to="$localePath('/blog')" @click="closeMenu">‌{{ $t("blog") }}</nuxt-link>
       </li>
       <div class="settings-menu">
-        <SettingsMenu class="settingsMenu" />
+        <SettingsMenu class="settingsMenu" @close="closeMenu" />
       </div>
     </ul>
   </div>
@@ -41,7 +41,13 @@ export default {
     SettingsMenu,
   },
   methods: {
+    closeMenu() {
+      if (this.$refs.menuToggle) {
+        this.$refs.menuToggle.checked = false;
+      }
+    },
     goto(id) {
+      this.closeMenu();
       useRouter().push(id);
     },
   },
