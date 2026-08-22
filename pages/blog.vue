@@ -15,23 +15,10 @@ export default {
   name: "Blog",
   components: { BlogCard },
   setup() {
-    const route = useRoute()
     const { changeDirection } = useDirection()
     const i18n = useI18n()
-    const canonicalUrl = computed(() => 'https://yrlp.ir' + route.path)
 
-    useHead({
-      title: 'Yousef Roshandel - Blog',
-      meta: [
-        { name: 'description', content: 'Yousef Roshandel is a passionate Front-End Developer and UI/UX Designer creating modern, user-friendly websites and digital experiences.' },
-        { property: 'og:title', content: 'Yousef Roshandel - Blog' },
-        { property: 'og:description', content: 'Yousef Roshandel is a passionate Front-End Developer and UI/UX Designer creating modern, user-friendly websites and digital experiences.' },
-        { property: 'og:url', content: () => canonicalUrl.value },
-      ],
-      link: [
-        { rel: 'canonical', href: () => canonicalUrl.value },
-      ],
-    })
+    useSiteSeo('blog')
 
     return {
       changeDirection,
