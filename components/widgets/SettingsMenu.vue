@@ -110,4 +110,10 @@ onMounted(initializeTheme)
     margin-top: 10px;
   }
 }
+
+@media (max-width: 767px) {
+  .settings-menu-container {
+    background-color: transparent;
+  }
+}
 </style>

@@ -123,13 +123,14 @@ export default {
       display: flex;
       flex-wrap: wrap;
       list-style: none;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-content: center;
+      gap: 20px;
       color: var(--gray-1);
       font-size: 1rem;
 
       li {
-        margin: 0 10px;
+        margin: 0;
         padding: 0px 5px;
         border-radius: 5px;
         user-select: none;
@@ -139,6 +140,30 @@ export default {
         &:hover {
           background-color: var(--green-1);
           color: var(--color-accent-contrast);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .filter {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+
+      p {
+        font-size: 0.938rem;
+      }
+
+      ul {
+        width: 100%;
+        justify-content: flex-start;
+        column-gap: 12px;
+        row-gap: 12px;
+
+        li {
+          padding: 6px 9px;
+          line-height: 1.4;
         }
       }
     }
