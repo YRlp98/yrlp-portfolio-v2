@@ -4,7 +4,7 @@
       <div class="row" v-for="(row, rowIndex) in repeat" :key="rowIndex">
         <div>
           <i v-for="(icon, iconIndex) in row" :key="`${repeatIndex}-${rowIndex}-${iconIndex}`" :class="icon"
-            @mouseenter="handleIconEnter" @mouseleave="handleIconLeave" aria-hidden="true"></i>
+            aria-hidden="true"></i>
         </div>
       </div>
     </div>
@@ -91,14 +91,6 @@ export default {
   mounted() {
     this.rows = createRows(true);
   },
-  methods: {
-    handleIconEnter(event) {
-      event.currentTarget.classList.remove("icon-fading");
-    },
-    handleIconLeave(event) {
-      event.currentTarget.classList.add("icon-fading");
-    },
-  },
 };
 </script>
 
@@ -124,28 +116,17 @@ section {
     transform: rotate(-30deg);
 
     i {
-      display: inline-block;
       color: var(--color-hero-glyph);
       opacity: 0.5;
-      transition: color 0.45s ease, text-shadow 0.45s ease,
-        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
-      padding: 8px 10px;
+      transition: 1s;
+      padding: 0 5px;
       user-select: none;
-      line-height: 1;
-      transition-delay: 0s;
+      cursor: default;
 
       &:hover {
-        transition-delay: 0s;
-        transition-duration: 0s, 0s, 0.45s, 0s, 0s;
+        transition: 0s;
         color: var(--green-1);
-        opacity: 1;
-        transform: scale(1.12);
-        text-shadow: 0 0 32px var(--green-1);
-        animation: icon-hover-brighten 0.9s ease-out forwards;
-      }
-
-      &.icon-fading {
-        animation: icon-hover-fade 0.45s ease 0.35s both;
+        text-shadow: 0 0 120px var(--green-1);
       }
     }
 
@@ -164,34 +145,6 @@ section {
     //     transform: translateX(-10%);
     //   }
     // }
-  }
-}
-
-@keyframes icon-hover-brighten {
-  from {
-    color: var(--color-accent-hover-start);
-    text-shadow: 0 0 16px var(--color-accent-hover-start);
-  }
-
-  to {
-    color: var(--green-1);
-    text-shadow: 0 0 32px var(--green-1);
-  }
-}
-
-@keyframes icon-hover-fade {
-  from {
-    color: var(--green-1);
-    text-shadow: 0 0 32px var(--green-1);
-    opacity: 0.75;
-    transform: scale(1.12);
-  }
-
-  to {
-    color: var(--color-hero-glyph);
-    text-shadow: none;
-    opacity: 0.5;
-    transform: scale(1);
   }
 }
 </style>
