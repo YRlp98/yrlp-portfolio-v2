@@ -3,8 +3,8 @@
 My personal website and portfolio, designed in Figma and implemented by me. It
 represents my work as Yousef Roshandel (YRlp), a Front-end
 Developer and UI/UX Designer, and was one of my first projects after learning
-Vue.js. The site was originally built with Nuxt 2, upgraded to Nuxt 3 after its
-release, and has continued to evolve with the Nuxt ecosystem.
+Vue.js. The site was originally built with Nuxt 2, later upgraded to the latest
+Nuxt version, and currently runs on Nuxt 4.
 
 Website: https://yrlp.ir
 
@@ -34,7 +34,7 @@ npm run deploy
 
 ## Built with
 
-- [Nuxt](https://nuxt.com/) — application framework and routing.
+- [Nuxt 4](https://nuxt.com/) — application framework and routing.
 - [Vue.js](https://vuejs.org/) — component-based UI development.
 - [GSAP](https://gsap.com/) — page and scroll animations.
 - [Sass](https://sass-lang.com/) — maintainable responsive styling.
