@@ -4,7 +4,7 @@
 			{{ $t("homePageAboutMe") }}
 		</h2>
 		<div class="aboutMe-avatar">
-			<img src="https://lixbjgupmbwyplqhzkde.supabase.in/storage/v1/object/sign/yrlp-storage/Images/Yousef_Roshandel.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ5cmxwLXN0b3JhZ2UvSW1hZ2VzL1lvdXNlZl9Sb3NoYW5kZWwud2VicCIsImlhdCI6MTYzODE5OTg4NSwiZXhwIjoxOTUzNTU5ODg1fQ.VKVFopNxk-Ewlr32JwQdmybEs9oPvsxP5OXNZrxjBNs"
+			<img src="https://lixbjgupmbwyplqhzkde.supabase.co/storage/v1/object/sign/yrlp-storage/Images/yousef-roshandel-2026.webp?token=eyJraWQiOiI4M2MwNWYxNS04NzViLTRlYmItYjVmYS1kYzI5YjBlNWMwNmUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ5cmxwLXN0b3JhZ2UvSW1hZ2VzL3lvdXNlZi1yb3NoYW5kZWwtMjAyNi53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4NzczNTM0MCwiZXhwIjo0OTA5Nzk5MzQwfQ.R6R7KJVNC6zcdIltoj_xosnB9SQDKO5O3wNq4zvkJOE"
 				alt="Yousef Roshandel" />
 			<div class="square"></div>
 		</div>
