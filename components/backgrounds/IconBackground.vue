@@ -39,7 +39,6 @@ const icons = [
   "fa-brands fa-stack-overflow",
   "fa-solid fa-desktop",
   "fa-brands fa-css3-alt",
-  "fa-solid fa-tablet",
   "fa-brands fa-html5",
   "fa-brands fa-chrome",
   "fa-brands fa-firefox-browser",
