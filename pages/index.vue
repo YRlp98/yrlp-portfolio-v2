@@ -50,7 +50,7 @@ export default {
 	},
 
 	mounted() {
-		if (import.meta.client) {
+		if (import.meta.client && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 			this.$nextTick(() => {
 				this.$gsap.from(".education-container", {
 					opacity: 0,

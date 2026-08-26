@@ -40,7 +40,7 @@ export default {
 		};
 	},
 	mounted() {
-		if (import.meta.client) {
+		if (import.meta.client && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 			this.$nextTick(() => {
 				this.$gsap.from(this.$refs.heroWelcome.children, {
 					opacity: 0,
@@ -79,13 +79,13 @@ export default {
 			font-size: 25px;
 
 			div {
-				font-size: 50px;
+				font-size: clamp(2rem, 9.5vw, 3.125rem);
 				font-weight: normal;
 				margin-right: 8px;
 				display: inline;
 
 				h1 {
-					font-size: 50px;
+					font-size: inherit;
 					font-weight: bold;
 					margin: 0;
 				}

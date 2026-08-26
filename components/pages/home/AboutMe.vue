@@ -5,7 +5,7 @@
 		</h2>
 		<div class="aboutMe-avatar">
 			<img src="https://lixbjgupmbwyplqhzkde.supabase.co/storage/v1/object/sign/yrlp-storage/Images/yousef-roshandel-2026.webp?token=eyJraWQiOiI4M2MwNWYxNS04NzViLTRlYmItYjVmYS1kYzI5YjBlNWMwNmUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ5cmxwLXN0b3JhZ2UvSW1hZ2VzL3lvdXNlZi1yb3NoYW5kZWwtMjAyNi53ZWJwIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4NzczNTM0MCwiZXhwIjo0OTA5Nzk5MzQwfQ.R6R7KJVNC6zcdIltoj_xosnB9SQDKO5O3wNq4zvkJOE"
-				alt="Yousef Roshandel" />
+				alt="Yousef Roshandel" width="170" height="170" loading="lazy" decoding="async" />
 			<div class="square"></div>
 		</div>
 		<p class="aboutMe-text" :style="{ direction: `${changeDirection(activeLang)}` }">
@@ -44,7 +44,7 @@ export default {
 	},
 
 	mounted() {
-		if (import.meta.client) {
+		if (import.meta.client && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 			this.$nextTick(() => {
 				this.$gsap.from(".aboutMe-avatar", {
 					opacity: 0,
