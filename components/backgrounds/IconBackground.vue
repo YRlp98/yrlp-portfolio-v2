@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section :class="{ 'is-ready': isReady }" aria-hidden="true">
     <div class="rep" v-for="(repeat, repeatIndex) in rows" :key="repeatIndex">
       <div class="row" v-for="(row, rowIndex) in repeat" :key="rowIndex">
         <div>
@@ -55,6 +55,8 @@ const icons = [
   "fa-brands fa-tailwind-css",
   "fa-brands fa-yahoo",
   "fa-brands fa-steam",
+  "fa-solid fa-music",
+  "fa-regular fa-face-smile",
 ];
 
 const shuffle = (items) => {
@@ -85,10 +87,25 @@ export default {
   data() {
     return {
       rows: createRows(),
+      isReady: false,
     };
   },
-  mounted() {
+  async mounted() {
     this.rows = createRows(true);
+    await this.$nextTick();
+
+    try {
+      await Promise.all([
+        document.fonts.load('900 1em "Font Awesome 6 Free"'),
+        document.fonts.load('400 1em "Font Awesome 6 Brands"'),
+      ]);
+    } catch {
+      // Reveal the decorative background even if a browser cannot load a font.
+    }
+
+    requestAnimationFrame(() => {
+      this.isReady = true;
+    });
   },
 };
 </script>
@@ -101,6 +118,11 @@ section {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  visibility: hidden;
+
+  &.is-ready {
+    visibility: visible;
+  }
 
   .row {
     position: relative;
