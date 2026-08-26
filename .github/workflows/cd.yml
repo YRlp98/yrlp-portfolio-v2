@@ -1,33 +1,29 @@
-name: cd
+name: CI
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
 
 jobs:
-  cd:
-    runs-on: ${{ matrix.os }}
+  build:
+    name: Build
+    runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [14]
+    permissions:
+      contents: read
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
+      - name: Check out source
+        uses: actions/checkout@v4
 
-      - name: Setup node env
-        uses: actions/setup-node@v2.1.2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
-        run: yarn
+        run: npm ci
 
-      - name: Generate
-        run: yarn generate
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      - name: Generate static site
+        run: npm run generate
