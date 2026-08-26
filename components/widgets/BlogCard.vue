@@ -1,7 +1,7 @@
 <template>
-  <a :href="blog.link" target="_blank" class="blogCard-container">
+  <a :href="blog.link" target="_blank" rel="noopener noreferrer" class="blogCard-container">
     <div class="blogCard">
-      <img :src="blog.image" :alt="blog.alt" loading="lazy" />
+      <img :src="blog.image" :alt="blog.alt" loading="lazy" decoding="async" />
       <div class="blogCard-info">
         <h2>{{ blog.title }}</h2>
         <p>{{ blog.description }}</p>

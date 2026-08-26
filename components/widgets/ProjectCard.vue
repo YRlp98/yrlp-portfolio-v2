@@ -1,6 +1,6 @@
 <template>
-  <a :href="project.link" target="_blank" class="projectCard-container">
-    <img :src="project.image" :alt="project.alt" loading="lazy" />
+  <a :href="project.link" target="_blank" rel="noopener noreferrer" class="projectCard-container">
+    <img :src="project.image" :alt="project.alt" loading="lazy" decoding="async" />
     <div class="projectCard-info">
       <h2>{{ project.title }}</h2>
       <div class="projectCard-tags">

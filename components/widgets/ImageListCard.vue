@@ -1,8 +1,8 @@
 <template>
   <div class="imageListCard-container">
-    <a class="imageListCard" :href="link" target="_blank">
+    <a class="imageListCard" :href="link" target="_blank" rel="noopener noreferrer">
       <div class="image">
-        <img :src="imageUrl" :alt="imageAlt" />
+        <img :src="imageUrl" :alt="imageAlt" width="50" height="50" loading="lazy" decoding="async" />
       </div>
       <TitleSubCard class="titleSubCard" :title="title" :description="description" icon="line" />
     </a>
