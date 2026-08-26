@@ -69,7 +69,7 @@ export default defineNuxtConfig({
   components: true,
 
   // Modules
-  modules: ['@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxtjs/i18n', '@vercel/speed-insights/nuxt'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/robots', '@nuxtjs/i18n', '@vercel/speed-insights'],
 
   // Vite: inject SCSS mixins globally (replaces @nuxtjs/style-resources)
   vite: {
