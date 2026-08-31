@@ -1,11 +1,8 @@
 <template>
-  <section :class="{ 'is-ready': isReady }" aria-hidden="true">
-    <div class="rep" v-for="(repeat, repeatIndex) in rows" :key="repeatIndex">
-      <div class="row" v-for="(row, rowIndex) in repeat" :key="rowIndex">
-        <div>
-          <i v-for="(icon, iconIndex) in row" :key="`${repeatIndex}-${rowIndex}-${iconIndex}`" :class="icon"
-            aria-hidden="true"></i>
-        </div>
+  <section ref="iconBackground" :class="{ 'is-ready': isReady }" aria-hidden="true">
+    <div class="icon-field" :style="fieldStyle">
+      <div class="row" v-for="row in rows" :key="row.id">
+        <i v-for="icon in row.icons" :key="icon.id" :class="icon.className" aria-hidden="true"></i>
       </div>
     </div>
   </section>
@@ -52,12 +49,35 @@ const icons = [
   "fa-brands fa-spotify",
   "fa-brands fa-youtube",
   "fa-solid fa-mobile-screen-button",
-  "fa-brands fa-tailwind-css",
+  // "fa-brands fa-tailwind-css",
   "fa-brands fa-yahoo",
   "fa-brands fa-steam",
   "fa-solid fa-music",
   "fa-regular fa-face-smile",
+  "fa-brands fa-sass",
+  "fa-brands fa-node-js",
+  "fa-brands fa-npm",
+  "fa-brands fa-cloudflare",
+  "fa-brands fa-linux",
+  "fa-brands fa-ubuntu",
+  "fa-brands fa-docker",
+  "fa-brands fa-gitlab",
+  "fa-brands fa-codepen",
+  "fa-brands fa-dev",
+  "fa-brands fa-free-code-camp",
+  "fa-solid fa-server",
+  "fa-solid fa-cloud",
+  "fa-solid fa-cube",
+  "fa-solid fa-microchip",
+  "fa-solid fa-network-wired",
+  "fa-solid fa-memory",
+  "fa-solid fa-hard-drive",
+  "fa-solid fa-wifi",
 ];
+
+const ROTATION_RADIANS = Math.PI / 6;
+const INITIAL_ROW_COUNT = 10;
+const INITIAL_COLUMN_COUNT = 12;
 
 const shuffle = (items) => {
   const shuffled = [...items];
@@ -70,35 +90,61 @@ const shuffle = (items) => {
   return shuffled;
 };
 
-const createRows = (randomize = false) =>
-  Array.from({ length: 10 }, (_, repeatIndex) =>
-    Array.from({ length: 4 }, (_, rowIndex) => {
-      const row = Array.from(
-        { length: 56 },
-        (_, iconIndex) => icons[(repeatIndex * 4 + rowIndex + iconIndex) % icons.length],
-      );
-
-      return randomize ? shuffle(row) : row;
-    }),
-  );
+const createRows = (rowCount, columnCount, iconOrder = icons) =>
+  Array.from({ length: rowCount }, (_, rowIndex) => ({
+    id: `row-${rowIndex}`,
+    icons: Array.from({ length: columnCount }, (_, iconIndex) => ({
+      id: `row-${rowIndex}-icon-${iconIndex}`,
+      className: iconOrder[(rowIndex * 7 + iconIndex) % iconOrder.length],
+    })),
+  }));
 
 export default {
   name: "IconBackground",
   data() {
     return {
-      rows: createRows(),
+      rows: createRows(INITIAL_ROW_COUNT, INITIAL_COLUMN_COUNT),
+      iconOrder: icons,
+      rowCount: INITIAL_ROW_COUNT,
+      columnCount: INITIAL_COLUMN_COUNT,
+      fieldWidth: 960,
+      fieldHeight: 960,
       isReady: false,
+      resizeObserver: null,
+      resizeFrame: null,
     };
   },
+  computed: {
+    fieldStyle() {
+      return {
+        "--field-width": `${this.fieldWidth}px`,
+        "--field-height": `${this.fieldHeight}px`,
+        "--icon-row-count": this.rowCount,
+        "--icon-column-count": this.columnCount,
+      };
+    },
+  },
   async mounted() {
-    this.rows = createRows(true);
+    this.iconOrder = shuffle(icons);
+    this.rows = createRows(this.rowCount, this.columnCount, this.iconOrder);
+    this.updateLayout();
+
+    if (typeof ResizeObserver !== "undefined") {
+      this.resizeObserver = new ResizeObserver(this.queueLayoutUpdate);
+      this.resizeObserver.observe(this.$refs.iconBackground);
+    } else {
+      window.addEventListener("resize", this.queueLayoutUpdate, { passive: true });
+    }
+
     await this.$nextTick();
 
     try {
-      await Promise.all([
-        document.fonts.load('900 1em "Font Awesome 6 Free"'),
-        document.fonts.load('400 1em "Font Awesome 6 Brands"'),
-      ]);
+      if (document.fonts?.load) {
+        await Promise.all([
+          document.fonts.load('900 1em "Font Awesome 6 Free"'),
+          document.fonts.load('400 1em "Font Awesome 6 Brands"'),
+        ]);
+      }
     } catch {
       // Reveal the decorative background even if a browser cannot load a font.
     }
@@ -106,6 +152,57 @@ export default {
     requestAnimationFrame(() => {
       this.isReady = true;
     });
+  },
+  beforeUnmount() {
+    this.resizeObserver?.disconnect();
+    window.removeEventListener("resize", this.queueLayoutUpdate);
+
+    if (this.resizeFrame) {
+      cancelAnimationFrame(this.resizeFrame);
+    }
+  },
+  methods: {
+    queueLayoutUpdate() {
+      if (this.resizeFrame) {
+        cancelAnimationFrame(this.resizeFrame);
+      }
+
+      this.resizeFrame = requestAnimationFrame(() => {
+        this.updateLayout();
+        this.resizeFrame = null;
+      });
+    },
+    updateLayout() {
+      const element = this.$refs.iconBackground;
+
+      if (!element) {
+        return;
+      }
+
+      const { width, height } = element.getBoundingClientRect();
+
+      if (!width || !height) {
+        return;
+      }
+
+      // A rotated field needs both viewport axes included to cover every corner.
+      const cosine = Math.cos(ROTATION_RADIANS);
+      const sine = Math.sin(ROTATION_RADIANS);
+      const cellSize = Math.min(88, Math.max(64, width * 0.04 + 20));
+      const fieldWidth = Math.ceil(width * cosine + height * sine + cellSize * 2);
+      const fieldHeight = Math.ceil(width * sine + height * cosine + cellSize * 2);
+      const columnCount = Math.max(8, Math.ceil(fieldWidth / cellSize) + 1);
+      const rowCount = Math.max(8, Math.ceil(fieldHeight / (cellSize * 1.15)) + 1);
+
+      this.fieldWidth = fieldWidth;
+      this.fieldHeight = fieldHeight;
+
+      if (rowCount !== this.rowCount || columnCount !== this.columnCount) {
+        this.rowCount = rowCount;
+        this.columnCount = columnCount;
+        this.rows = createRows(rowCount, columnCount, this.iconOrder);
+      }
+    },
   },
 };
 </script>
@@ -115,57 +212,46 @@ section {
   position: absolute;
   inset: 0;
   z-index: 99;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   visibility: hidden;
 
   &.is-ready {
     visibility: visible;
   }
+}
 
-  .row {
-    position: relative;
-    top: -250%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
-    white-space: nowrap;
-    font-size: 4rem;
-    transform: rotate(-30deg);
+.icon-field {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--field-width);
+  height: var(--field-height);
+  display: grid;
+  grid-template-rows: repeat(var(--icon-row-count), minmax(0, 1fr));
+  transform: translate(-50%, -50%) rotate(-30deg);
+}
 
-    i {
-      color: var(--color-hero-glyph);
-      opacity: 0.5;
-      transition: 1s;
-      padding: 0 5px;
-      user-select: none;
-      cursor: default;
+.row {
+  display: grid;
+  grid-template-columns: repeat(var(--icon-column-count), minmax(0, 1fr));
+  align-items: center;
 
-      &:hover {
-        transition: 0s;
-        color: var(--green-1);
-        text-shadow: 0 0 120px var(--green-1);
-      }
+  i {
+    min-width: 0;
+    color: var(--color-hero-glyph);
+    font-size: clamp(2.75rem, 4vw, 4rem);
+    line-height: 1;
+    text-align: center;
+    opacity: 0.5;
+    transition: color 1s, text-shadow 1s;
+    user-select: none;
+    cursor: default;
+
+    &:hover {
+      color: var(--green-1);
+      text-shadow: 0 0 120px var(--green-1);
+      transition-duration: 0s;
     }
-
-    // Animation:
-    // div {
-    //   animation: animate1 125s linear infinite;
-    //   animation-delay: none;
-    // }
-
-    // @keyframes animate1 {
-    //   0% {
-    //     transform: translateX(0%);
-    //   }
-
-    //   100% {
-    //     transform: translateX(-10%);
-    //   }
-    // }
   }
 }
 </style>
