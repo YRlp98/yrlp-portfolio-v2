@@ -1,5 +1,6 @@
 <template>
   <div class="default-container">
+    <AppLoader />
     <NavbarMobile />
     <Navbar />
     <NuxtPage />
