@@ -93,7 +93,7 @@ export default {
       h2 {
         z-index: 1;
         color: var(--color-text);
-        font-size: 1.375;
+        font-size: 1.375rem;
       }
 
       .socialNetwork {
