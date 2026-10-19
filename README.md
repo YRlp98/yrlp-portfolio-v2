@@ -12,6 +12,9 @@ Website: https://yrlp.ir
 
 ## Development
 
+Requires Node.js 22.22.3+, 24.15+, or 26+ (matching Nuxt's supported versions).
+Run `nvm install` to install and select the version in `.nvmrc`.
+
 ```bash
 # install dependencies
 npm install
