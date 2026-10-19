@@ -60,7 +60,7 @@ export default {
 
   h2 {
     margin-top: 10px;
-    font-size: 1.563;
+    font-size: 1.563rem;
     color: var(--gray-1);
   }
 }

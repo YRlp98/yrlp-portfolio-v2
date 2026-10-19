@@ -161,7 +161,7 @@ export default {
 
 	.aboutMe-text {
 		margin-top: 40px;
-		font-size: 1.063;
+		font-size: 1.063rem;
 		line-height: 28px;
 	}
 
