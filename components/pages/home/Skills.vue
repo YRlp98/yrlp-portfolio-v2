@@ -49,7 +49,7 @@
           </div>
           <div class="languages">
             <h4>. English</h4>
-            <p>(B2)</p>
+            <p>(B2-C1)</p>
           </div>
         </div>
       </div>
