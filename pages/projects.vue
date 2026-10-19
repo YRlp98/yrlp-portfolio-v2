@@ -157,6 +157,7 @@ export default {
   }
 
   .projects-cards {
+    direction: ltr;
     margin-top: 80px;
     display: grid;
     grid-template-columns: 1fr;
