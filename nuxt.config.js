@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-04-01',
 
+  site: {
+    url: 'https://yrlp.ir',
+    name: 'YRlp | Yousef Roshandel',
+  },
+
   app: {
     head: {
       title: 'Yousef Roshandel | Front-End Developer & UI/UX Designer',
@@ -87,7 +92,7 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     langDir: '',
     locales: [
-      { code: 'fa', language: 'fa-FA', name: 'Farsi', file: 'fa.json' },
+      { code: 'fa', language: 'fa-IR', name: 'Farsi', file: 'fa.json' },
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
     ],
     defaultLocale: 'fa',
@@ -102,9 +107,8 @@ export default defineNuxtConfig({
     },
   },
 
-  // Sitemap (v6+)
+  // The sitemap module discovers page images and language alternatives during generation.
   sitemap: {
-    siteUrl: 'https://yrlp.ir',
     urls: ['/', '/en', '/projects', '/en/projects', '/blog', '/en/blog'],
   },
 
@@ -116,7 +120,6 @@ export default defineNuxtConfig({
         allow: ['/'],
       },
     ],
-    sitemap: ['https://yrlp.ir/sitemap.xml'],
   },
 
   devtools: {

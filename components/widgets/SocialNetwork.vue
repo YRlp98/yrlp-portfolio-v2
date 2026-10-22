@@ -1,16 +1,16 @@
 <template>
   <div class="socialNetwork-container">
     <div class="items">
-      <a href="https://www.linkedin.com/in/yrlp98/" target="_blank">
-        <img src="/icons/linkedin.svg" alt="LinkedIn" /></a>
-      <a href="https://github.com/YRlp98" target="_blank">
-        <img src="/icons/github.svg" alt="GitHub" /></a>
-      <a href="https://dribbble.com/YRlp98" target="_blank">
-        <img src="/icons/dribbble.svg" alt="Dribble" /></a>
-      <a href="https://www.behance.net/yrlp98" target="_blank">
-        <img src="/icons/behance.svg" alt="Behance" /></a>
-      <a href="https://x.com/YRlp98" target="_blank">
-        <img src="/icons/x.svg" alt="X" /></a>
+      <a href="https://www.linkedin.com/in/yrlp98/" target="_blank" rel="me noopener noreferrer">
+        <img src="/icons/linkedin.svg" :alt="$t('socialProfileAlt', { network: 'LinkedIn' })" /></a>
+      <a href="https://github.com/YRlp98" target="_blank" rel="me noopener noreferrer">
+        <img src="/icons/github.svg" :alt="$t('socialProfileAlt', { network: 'GitHub' })" /></a>
+      <a href="https://dribbble.com/YRlp98" target="_blank" rel="me noopener noreferrer">
+        <img src="/icons/dribbble.svg" :alt="$t('socialProfileAlt', { network: 'Dribbble' })" /></a>
+      <a href="https://www.behance.net/yrlp98" target="_blank" rel="me noopener noreferrer">
+        <img src="/icons/behance.svg" :alt="$t('socialProfileAlt', { network: 'Behance' })" /></a>
+      <a href="https://x.com/YRlp98" target="_blank" rel="me noopener noreferrer">
+        <img src="/icons/x.svg" :alt="$t('socialProfileAlt', { network: 'X' })" /></a>
       <!-- <a
         href="https://www.youtube.com/channel/UCZd51HzXf_YThh9wfZy_1YA"
         target="_blank"

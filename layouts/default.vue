@@ -3,12 +3,15 @@
     <AppLoader />
     <NavbarMobile />
     <Navbar />
-    <NuxtPage />
+    <main>
+      <NuxtPage />
+    </main>
     <Footer />
   </div>
 </template>
 
 <script>
+import { profileImage, siteUrl } from "~/utils/site";
 import NavbarMobile from "~/components/NavbarMobile.vue";
 import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
@@ -35,9 +38,11 @@ export default {
           children: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Person',
+            '@id': `${siteUrl}/#person`,
             name: 'Yousef Roshandel',
-            alternateName: ['YRlp', 'YRlp98', 'Yousef', 'Roshandel', 'YR', 'Y.R'],
-            url: 'https://yrlp.ir',
+            alternateName: ['یوسف روشندل', 'YRlp', 'YRlp98', 'YR', 'Y.R'],
+            url: `${siteUrl}/`,
+            image: profileImage,
             jobTitle: 'Front-End Developer and UI/UX Designer',
             knowsAbout: [
               'Front-end development',
@@ -66,13 +71,13 @@ export default {
           children: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
+            '@id': `${siteUrl}/#website`,
             name: 'YRlp | Yousef Roshandel',
             alternateName: ['YRlp', 'YRlp98', 'YR', 'Y.R'],
-            url: 'https://yrlp.ir',
+            url: `${siteUrl}/`,
             inLanguage: ['fa', 'en'],
             publisher: {
-              '@type': 'Person',
-              name: 'Yousef Roshandel',
+              '@id': `${siteUrl}/#person`,
             },
           }),
         },

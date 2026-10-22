@@ -12,7 +12,7 @@ Website: https://yrlp.ir
 
 ## Development
 
-Requires Node.js 22.22.3+, 24.15+, or 26+ (matching Nuxt's supported versions).
+Requires Node.js 22.23.4+, 24.22.1+, or 26.12.1+ (including the October 2026 security fixes).
 Run `nvm install` to install and select the version in `.nvmrc`.
 
 ```bash
