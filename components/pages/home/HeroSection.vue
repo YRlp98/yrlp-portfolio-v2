@@ -9,7 +9,6 @@
 				</div>
 				<span></span>
 				<h2>{{ $t("homePageJobTitleP1") }} {{ $t("homePageJobTitleP2") }}</h2>
-				<h2></h2>
 			</div>
 			<ScrollIcon class="scrollIcon" />
 		</div>

@@ -1,4 +1,4 @@
-const siteUrl = 'https://yrlp.ir'
+import { profileImage, siteUrl } from '~/utils/site'
 
 const seoContent = {
   home: {
@@ -46,16 +46,16 @@ const keywords = {
 
 export const useSiteSeo = (page) => {
   const route = useRoute()
-  const { locale } = useI18n()
+  const { locale, t } = useI18n()
   const currentLocale = computed(() => (locale.value === 'en' ? 'en' : 'fa'))
   const currentContent = computed(() => seoContent[page][currentLocale.value])
   const canonicalPath = computed(() => {
-    const path = route.path.replace(/^\/en(?=\/|$)/, '')
+    const path = route.path.replace(/^\/en(?=\/|$)/, '').replace(/\/+$/, '')
     return path || '/'
   })
-  const canonicalUrl = computed(() => `${siteUrl}${canonicalPath.value}`)
   const englishUrl = computed(() => `${siteUrl}/en${canonicalPath.value === '/' ? '' : canonicalPath.value}`)
   const farsiUrl = computed(() => `${siteUrl}${canonicalPath.value}`)
+  const canonicalUrl = computed(() => currentLocale.value === 'en' ? englishUrl.value : farsiUrl.value)
 
   useHead(() => ({
     title: currentContent.value.title,
@@ -74,16 +74,43 @@ export const useSiteSeo = (page) => {
       { property: 'og:site_name', content: 'YRlp | Yousef Roshandel' },
       { property: 'og:locale', content: currentLocale.value === 'en' ? 'en_US' : 'fa_IR' },
       { property: 'og:locale:alternate', content: currentLocale.value === 'en' ? 'fa_IR' : 'en_US' },
+      { property: 'og:image', content: profileImage.url },
+      { property: 'og:image:type', content: 'image/webp' },
+      { property: 'og:image:width', content: String(profileImage.width) },
+      { property: 'og:image:height', content: String(profileImage.height) },
+      { property: 'og:image:alt', content: t('profileImageAlt') },
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: currentContent.value.title },
       { name: 'twitter:description', content: currentContent.value.description },
       { name: 'twitter:creator', content: '@YRlp98' },
+      { name: 'twitter:image', content: profileImage.url },
+      { name: 'twitter:image:alt', content: t('profileImageAlt') },
     ],
     link: [
       { rel: 'canonical', href: canonicalUrl.value },
       { rel: 'alternate', hreflang: 'fa', href: farsiUrl.value },
       { rel: 'alternate', hreflang: 'en', href: englishUrl.value },
       { rel: 'alternate', hreflang: 'x-default', href: farsiUrl.value },
+    ],
+    script: [
+      {
+        key: 'page-schema',
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': page === 'home' ? 'ProfilePage' : 'CollectionPage',
+          '@id': `${canonicalUrl.value}#webpage`,
+          url: canonicalUrl.value,
+          name: currentContent.value.title,
+          description: currentContent.value.description,
+          inLanguage: currentLocale.value,
+          isPartOf: { '@id': `${siteUrl}/#website` },
+          primaryImageOfPage: { '@id': profileImage['@id'] },
+          ...(page === 'home'
+            ? { mainEntity: { '@id': `${siteUrl}/#person` } }
+            : { about: { '@id': `${siteUrl}/#person` } }),
+        }),
+      },
     ],
   }))
 }

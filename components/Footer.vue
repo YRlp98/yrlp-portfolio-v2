@@ -10,8 +10,8 @@
 
     <div class="footer default-margin">
 
-      <nuxt-link class="footer-logo" :to="$localePath('/')" aria-label="YR home">
-        <img src="/images/yr-logo-transparent.svg" alt="YR" />
+      <nuxt-link class="footer-logo" :to="$localePath('/')">
+        <img src="/images/yr-logo-transparent.svg" :alt="$t('siteLogoAlt')" />
       </nuxt-link>
 
       <ul>
