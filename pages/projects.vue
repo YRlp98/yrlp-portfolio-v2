@@ -71,11 +71,7 @@ export default {
         return this.projects;
       }
       return this.projects.filter((project) => {
-        let found = false;
-        project.tags.filter((indexTag) => {
-          found = indexTag.value === this.activeTag;
-        });
-        return found;
+        return project.tags.some((tag) => tag.value === this.activeTag);
       });
     },
   },
