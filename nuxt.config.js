@@ -109,6 +109,7 @@ export default defineNuxtConfig({
 
   // The sitemap module discovers page images and language alternatives during generation.
   sitemap: {
+    xsl: false,
     urls: ['/', '/en', '/projects', '/en/projects', '/blog', '/en/blog'],
   },
 
