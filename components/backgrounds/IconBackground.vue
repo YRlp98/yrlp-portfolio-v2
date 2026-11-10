@@ -141,8 +141,8 @@ export default {
     try {
       if (document.fonts?.load) {
         await Promise.all([
-          document.fonts.load('900 1em "Font Awesome 6 Free"'),
-          document.fonts.load('400 1em "Font Awesome 6 Brands"'),
+          document.fonts.load('900 1em "Font Awesome 7 Free"'),
+          document.fonts.load('400 1em "Font Awesome 7 Brands"'),
         ]);
       }
     } catch {
