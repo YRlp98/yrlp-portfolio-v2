@@ -2,7 +2,7 @@
   <div class="iconListCard-container">
     <a class="iconListCard" :href="link" target="_blank">
       <div class="icon">
-        <img src="/icons/education.svg" alt="education icon" />
+        <AppImage src="/icons/education.svg" alt="education icon" />
       </div>
       <TitleSubCard class="titleSubCard" :title="title" :description="description" />
     </a>

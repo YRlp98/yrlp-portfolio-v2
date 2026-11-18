@@ -4,7 +4,7 @@
       <div class="navbar-more-wrap" @keydown.esc.stop="closeSettings" @focusout="handleFocusOut">
         <button ref="settingsToggle" type="button" class="navbar-more" :aria-label="$t('settings')"
           :aria-expanded="isOpen" aria-controls="desktop-settings" @click.stop="isOpen = !isOpen">
-          <img src="/icons/more.svg" alt="" width="24" height="24" />
+          <AppImage src="/icons/more.svg" alt="" width="24" height="24" />
         </button>
         <transition name="dropdown" appear>
           <SettingsMenu id="desktop-settings" class="settingsMenu" v-if="isOpen" @close="isOpen = false"

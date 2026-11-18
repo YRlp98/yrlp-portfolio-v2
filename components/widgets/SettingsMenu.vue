@@ -11,13 +11,13 @@
         </li>
         <li>
           <button type="button" @click="setTheme('dark')" :class="{ active: theme === 'dark' }" :aria-pressed="theme === 'dark'">
-            <img src="/icons/dark.svg" alt="" />
+            <AppImage src="/icons/dark.svg" alt="" />
             <span class="menu-label">{{ $t('darkTheme') }}</span>
           </button>
         </li>
         <li>
           <button type="button" @click="setTheme('light')" :class="{ active: theme === 'light' }" :aria-pressed="theme === 'light'">
-            <img src="/icons/light.svg" alt="" />
+            <AppImage src="/icons/light.svg" alt="" />
             <span class="menu-label">{{ $t('lightTheme') }}</span>
           </button>
         </li>
@@ -29,7 +29,7 @@
       <ul class="menu-bar">
         <li v-for="locale in availableLocales" :key="locale.code">
           <nuxt-link :to="switchLocalePath(locale.code)" :lang="locale.code" @click="$emit('close')">
-            <img :src="`/icons/${locale.code}.svg`" alt="" />
+            <AppImage :src="`/icons/${locale.code}.svg`" alt="" />
             <span class="menu-label">{{ locale.name }}</span>
           </nuxt-link>
         </li>

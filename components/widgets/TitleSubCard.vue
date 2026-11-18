@@ -3,7 +3,7 @@
     <div class="titleSubCard">
       <h4>{{ title }}</h4>
       <div class="descriptiont">
-        <img :src="`/icons/${icon}.svg`" alt="" />
+        <AppImage :src="`/icons/${icon}.svg`" alt="" />
         <p>{{ description }}</p>
       </div>
     </div>
