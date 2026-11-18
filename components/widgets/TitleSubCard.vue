@@ -35,9 +35,13 @@ export default {
 .titleSubCard-container {
   display: flex;
   justify-content: flex-end;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
 
   .titleSubCard {
     display: flex;
+    min-inline-size: 0;
     flex-direction: column;
     align-items: flex-end;
   }
@@ -46,7 +50,7 @@ export default {
     font-size: 1.063rem;
     color: var(--color-text);
     text-align: right;
-    min-width: 300px;
+    max-inline-size: 100%;
   }
 
   .descriptiont {
@@ -55,6 +59,7 @@ export default {
     margin-top: 5px;
 
     img {
+      flex: 0 0 15px;
       height: 15px;
       width: 15px;
       margin-left: 5px;
@@ -62,6 +67,7 @@ export default {
     }
 
     p {
+      min-inline-size: 0;
       font-size: 0.75rem;
       color: var(--gray-1);
     }

@@ -7,6 +7,7 @@
     "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
   },
   "scripts": {
+    "test": "vitest run",
     "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "nuxt preview",
@@ -22,9 +23,17 @@
     "gsap": "^3.15.1",
     "nuxt": "^4.6.4"
   },
+  "overrides": {
+    "readdir-glob": {
+      "minimatch": "^11.0.9"
+    }
+  },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^7.3.1",
+    "@vitejs/plugin-vue": "^6.0.11",
     "gh-pages": "^6.3.0",
-    "sass": "^1.108.1"
+    "happy-dom": "^21.0.4",
+    "sass": "^1.108.1",
+    "vitest": "^5.1.1"
   }
 }
