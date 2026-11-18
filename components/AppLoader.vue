@@ -1,6 +1,6 @@
 <template>
   <Transition name="app-loader">
-    <div v-if="isVisible" class="app-loader" role="status" aria-live="polite" aria-atomic="true">
+    <div v-if="isVisible" class="app-loader">
       <div class="app-loader__content">
         <AppImage class="app-loader__logo" src="/images/yr-logo-transparent.svg" alt="" width="136" height="81" />
 
@@ -10,9 +10,7 @@
           <span>PORTFOLIO</span>
         </div>
 
-        <div class="app-loader__track" aria-hidden="true">
-          <span class="app-loader__progress"></span>
-        </div>
+        <progress class="app-loader__track" :aria-label="$t('loading')"></progress>
 
         <p class="app-loader__label">{{ $t("loading") }}</p>
       </div>
@@ -22,33 +20,30 @@
 
 <script setup>
 const nuxtApp = useNuxtApp();
-const isVisible = ref(true);
+const isVisible = ref(false);
 
 const ROUTE_DELAY = 140;
-const INITIAL_MINIMUM = 420;
 const ROUTE_MINIMUM = 320;
 
-let initialLoadComplete = false;
 let shownAt = 0;
 let showTimer;
 let hideTimer;
 let removeLoadingStartHook;
 let removeLoadingEndHook;
+let removeErrorHook;
 
 function setDocumentBusy(isBusy) {
   if (!import.meta.client) return;
 
   if (isBusy) {
-    document.body.setAttribute("aria-busy", "true");
+    document.getElementById("main-content")?.setAttribute("aria-busy", "true");
   } else {
-    document.body.removeAttribute("aria-busy");
+    document.getElementById("main-content")?.removeAttribute("aria-busy");
   }
 }
 
 function showLoader() {
   window.clearTimeout(hideTimer);
-
-  if (!initialLoadComplete) return;
 
   window.clearTimeout(showTimer);
   showTimer = window.setTimeout(() => {
@@ -61,40 +56,30 @@ function showLoader() {
 function hideLoader() {
   window.clearTimeout(showTimer);
 
-  if (!initialLoadComplete && document.readyState !== "complete") return;
   if (!isVisible.value) return;
 
-  const minimum = initialLoadComplete ? ROUTE_MINIMUM : INITIAL_MINIMUM;
   const elapsed = window.performance.now() - shownAt;
 
   window.clearTimeout(hideTimer);
   hideTimer = window.setTimeout(() => {
     isVisible.value = false;
-    initialLoadComplete = true;
     setDocumentBusy(false);
-  }, Math.max(0, minimum - elapsed));
+  }, Math.max(0, ROUTE_MINIMUM - elapsed));
 }
 
 onMounted(() => {
-  shownAt = window.performance.now();
-  setDocumentBusy(true);
-
   removeLoadingStartHook = nuxtApp.hook("page:loading:start", showLoader);
   removeLoadingEndHook = nuxtApp.hook("page:loading:end", hideLoader);
 
-  if (document.readyState === "complete") {
-    window.requestAnimationFrame(hideLoader);
-  } else {
-    window.addEventListener("load", hideLoader, { once: true });
-  }
+  removeErrorHook = nuxtApp.hook("app:error", hideLoader);
 });
 
 onBeforeUnmount(() => {
   window.clearTimeout(showTimer);
   window.clearTimeout(hideTimer);
-  window.removeEventListener("load", hideLoader);
   removeLoadingStartHook?.();
   removeLoadingEndHook?.();
+  removeErrorHook?.();
   setDocumentBusy(false);
 });
 </script>
@@ -105,11 +90,15 @@ onBeforeUnmount(() => {
   --loader-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   position: fixed;
-  inset: 0;
+  inset-inline-end: 16px;
+  inset-block-end: 16px;
   z-index: 9999;
   display: grid;
   place-items: center;
-  min-height: 100dvh;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  pointer-events: none;
   overflow: hidden;
   color: var(--color-text);
   background-color: var(--color-surface);
@@ -135,7 +124,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(280px, calc(100vw - 48px));
+  width: min(240px, calc(100vw - 74px));
 }
 
 .app-loader__logo {
@@ -172,15 +161,7 @@ onBeforeUnmount(() => {
   margin-top: 18px;
   overflow: hidden;
   border-radius: 999px;
-  background-color: var(--color-border);
-}
-
-.app-loader__progress {
-  position: absolute;
-  inset: 0;
-  background-color: var(--color-accent);
-  transform: translateX(-70%);
-  animation: loader-progress 1s linear infinite;
+  accent-color: var(--color-accent);
 }
 
 .app-loader__label {
@@ -219,16 +200,6 @@ onBeforeUnmount(() => {
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@keyframes loader-progress {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(100%);
   }
 }
 

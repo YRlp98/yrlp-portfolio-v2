@@ -51,7 +51,7 @@ export default {
 
 	mounted() {
 		if (import.meta.client && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-			this.$nextTick(() => {
+			this.animationContext = this.$gsap.context(() => {
 				this.$gsap.from(".education-container", {
 					opacity: 0,
 					y: 100,
@@ -116,8 +116,11 @@ export default {
 						toggleActions: "play none none pause",
 					},
 				});
-			});
+			}, this.$el);
 		}
+	},
+	beforeUnmount() {
+		this.animationContext?.revert();
 	},
 };
 </script>

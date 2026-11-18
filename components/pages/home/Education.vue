@@ -42,11 +42,6 @@ export default {
 
       .iconListCard {
         margin-top: 40px;
-        transition: transform 0.4s ease-in-out;
-
-        &:hover {
-          transform: scale(1.1);
-        }
       }
     }
   }
@@ -58,18 +53,14 @@ export default {
     .education-carts {
       display: flex;
       flex-direction: row-reverse;
+      gap: 40px;
 
-      .firstColumn {
-        display: flex;
-        flex-direction: column;
-      }
-
+      .firstColumn,
       .secondColumn {
-        position: absolute;
-        margin-left: 50%;
-        margin-right: 50%;
         display: flex;
         flex-direction: column;
+        flex: 1 1 0;
+        min-inline-size: 0;
       }
     }
   }

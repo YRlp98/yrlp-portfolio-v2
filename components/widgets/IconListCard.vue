@@ -50,15 +50,50 @@ export default {
 .iconListCard-container {
   display: flex;
   justify-content: flex-end;
+  container-type: inline-size;
 
   .iconListCard {
     display: flex;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    gap: 15px;
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: center;
     text-decoration: none;
+    scale: 1;
+    transform-origin: right center;
+    transition: scale 160ms ease;
+
+    &:is(:hover, :focus-visible) :deep(h4) {
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+    }
+
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      &:hover {
+        scale: 1.02;
+      }
+
+      &:hover:not(:focus-visible) :deep(h4) {
+        text-decoration: none;
+      }
+
+      @container (min-width: 400px) {
+        &:hover {
+          scale: 1.05;
+        }
+      }
+
+      @container (min-width: 560px) {
+        &:hover {
+          scale: 1.1;
+        }
+      }
+    }
 
     .icon {
+      flex: 0 0 50px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -74,7 +109,7 @@ export default {
     }
 
     .titleSubCard {
-      margin-right: 15px;
+      min-inline-size: 0;
     }
   }
 }

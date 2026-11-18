@@ -54,6 +54,9 @@ export default {
 
   .imageListCard {
     display: flex;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    gap: 15px;
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: center;
@@ -66,6 +69,10 @@ export default {
       opacity: 0.95;
     }
 
+    .image {
+      flex: 0 0 50px;
+    }
+
     img {
       height: 50px;
       width: 50px;
@@ -73,7 +80,7 @@ export default {
     }
 
     .titleSubCard {
-      margin-right: 15px;
+      min-inline-size: 0;
     }
   }
 }

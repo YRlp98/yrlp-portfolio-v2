@@ -44,14 +44,14 @@ export default {
 
 	mounted() {
 		if (import.meta.client && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-			this.$nextTick(() => {
+			this.animationContext = this.$gsap.context(() => {
 				this.$gsap.from(".aboutMe-avatar", {
 					opacity: 0,
 					y: 100,
 					duration: 1,
 					ease: "power3.out",
 					scrollTrigger: {
-						trigger: ".aboutMe-container",
+						trigger: this.$el,
 						start: "top bottom",
 						scrub: 1,
 						toggleActions: "play none none pause",
@@ -64,7 +64,7 @@ export default {
 					duration: 1,
 					ease: "power3.out",
 					scrollTrigger: {
-						trigger: ".aboutMe-container",
+						trigger: this.$el,
 						start: "top bottom",
 						scrub: 1,
 						toggleActions: "play none none pause",
@@ -76,7 +76,7 @@ export default {
 					ease: "slow(0.7,0.7,false)",
 					y: -10,
 					scrollTrigger: {
-						trigger: ".aboutMe-container",
+						trigger: this.$el,
 						scrub: 1,
 						toggleActions: "play none none pause",
 					},
@@ -87,7 +87,7 @@ export default {
 					ease: "slow(0.7,0.7,false)",
 					x: -50,
 					scrollTrigger: {
-						trigger: ".aboutMe-container",
+						trigger: this.$el,
 						start: "top center",
 						scrub: 1,
 						toggleActions: "play none none pause",
@@ -99,7 +99,7 @@ export default {
 					ease: "slow(0.7,0.7,false)",
 					x: 50,
 					scrollTrigger: {
-						trigger: ".aboutMe-container",
+						trigger: this.$el,
 						start: "top top",
 						scrub: 1,
 						toggleActions: "play none none pause",
@@ -111,14 +111,17 @@ export default {
 					ease: "slow(0.7,0.7,false)",
 					scale: 1.5,
 					scrollTrigger: {
-						trigger: ".aboutMe-container",
+						trigger: this.$el,
 						start: "center center",
 						scrub: 1,
 						toggleActions: "play none none pause",
 					},
 				});
-			});
+			}, this.$el);
 		}
+	},
+	beforeUnmount() {
+		this.animationContext?.revert();
 	},
 };
 </script>

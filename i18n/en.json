@@ -29,6 +29,7 @@
   "cafeDLDesc": "Download and Instruction Center",
   "home": "Home",
   "aboutMe": "About Me",
+  "aboutSkill": "About {skill}",
   "skills": "Skills",
   "projects": "Projects",
   "blog": "Blog",

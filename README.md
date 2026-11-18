@@ -22,6 +22,9 @@ npm install
 # start the development server
 npm run dev
 
+# run UI regression tests
+npm test
+
 # build for production
 npm run build
 

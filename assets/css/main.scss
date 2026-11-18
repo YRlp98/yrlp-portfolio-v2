@@ -328,6 +328,10 @@ html[data-locale="en"] {
         justify-content: flex-start !important;
     }
 
+    .iconListCard-container .iconListCard {
+        transform-origin: left center;
+    }
+
     .iconListCard-container .titleSubCard,
     .imageListCard-container .titleSubCard {
         margin-right: 0 !important;

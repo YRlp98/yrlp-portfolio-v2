@@ -40,7 +40,7 @@ export default {
 	},
 	mounted() {
 		if (import.meta.client && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-			this.$nextTick(() => {
+			this.animationContext = this.$gsap.context(() => {
 				this.$gsap.from(this.$refs.heroWelcome.children, {
 					opacity: 0,
 					y: 100,
@@ -48,8 +48,11 @@ export default {
 					ease: "back.out(1.7)",
 					stagger: 0.2,
 				});
-			});
+			}, this.$el);
 		}
+	},
+	beforeUnmount() {
+		this.animationContext?.revert();
 	},
 };
 </script>
