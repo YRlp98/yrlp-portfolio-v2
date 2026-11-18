@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-container" :class="{ 'is-ltr': activeLang === 'en' }">
+  <footer class="footer-container" :class="{ 'is-ltr': activeLang === 'en' }">
     <div class="socialNetwork-container">
       <div class="socialNetwork default-margin">
         <h2>{{ $t("homePageFollowMeSN") }}</h2>
@@ -19,14 +19,14 @@
           <nuxt-link class="item" :to="$localePath('/')">{{ $t("home") }}</nuxt-link>
         </li>
         <li class="footer-nav-about">
-          <span class="item" @click="goto($localePath('/#homeAboutMe'))">
+          <nuxt-link class="item" :to="$localePath('/#homeAboutMe')">
             {{ $t("aboutMe") }}
-          </span>
+          </nuxt-link>
         </li>
         <li class="footer-nav-skills">
-          <span class="item" @click="goto($localePath('/#homeSkills'))">
+          <nuxt-link class="item" :to="$localePath('/#homeSkills')">
             {{ $t("skills") }}
-          </span>
+          </nuxt-link>
         </li>
         <li class="footer-nav-projects">
           <nuxt-link class="item" :to="$localePath('/projects')">{{
@@ -41,7 +41,7 @@
         {{ $t("footerCopyright") }}
       </p>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script>
@@ -65,11 +65,6 @@ export default {
   data() {
     return {
     };
-  },
-  methods: {
-    goto(id) {
-      useRouter().push(id);
-    },
   },
 };
 </script>

@@ -59,7 +59,7 @@
 }
 
 :root {
-    color-scheme: dark;
+    color-scheme: light dark;
 
     // Semantic theme colors
     --color-bg: #222222;
@@ -92,8 +92,7 @@
     --green-1: var(--color-accent);
 }
 
-:root[data-theme="light"] {
-    color-scheme: light;
+@mixin light-theme {
     --color-bg: #f7f9f6;
     --color-surface: #e9eee7;
     --color-surface-elevated: #ffffff;
@@ -114,6 +113,46 @@
     --tag-web: #285f67;
     --tag-mobile: #12673f;
     --tag-other: #ac2424;
+}
+
+:root[data-theme="light"] {
+    @include light-theme;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+        @include light-theme;
+    }
+}
+
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+}
+
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+}
+
+@supports (color: light-dark(white, black)) {
+    :root {
+        --color-bg: light-dark(#f7f9f6, #222222);
+        --color-surface: light-dark(#e9eee7, #131313);
+        --color-surface-elevated: light-dark(#ffffff, #292929);
+        --color-text: light-dark(#172017, #f5f5f5);
+        --color-text-muted: light-dark(#596359, #a3a3a3);
+        --color-accent: light-dark(#176d12, #35e925);
+        --color-accent-hover-start: light-dark(#0c3709, #1b7513);
+        --color-accent-contrast: light-dark(#ffffff, #10200d);
+        --color-border: light-dark(rgba(23, 32, 23, 0.16), rgba(255, 255, 255, 0.16));
+        --color-glass: light-dark(rgba(255, 255, 255, 0.88), rgba(19, 19, 19, 0.78));
+        --color-glass-hover: light-dark(rgba(23, 32, 23, 0.08), rgba(255, 255, 255, 0.1));
+        --color-hero-glyph: light-dark(rgba(23, 32, 23, 0.2), rgba(0, 0, 0, 0.5));
+        --color-title-watermark: light-dark(#607060, #000000);
+        --tag-design: light-dark(#a71950, #fb6a9d);
+        --tag-web: light-dark(#285f67, #78b4bc);
+        --tag-mobile: light-dark(#12673f, #54cf91);
+        --tag-other: light-dark(#ac2424, #ff6868);
+    }
 }
 
 * {
@@ -181,6 +220,29 @@ a {
         outline: 3px solid var(--color-accent);
         outline-offset: 3px;
     }
+}
+
+
+.skip-link {
+    position: fixed;
+    inset-block-start: 12px;
+    inset-inline-start: 12px;
+    z-index: 10000;
+    padding: 12px 20px;
+    border-radius: 5px;
+    color: var(--color-accent-contrast);
+    background: var(--color-accent);
+    transform: translateY(calc(-100% - 20px));
+
+    &:focus {
+        transform: translateY(0);
+    }
+}
+
+#main-content,
+#homeAboutMe,
+#homeSkills {
+    scroll-margin-top: 90px;
 }
 
 // English-only layout corrections. Persian keeps the original RTL component rules.

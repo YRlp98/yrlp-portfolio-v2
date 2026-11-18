@@ -39,7 +39,8 @@ export default {
   text-decoration: none;
   z-index: 9;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     transform: translateY(10px);
 
     img {
@@ -114,6 +115,13 @@ export default {
         padding: 1px 3px 0px 3px;
       }
     }
+  }
+}
+@media (hover: none) {
+  .projectCard-container::before,
+  .projectCard-container .projectCard-info {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>

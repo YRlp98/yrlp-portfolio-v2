@@ -314,6 +314,14 @@ export default {
     linear-gradient(var(--color-surface), var(--color-surface));
 }
 
+@media (prefers-color-scheme: light) {
+  :global(html:not([data-theme="dark"]) .skills-container) {
+    background-image: url("../../../assets/images/wave3-light.svg"),
+      url("../../../assets/images/wave1-light.svg"),
+      linear-gradient(var(--color-surface), var(--color-surface));
+  }
+}
+
 @media (min-width: 90rem) {
   .skills-container .titleBackground-anchor .titleBackground {
     left: -7.5rem;

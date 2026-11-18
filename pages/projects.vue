@@ -4,14 +4,13 @@
     <div class="filter" :style="{ direction: `${changeDirection(activeLang)}` }">
       <p>{{ $t("show") }}:</p>
       <ul>
-        <li v-for="(tag, index) in tags" :key="index" :style="{
-          color:
-            activeTag === tag.key
-              ? tag.color
-              : null,
-          fontWeight: activeTag === tag.key ? 'bold' : 'regular',
-        }" @click="onClick(tag.key)">
-          {{ tag.name }}
+        <li v-for="(tag, index) in tags" :key="index">
+          <button type="button" :aria-pressed="activeTag === tag.key" :style="{
+            color: activeTag === tag.key ? tag.color : null,
+            fontWeight: activeTag === tag.key ? 'bold' : 'normal',
+          }" @click="onClick(tag.key)">
+            {{ tag.name }}
+          </button>
         </li>
       </ul>
     </div>
@@ -94,12 +93,17 @@ export default {
 
   .filter {
     display: flex;
+    align-items: center;
+    gap: 12px;
     margin-top: 25px;
     direction: rtl;
+    line-height: 1.4;
 
     p {
       color: var(--gray-1);
       font-size: 1rem;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     ul {
@@ -107,12 +111,19 @@ export default {
       flex-wrap: wrap;
       list-style: none;
       justify-content: flex-start;
-      align-content: center;
+      align-items: center;
       gap: 20px;
       color: var(--gray-1);
       font-size: 1rem;
 
-      li {
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font: inherit;
+        color: inherit;
+        background: transparent;
+        min-height: 44px;
         margin: 0;
         padding: 0px 5px;
         border-radius: 5px;
@@ -144,7 +155,7 @@ export default {
         column-gap: 12px;
         row-gap: 12px;
 
-        li {
+        button {
           padding: 6px 9px;
           line-height: 1.4;
         }

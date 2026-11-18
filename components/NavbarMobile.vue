@@ -1,34 +1,40 @@
 <template>
   <div class="hamburger-menu">
-    <input id="menu__toggle" ref="menuToggle" type="checkbox" />
-    <label class="menu__btn" for="menu__toggle">
-      <span></span>
-    </label>
+    <button type="button" class="menu__btn" :aria-label="$t('openMenu')"
+      :aria-expanded="isOpen" aria-controls="mobile-menu" @click="openMenu">
+      <span aria-hidden="true"></span>
+    </button>
 
-    <ul class="menu__box">
-      <li>
-        <nuxt-link class="menu__item" :to="$localePath('/')" @click="closeMenu">{{ $t("home") }}</nuxt-link>
-      </li>
-      <li>
-        <span class="menu__item" @click="goto($localePath('/#homeAboutMe'))">
-          {{ $t("aboutMe") }}
-        </span>
-      </li>
-      <li>
-        <span class="menu__item" @click="goto($localePath('/#homeSkills'))">
-          {{ $t("skills") }}
-        </span>
-      </li>
-      <li>
-        <nuxt-link class="menu__item" :to="$localePath('/projects')" @click="closeMenu">{{ $t("projects") }}</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link class="menu__item" :to="$localePath('/blog')" @click="closeMenu">‌{{ $t("blog") }}</nuxt-link>
-      </li>
+    <dialog id="mobile-menu" ref="menuDialog" class="menu__box" :aria-label="$t('mobileNavigation')"
+      @close="isOpen = false">
+      <form method="dialog">
+        <button type="submit" class="menu__btn menu__btn--close" :aria-label="$t('closeMenu')" autofocus>
+          <span aria-hidden="true"></span>
+        </button>
+      </form>
+      <nav :aria-label="$t('mobileNavigation')">
+        <ul>
+          <li>
+            <nuxt-link class="menu__item" :to="$localePath('/')" @click="closeMenu">{{ $t("home") }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link class="menu__item" :to="$localePath('/#homeAboutMe')" @click="closeMenu">{{ $t("aboutMe") }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link class="menu__item" :to="$localePath('/#homeSkills')" @click="closeMenu">{{ $t("skills") }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link class="menu__item" :to="$localePath('/projects')" @click="closeMenu">{{ $t("projects") }}</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link class="menu__item" :to="$localePath('/blog')" @click="closeMenu">{{ $t("blog") }}</nuxt-link>
+          </li>
+        </ul>
+      </nav>
       <div class="settings-menu">
         <SettingsMenu class="settingsMenu" @close="closeMenu" />
       </div>
-    </ul>
+    </dialog>
   </div>
 </template>
 
@@ -37,19 +43,34 @@ import SettingsMenu from "./widgets/SettingsMenu.vue";
 
 export default {
   name: "NavbarMobile",
-  components: {
-    SettingsMenu,
+  components: { SettingsMenu },
+  data() {
+    return { isOpen: false };
+  },
+  watch: {
+    '$route.fullPath'() {
+      this.closeMenu();
+    },
   },
   methods: {
+    openMenu() {
+      this.$refs.menuDialog.showModal();
+      this.isOpen = true;
+    },
     closeMenu() {
-      if (this.$refs.menuToggle) {
-        this.$refs.menuToggle.checked = false;
-      }
+      this.$refs.menuDialog.close();
+      this.isOpen = false;
     },
-    goto(id) {
-      this.closeMenu();
-      useRouter().push(id);
+    handleBreakpoint(event) {
+      if (event.matches) this.closeMenu();
     },
+  },
+  mounted() {
+    this.desktopBreakpoint = window.matchMedia('(min-width: 768px)');
+    this.desktopBreakpoint.addEventListener('change', this.handleBreakpoint);
+  },
+  beforeUnmount() {
+    this.desktopBreakpoint.removeEventListener('change', this.handleBreakpoint);
   },
 };
 </script>
@@ -58,34 +79,6 @@ export default {
 .hamburger-menu {
   position: absolute;
   z-index: 999;
-}
-
-#menu__toggle {
-  position: fixed;
-  top: 14px;
-  left: 14px;
-  width: 44px;
-  height: 44px;
-  opacity: 0;
-}
-
-#menu__toggle:checked~.menu__btn>span {
-  transform: rotate(45deg);
-}
-
-#menu__toggle:checked~.menu__btn>span::before {
-  top: 0;
-  transform: rotate(0);
-}
-
-#menu__toggle:checked~.menu__btn>span::after {
-  top: 0;
-  transform: rotate(90deg);
-}
-
-#menu__toggle:checked~.menu__box {
-  visibility: visible;
-  left: 0;
 }
 
 .menu__btn {
@@ -130,6 +123,20 @@ export default {
   top: 8px;
 }
 
+.menu__btn--close>span {
+  transform: rotate(45deg);
+}
+
+.menu__btn--close>span::before {
+  top: 0;
+  transform: rotate(0);
+}
+
+.menu__btn--close>span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
 .menu__btn:hover {
   transform: translateY(-2px) scale(1.02);
   background: var(--color-surface-elevated);
@@ -148,12 +155,11 @@ export default {
 }
 
 .menu__box {
-  display: block;
   position: fixed;
-  visibility: hidden;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 100%;
+  max-width: none;
   height: 100dvh;
   max-height: 100dvh;
   margin: 0;
@@ -164,7 +170,16 @@ export default {
   list-style: none;
   background-color: var(--gray-3);
   box-shadow: var(--shadow-soft);
-  transition-duration: 0.25s;
+  color: var(--color-text);
+
+  ul {
+    list-style: none;
+  }
+
+  &::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+  }
 
   .settings-menu {
     position: relative;
