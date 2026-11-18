@@ -22,4 +22,10 @@ export default {
 :global(html[data-theme="light"] .wave) {
   background-image: url("../../assets/images/wave2-light.svg");
 }
+
+@media (prefers-color-scheme: light) {
+  :global(html:not([data-theme="dark"]) .wave) {
+    background-image: url("../../assets/images/wave2-light.svg");
+  }
+}
 </style>

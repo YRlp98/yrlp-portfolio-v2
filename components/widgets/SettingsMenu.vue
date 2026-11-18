@@ -1,30 +1,36 @@
 <template>
-  <div class="settings-menu-container" ref="menuRef">
+  <div class="settings-menu-container">
     <div class="menu-theme">
-      <p>Theme</p>
+      <p>{{ $t('theme') }}</p>
       <ul class="menu-bar">
         <li>
-          <button type="button" @click="setTheme('dark')" :class="{ active: isDark }" :aria-pressed="isDark">
-            <img src="/icons/dark.svg" alt="" />
-            Dark Mode
+          <button type="button" @click="setTheme('system')" :class="{ active: theme === 'system' }" :aria-pressed="theme === 'system'">
+            <i class="fa-solid fa-desktop theme-icon" aria-hidden="true"></i>
+            <span class="menu-label">{{ $t('systemTheme') }}</span>
           </button>
         </li>
         <li>
-          <button type="button" @click="setTheme('light')" :class="{ active: !isDark }" :aria-pressed="!isDark">
-            <img src="/icons/light.svg" alt="" />
-            Light Mode
+          <button type="button" @click="setTheme('dark')" :class="{ active: theme === 'dark' }" :aria-pressed="theme === 'dark'">
+            <AppImage src="/icons/dark.svg" alt="" />
+            <span class="menu-label">{{ $t('darkTheme') }}</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" @click="setTheme('light')" :class="{ active: theme === 'light' }" :aria-pressed="theme === 'light'">
+            <AppImage src="/icons/light.svg" alt="" />
+            <span class="menu-label">{{ $t('lightTheme') }}</span>
           </button>
         </li>
       </ul>
     </div>
 
     <div class="menu-language">
-      <p>Language</p>
+      <p>{{ $t('language') }}</p>
       <ul class="menu-bar">
         <li v-for="locale in availableLocales" :key="locale.code">
-          <nuxt-link :to="switchLocalePath(locale.code)" @click="$emit('close')">
-            <img :src="`/icons/${locale.code}.svg`" :alt="locale.name" />
-            {{ locale.name }}
+          <nuxt-link :to="switchLocalePath(locale.code)" :lang="locale.code" @click="$emit('close')">
+            <AppImage :src="`/icons/${locale.code}.svg`" alt="" />
+            <span class="menu-label">{{ locale.name }}</span>
           </nuxt-link>
         </li>
       </ul>
@@ -33,17 +39,16 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['close'])
+defineEmits(['close'])
 
 const { locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
-const { isDark, setTheme, initializeTheme } = useTheme()
+const { theme, setTheme } = useTheme()
 
 const availableLocales = computed(() =>
   locales.value.filter((l) => l.code !== locale.value)
 )
 
-onMounted(initializeTheme)
 </script>
 
 <style lang="scss" scoped>
@@ -81,18 +86,38 @@ onMounted(initializeTheme)
       background: transparent;
       display: flex;
       align-items: center;
+      gap: 10px;
       font-family: inherit;
       font-size: 0.813rem;
       line-height: 1.7;
       cursor: pointer;
       padding: 4px 10px;
+      min-height: 44px;
       border-radius: 5px;
       transition: transform 0.3s ease, background-color 0.3s ease;
 
-      img {
-        margin-right: 10px;
+      img,
+      .theme-icon {
+        flex: 0 0 17px;
         width: 17px;
         height: 17px;
+      }
+
+      img {
+        display: block;
+        object-fit: contain;
+      }
+
+      .theme-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        line-height: 1;
+      }
+
+      .menu-label {
+        text-box: trim-both cap alphabetic;
       }
     }
 

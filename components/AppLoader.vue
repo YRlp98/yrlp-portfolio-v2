@@ -2,7 +2,7 @@
   <Transition name="app-loader">
     <div v-if="isVisible" class="app-loader" role="status" aria-live="polite" aria-atomic="true">
       <div class="app-loader__content">
-        <img class="app-loader__logo" src="/images/yr-logo-transparent.svg" alt="" width="136" height="81" />
+        <AppImage class="app-loader__logo" src="/images/yr-logo-transparent.svg" alt="" width="136" height="81" />
 
         <div class="app-loader__identity" dir="ltr" aria-hidden="true">
           <span>YRLP</span>

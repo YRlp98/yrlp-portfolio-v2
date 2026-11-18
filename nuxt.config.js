@@ -12,6 +12,7 @@ export default defineNuxtConfig({
       title: 'Yousef Roshandel | Front-End Developer & UI/UX Designer',
       htmlAttrs: {
         lang: 'fa',
+        'data-theme': 'dark',
       },
       meta: [
         { charset: 'utf-8' },
@@ -22,7 +23,9 @@ export default defineNuxtConfig({
             'Yousef Roshandel is a passionate Front-End Developer and UI/UX Designer creating modern, user-friendly websites. یوسف روشندل، توسعه‌دهنده فرانت‌اند و طراح UI/UX با اشتیاق برای خلق تجربه‌های دیجیتال مدرن و کاربرپسند.',
         },
         { name: 'format-detection', content: 'telephone=no' },
-        { name: 'theme-color', content: '#131313' },
+        // Both tags must exist before the blocking theme script (priority 50) runs.
+        { name: 'theme-color', content: '#131313', tagPriority: 48 },
+        { name: 'color-scheme', content: 'dark', tagPriority: 49 },
         { name: 'apple-mobile-web-app-title', content: 'YRlp' },
         {
           property: 'og:title',
@@ -46,16 +49,17 @@ export default defineNuxtConfig({
       script: [
         {
           innerHTML: `(function () {
-            try {
-              var savedTheme = localStorage.getItem('theme');
-              var theme = savedTheme === 'light' || savedTheme === 'dark'
-                ? savedTheme
-                : 'dark';
+              var savedTheme;
+              try { savedTheme = localStorage.getItem('theme'); } catch (error) {}
+              var scheme = savedTheme === 'system' ? 'light dark' : (savedTheme === 'light' ? 'light' : 'dark');
+              var theme = scheme === 'light dark'
+                ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+                : scheme;
+              document.querySelector('meta[name="color-scheme"]').content = scheme;
               document.documentElement.dataset.theme = theme;
-              document.documentElement.style.colorScheme = theme;
+              document.documentElement.style.colorScheme = scheme;
               var themeColor = document.querySelector('meta[name="theme-color"]');
               if (themeColor) themeColor.setAttribute('content', theme === 'light' ? '#f7f9f6' : '#131313');
-            } catch (error) {}
           })();`,
         },
       ],

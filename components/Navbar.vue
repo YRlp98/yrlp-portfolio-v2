@@ -1,12 +1,13 @@
 <template>
-  <nav class="navbar-container" :class="{ 'is-scrolled': isScrolled }">
+  <nav class="navbar-container" :class="{ 'is-scrolled': isScrolled }" :aria-label="$t('primaryNavigation')">
     <div class="navbar default-margin">
-      <div class="navbar-more-wrap">
-        <span class="navbar-more" @click.stop="isOpen = !isOpen">
-          <img src="/icons/more.svg" alt="More icon" />
-        </span>
+      <div class="navbar-more-wrap" @keydown.esc.stop="closeSettings" @focusout="handleFocusOut">
+        <button ref="settingsToggle" type="button" class="navbar-more" :aria-label="$t('settings')"
+          :aria-expanded="isOpen" aria-controls="desktop-settings" @click.stop="isOpen = !isOpen">
+          <AppImage src="/icons/more.svg" alt="" width="24" height="24" />
+        </button>
         <transition name="dropdown" appear>
-          <SettingsMenu class="settingsMenu" v-if="isOpen" @close="isOpen = false"
+          <SettingsMenu id="desktop-settings" class="settingsMenu" v-if="isOpen" @close="isOpen = false"
             v-click-outside="() => isOpen = false" @click.stop />
         </transition>
       </div>
@@ -15,14 +16,14 @@
           <nuxt-link class="item" :to="$localePath('/')">{{ $t("home") }}</nuxt-link>
         </li>
         <li>
-          <span class="item" @click="goto($localePath('/#homeAboutMe'))">
+          <nuxt-link class="item" :to="$localePath('/#homeAboutMe')">
             {{ $t("aboutMe") }}
-          </span>
+          </nuxt-link>
         </li>
         <li>
-          <span class="item" @click="goto($localePath('/#homeSkills'))">
+          <nuxt-link class="item" :to="$localePath('/#homeSkills')">
             {{ $t("skills") }}
-          </span>
+          </nuxt-link>
         </li>
         <li>
           <nuxt-link class="item" :to="$localePath('/projects')">{{
@@ -52,8 +53,12 @@ export default {
     };
   },
   methods: {
-    goto(id) {
-      useRouter().push(id);
+    closeSettings() {
+      this.isOpen = false;
+      this.$refs.settingsToggle.focus();
+    },
+    handleFocusOut(event) {
+      if (!event.currentTarget.contains(event.relatedTarget)) this.isOpen = false;
     },
     handleScroll() {
       this.isScrolled = window.scrollY > 10;
@@ -150,6 +155,9 @@ export default {
 
       .navbar-more {
         display: flex;
+        min-width: 44px;
+        min-height: 44px;
+        background: transparent;
         cursor: pointer;
         align-items: center;
         justify-content: center;

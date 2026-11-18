@@ -4,7 +4,7 @@
 			{{ $t("homePageAboutMe") }}
 		</h2>
 		<div class="aboutMe-avatar">
-			<img src="/images/yousef-roshandel.webp" :alt="$t('profileImageAlt')" width="170" height="170" loading="lazy" decoding="async" />
+			<AppImage src="/images/yousef-roshandel.webp" :alt="$t('profileImageAlt')" width="170" height="170" loading="lazy" decoding="async" />
 			<div class="square"></div>
 		</div>
 		<p class="aboutMe-text" :style="{ direction: `${changeDirection(activeLang)}` }">

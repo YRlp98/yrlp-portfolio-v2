@@ -1,9 +1,10 @@
 <template>
   <div class="default-container">
     <AppLoader />
+    <a class="skip-link" href="#main-content">{{ $t('skipToContent') }}</a>
     <NavbarMobile />
     <Navbar />
-    <main>
+    <main id="main-content" tabindex="-1">
       <NuxtPage />
     </main>
     <Footer />

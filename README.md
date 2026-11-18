@@ -50,5 +50,5 @@ npm run deploy
 
 - Responsive layout for desktop, tablet, and mobile screens.
 - Full Persian (Farsi) and English language support.
-- Dark and light themes, with dark mode enabled by default.
+- Dark theme by default, with saved light and system theme options.
 - Portfolio projects, blog posts, skills, experience, and contact information.
