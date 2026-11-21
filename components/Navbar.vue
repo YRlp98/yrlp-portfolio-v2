@@ -110,8 +110,8 @@ export default {
         inset: 0;
         z-index: -1;
         background-color: var(--color-glass);
-        backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
       }
     }
 
