@@ -13,10 +13,12 @@
 			<ScrollIcon class="scrollIcon" />
 		</div>
 		<IconBackground ref />
+		<WaveBackground class="hero-wave" />
 	</div>
 </template>
 
 <script>
+import WaveBackground from "../../backgrounds/WaveBackground.vue";
 import ScrollIcon from "../../icons/ScrollIcon.vue";
 import IconBackground from "../../backgrounds/IconBackground.vue";
 
@@ -25,6 +27,7 @@ export default {
 	components: {
 		ScrollIcon,
 		IconBackground,
+		WaveBackground,
 	},
 	setup() {
 		const { changeDirection } = useDirection()
@@ -67,7 +70,15 @@ export default {
 	justify-content: center;
 	text-align: center;
 	direction: rtl;
-	background: var(--gray-3);
+	background: var(--color-section-surface);
+
+	.hero-wave {
+		position: absolute;
+		inset-inline: 0;
+		bottom: -1px;
+		z-index: 100;
+		color: var(--color-bg);
+	}
 
 	.heroSection-welcome {
 		position: relative;

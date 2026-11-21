@@ -1,5 +1,6 @@
 <template>
   <div class="skills-container" id="homeSkills">
+    <WaveBackground class="section-wave section-wave--top" />
     <div class="main-skills-container default-margin">
       <h2 :style="{ textAlign: `${changeAlign(activeLang)}` }">
         {{ $t("homePageSkillsMain") }}
@@ -54,6 +55,7 @@
         </div>
       </div>
     </div>
+    <WaveBackground class="section-wave section-wave--bottom" />
     <div class="titleBackground-anchor default-margin">
       <TitleBackground class="titleBackground" title="skills" />
     </div>
@@ -62,6 +64,7 @@
 
 
 <script>
+import WaveBackground from "../../backgrounds/WaveBackground.vue";
 import IconTitle from "../../widgets/iconTitle.vue";
 import SkillProgress from "./SkillProgress.vue";
 import SkillSimple from "./SkillSimple.vue";
@@ -70,6 +73,7 @@ import TitleBackground from "../../backgrounds/TitleBackground.vue";
 export default {
   name: "Skills",
   components: {
+    WaveBackground,
     IconTitle,
     SkillProgress,
     SkillSimple,
@@ -87,114 +91,137 @@ export default {
     return {
       webSkills: [
         {
+          id: "html",
           title: "HTML",
           width: "90",
-          link: "https://en.wikipedia.org/wiki/HTML",
+          link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
         },
         {
+          id: "css",
           title: "CSS",
           width: "90",
-          link: "https://en.wikipedia.org/wiki/CSS",
+          link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
         },
         {
+          id: "vue",
           title: "Vue.js",
           width: "90",
-          link: "https://en.wikipedia.org/wiki/Vue.js",
+          link: "https://vuejs.org/guide/introduction.html",
         },
         {
+          id: "nuxt",
           title: "Nuxt.js",
           width: "90",
-          link: "https://en.wikipedia.org/wiki/Nuxt.js",
+          link: "https://nuxt.com/docs/4.x/getting-started/introduction",
         },
         {
+          id: "javascript",
           title: "JavaScript",
           width: "80",
-          link: "https://en.wikipedia.org/wiki/JavaScript",
+          link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
         },
         {
+          id: "typescript",
           title: "TypeScript",
           width: "70",
-          link: "https://www.typescriptlang.org/",
+          link: "https://www.typescriptlang.org/docs/",
         },
         {
+          id: "node",
           title: "Node.js",
           width: "40",
-          link: "https://en.wikipedia.org/wiki/Node.js",
+          link: "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
         },
       ],
       uiSkills: [
         {
+          id: "figma",
           title: "Figma",
           width: "90",
-          link: "https://en.wikipedia.org/wiki/Figma_(software)",
+          link: "https://help.figma.com/hc/en-us/articles/14563969806359-What-is-Figma",
         },
         {
+          id: "adobexd",
           title: "Adobe XD",
           width: "90",
-          link: "https://en.wikipedia.org/wiki/Adobe_XD",
+          link: "https://helpx.adobe.com/xd/help/adobe-xd-overview.html",
         },
         {
+          id: "photoshop",
           title: "Adobe Photoshop",
           width: "80",
-          link: "https://en.wikipedia.org/wiki/Adobe_Photoshop",
+          link: "https://helpx.adobe.com/photoshop/user-guide.html",
         },
         {
+          id: "illustrator",
           title: "Adobe Illustrator",
           width: "50",
-          link: "https://en.wikipedia.org/wiki/Adobe_Illustrator",
+          link: "https://helpx.adobe.com/illustrator/user-guide.html",
         },
         {
+          id: "premiere",
           title: "Adobe Premiere Pro",
           width: "50",
-          link: "https://www.adobe.com/products/premiere.html",
+          link: "https://helpx.adobe.com/premiere-pro/user-guide.html",
         },
       ],
       softwareSkills: [
         {
+          id: "agile",
           title: "Agile",
-          link: "https://en.wikipedia.org/wiki/Agile_software_development",
+          link: "https://agilemanifesto.org/",
         },
         {
+          id: "scrum",
           title: "Scrum",
-          link: "https://en.wikipedia.org/wiki/Scrum_(software_development)",
+          link: "https://scrumguides.org/scrum-guide.html",
         },
       ],
       mobileSkills: [
         {
+          id: "flutter",
           title: "Flutter",
-          link: "https://en.wikipedia.org/wiki/Flutter_(software)",
+          link: "https://docs.flutter.dev/",
         },
         {
+          id: "dart",
           title: "Dart",
-          link: "https://en.wikipedia.org/wiki/Dart_(programming_language)",
+          link: "https://dart.dev/overview",
         },
         {
+          id: "java",
           title: "Java",
-          link: "https://en.wikipedia.org/wiki/Java_(programming_language)",
+          link: "https://dev.java/learn/",
         },
         {
+          id: "xml",
           title: "XML",
-          link: "https://en.wikipedia.org/wiki/XML",
+          link: "https://developer.mozilla.org/en-US/docs/Web/XML",
         },
       ],
       othersSkills: [
         {
+          id: "git",
           title: "Git",
-          link: "https://en.wikipedia.org/wiki/Git",
+          link: "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control",
         },
         {
+          id: "rest",
           title: "REST API",
-          link: "https://en.wikipedia.org/wiki/Representational_state_transfer",
+          link: "https://developer.mozilla.org/en-US/docs/Glossary/REST",
         },
         {
+          id: "linux",
           title: "Linux",
-          link: "https://en.wikipedia.org/wiki/Linux",
+          link: "https://www.kernel.org/linux.html",
         },
         {
+          id: "seo",
           title: "SEO",
           link: "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
         },
         {
+          id: "performance",
           title: "Performance Optimization",
           link: "https://web.dev/learn/performance",
         },
@@ -207,16 +234,25 @@ export default {
 
 <style lang="scss" scoped>
 .skills-container {
-  padding: 9% 0;
-  background: url("../../../assets/images/wave3.svg") top / 100% auto,
-    url("../../../assets/images/wave1.svg") bottom/100% auto,
-    linear-gradient(var(--gray-3), var(--gray-3)) content-box;
-  background-repeat: no-repeat;
-
+  padding: clamp(2rem, 4dvw, 5rem) 0;
+  background: var(--color-section-surface);
   position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
+
+  .section-wave {
+    position: absolute;
+    inset-inline: 0;
+  }
+
+  .section-wave--top {
+    bottom: calc(100% - 1px);
+  }
+
+  .section-wave--bottom {
+    top: calc(100% - 1px);
+    transform: rotate(180deg);
+  }
 
   .main-skills-container {
     margin-top: 60px;
@@ -305,20 +341,6 @@ export default {
       transform: rotate(-90deg) translateX(-100%);
       transform-origin: top left;
     }
-  }
-}
-
-:global(html[data-theme="light"] .skills-container) {
-  background-image: url("../../../assets/images/wave3-light.svg"),
-    url("../../../assets/images/wave1-light.svg"),
-    linear-gradient(var(--color-surface), var(--color-surface));
-}
-
-@media (prefers-color-scheme: light) {
-  :global(html:not([data-theme="dark"]) .skills-container) {
-    background-image: url("../../../assets/images/wave3-light.svg"),
-      url("../../../assets/images/wave1-light.svg"),
-      linear-gradient(var(--color-surface), var(--color-surface));
   }
 }
 

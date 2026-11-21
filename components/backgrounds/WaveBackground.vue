@@ -1,5 +1,7 @@
 <template>
-  <div class="wave"></div>
+  <svg class="wave" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 88C128 120 240 32 384 52S584 128 736 92S928 16 1056 40S1272 136 1440 88V160H0Z" fill="currentColor" />
+  </svg>
 </template>
 
 <script>
@@ -8,24 +10,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .wave {
-  position: absolute;
-  z-index: 100;
-  height: 200px;
+  display: block;
   width: 100%;
-  background: url("../../assets/images/wave2.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: clamp(4rem, 6dvw, 10rem);
+  color: var(--color-section-surface);
+  pointer-events: none;
 }
 
-:global(html[data-theme="light"] .wave) {
-  background-image: url("../../assets/images/wave2-light.svg");
-}
-
-@media (prefers-color-scheme: light) {
-  :global(html:not([data-theme="dark"]) .wave) {
-    background-image: url("../../assets/images/wave2-light.svg");
+@media (forced-colors: active) {
+  .wave {
+    display: none;
   }
 }
 </style>

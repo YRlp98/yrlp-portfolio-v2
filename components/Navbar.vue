@@ -211,7 +211,7 @@ export default {
       .settingsMenu {
         position: absolute;
         top: calc(100% + 18px);
-        inset-inline-start: 0;
+        inset-inline-end: 0;
       }
     }
 

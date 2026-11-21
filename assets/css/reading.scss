@@ -1,0 +1,179 @@
+// Share the content layout so browser printing also works without entering reading mode.
+@mixin reading-layout {
+  #main-content {
+    box-sizing: border-box;
+    max-inline-size: 72ch;
+    margin-inline: auto;
+    padding: 6rem 1.25rem 3rem;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+    direction: var(--reading-direction, ltr);
+
+    // Scroll reveals can otherwise leave unvisited sections invisible in a PDF.
+    &, * {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    :is(.wave, .heroSection-container > section[aria-hidden="true"], .titleBackground, .titleBackground-anchor,
+      .scrollIcon, .square, .icon-background, .iconListCard .icon, .imageListCard .image,
+      .projectCard-container > img, .blogCard > img, .socialNetwork, .skillProgress-container > .skillProgress) {
+      display: none !important;
+    }
+
+    :is(.index-container, .heroSection-container, .heroSection-content, .heroSection-welcome,
+      .aboutMe-container, .aboutMe-title, .aboutMe-text, .aboutMe-avatar,
+      .education-container, .experience-container, .experience, .skills-container,
+      .main-skills-container, .other-skills-container, .projects-container, .blog-container) {
+      direction: var(--reading-direction, ltr);
+      position: static;
+      inset: auto;
+      display: block;
+      inline-size: auto;
+      block-size: auto;
+      min-block-size: 0;
+      max-block-size: none;
+      margin: 0;
+      padding: 0;
+      background: none;
+      overflow: visible;
+    }
+
+    .default-margin { margin-inline: 0; }
+    .index-container > :not(:first-child), .experience + .experience,
+    .other-skills-container { margin-block-start: 2.5rem; }
+
+    :is(h1, h2, h3, h4, p) {
+      max-inline-size: 100%;
+      text-align: start !important;
+      line-height: 1.65;
+    }
+    h1 { font-size: 2rem; color: var(--color-text); }
+    h2 { font-size: 1.5rem; color: var(--color-text); margin-block: 0 1rem; }
+    h3 { font-size: 1.2rem; color: var(--color-text); }
+    h4, p { font-size: 1rem; }
+    a { color: var(--color-text); text-underline-offset: 0.2em; }
+    a:hover { text-decoration: underline; }
+
+    .heroSection-container { text-align: start; }
+    .heroTitle, .heroTitle > div { font-size: 0; }
+    .heroTitle br { display: none; }
+    .heroTitle h1 { display: block; font-size: 2rem; margin: 0; }
+    .heroSection-welcome h2 { font-size: 1.125rem; padding-block-start: 0.5rem; margin: 0; }
+    .aboutMe-avatar { margin-block: 1rem; }
+    .aboutMe-avatar img { inline-size: 6rem; block-size: 6rem; }
+    .aboutMeInfo { margin-block-start: 1.25rem; }
+    :is(.aboutMeInfo-container .items, .homeTitle-container) { border: 0 !important; padding: 0 !important; align-items: start; }
+    .aboutMeInfo-container .item { font-size: 1rem; }
+
+    :is(.education-carts, .projects, .projects-cards, .blog-cards) {
+      display: block;
+      inline-size: auto;
+      margin-block: 1.25rem;
+    }
+    :is(.firstColumn, .secondColumn, .iconListCard-container, .imageListCard-container,
+      .titleSubCard-container, .titleSubCard, .descriptiont) {
+      display: block;
+      container-type: normal;
+      text-align: start;
+    }
+    :is(.iconListCard, .imageListCard) { display: block; margin-block: 1rem; filter: none !important; }
+    // Scope zoom resets to cards so the minifier preserves transform: none on printable containers.
+    .iconListCard { scale: 1 !important; }
+    .descriptiont img { display: none; }
+    .descriptiont p { font-size: 0.938rem; }
+    .subExperiences { margin-block: 0.75rem 1.5rem; }
+    :is(.iconListCard, .imageListCard) .titleSubCard { margin-inline: 0 !important; }
+    .subExperiences .titleSubCard { margin: 0.75rem 0 !important; }
+    .subExperiences .titleSubCard::before,
+    .subExperiences .titleSubCard::after { display: none; }
+
+    :is(.main-skills, .other-skills) {
+      display: grid;
+      direction: ltr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin: 0;
+    }
+    .skills { margin: 0; min-inline-size: 0; }
+    .iconTitle { margin: 0; }
+    .iconTitle h2 { font-size: 1.125rem; margin: 0 0 0.5rem; }
+    :is(.skillProgress-container, .skillSimple, .languages) { margin-block: 0.35rem; }
+    .languages p { font-size: 0.938rem; }
+
+    :is(.projectCard-container, .blogCard-container) {
+      display: block;
+      block-size: auto;
+      padding: 0;
+      margin-block: 1.5rem;
+      background: none;
+      text-decoration: none;
+    }
+    .projectCard-container::before { display: none; }
+    :is(.projectCard-info, .blogCard-info) { position: static; padding: 0; color: var(--color-text); }
+    :is(.projectCard-info, .blogCard-info) h2 { color: var(--color-text); font-size: 1.125rem; margin: 0; }
+    .blogCard-info :is(h2, p) { display: block; -webkit-line-clamp: unset; line-clamp: unset; max-inline-size: 100%; overflow: visible; }
+    .blogCard-info p { margin-block-start: 0.5rem; }
+    .projectCard-tags { flex-wrap: wrap; gap: 0.5rem; }
+    .projectCard-tags .tags { background: transparent !important; color: var(--color-text-muted); margin: 0; padding: 0; }
+    .title { margin-block-start: 0; }
+    .filter { margin-block: 1rem; }
+  }
+}
+
+html[data-locale="fa"] { --reading-direction: rtl; }
+
+.print-source { display: none; }
+
+@media screen {
+  html[data-reading-mode="true"] {
+    @include reading-layout;
+
+    .footer-container { margin-block: 2rem; }
+    .footer-container .socialNetwork-container { display: none; }
+    .footer-container .footer { margin-block-start: 0; }
+
+    @media (max-width: 30rem) {
+      #main-content :is(.main-skills, .other-skills) { grid-template-columns: 1fr; }
+    }
+  }
+}
+
+@media print {
+  @page { size: A4; margin: 15mm; }
+
+  html:root, html:root[data-theme] {
+    color-scheme: light;
+    --color-bg: #fff;
+    --color-text: #172017;
+    --color-text-muted: #3e493e;
+    --gray-1: var(--color-text-muted);
+    --icon-monochrome-filter: brightness(0);
+  }
+
+  html:root, html body { overflow: visible !important; background: white; }
+  body { color: var(--color-text); }
+  .navbar-container, .hamburger-menu, .footer-container, .skip-link,
+  nuxt-devtools-frame, .app-loader, .skill-help, .textOnlyButton, .filter { display: none !important; }
+
+  @include reading-layout;
+
+  html #main-content { max-inline-size: none; padding: 0; font-size: 11pt; }
+  #main-content h1 { font-size: 22pt; }
+  // Inline blocks paginate reliably where a printed grid can leave a large empty page area.
+  #main-content :is(.main-skills, .other-skills) { display: block; }
+  #main-content .skills { display: inline-block; inline-size: 48%; vertical-align: top; margin-inline-end: 1%; margin-block-end: 1rem; }
+  #main-content h2 { break-after: avoid; }
+  #main-content :is(h3, h4, .iconTitle) { break-after: avoid; }
+  #main-content p { orphans: 3; widows: 3; }
+  #main-content :is(.projectCard-container, .blogCard-container, .iconListCard-container,
+    .imageListCard-container, .subExperiences, .skills, .aboutMeInfo-container) {
+    break-inside: avoid;
+  }
+  .print-source { display: block; break-before: avoid; margin-block-start: 1.5rem; font-size: 10pt; }
+}
