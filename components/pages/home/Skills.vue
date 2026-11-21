@@ -1,5 +1,6 @@
 <template>
   <div class="skills-container" id="homeSkills">
+    <WaveBackground class="section-wave section-wave--top" />
     <div class="main-skills-container default-margin">
       <h2 :style="{ textAlign: `${changeAlign(activeLang)}` }">
         {{ $t("homePageSkillsMain") }}
@@ -54,6 +55,7 @@
         </div>
       </div>
     </div>
+    <WaveBackground class="section-wave section-wave--bottom" />
     <div class="titleBackground-anchor default-margin">
       <TitleBackground class="titleBackground" title="skills" />
     </div>
@@ -62,6 +64,7 @@
 
 
 <script>
+import WaveBackground from "../../backgrounds/WaveBackground.vue";
 import IconTitle from "../../widgets/iconTitle.vue";
 import SkillProgress from "./SkillProgress.vue";
 import SkillSimple from "./SkillSimple.vue";
@@ -70,6 +73,7 @@ import TitleBackground from "../../backgrounds/TitleBackground.vue";
 export default {
   name: "Skills",
   components: {
+    WaveBackground,
     IconTitle,
     SkillProgress,
     SkillSimple,
@@ -230,16 +234,25 @@ export default {
 
 <style lang="scss" scoped>
 .skills-container {
-  padding: 9% 0;
-  background: url("../../../assets/images/wave3.svg") top / 100% auto,
-    url("../../../assets/images/wave1.svg") bottom/100% auto,
-    linear-gradient(var(--gray-3), var(--gray-3)) content-box;
-  background-repeat: no-repeat;
-
+  padding: clamp(2rem, 4dvw, 5rem) 0;
+  background: var(--color-section-surface);
   position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
+
+  .section-wave {
+    position: absolute;
+    inset-inline: 0;
+  }
+
+  .section-wave--top {
+    bottom: calc(100% - 1px);
+  }
+
+  .section-wave--bottom {
+    top: calc(100% - 1px);
+    transform: rotate(180deg);
+  }
 
   .main-skills-container {
     margin-top: 60px;
@@ -328,20 +341,6 @@ export default {
       transform: rotate(-90deg) translateX(-100%);
       transform-origin: top left;
     }
-  }
-}
-
-:global(html[data-theme="light"] .skills-container) {
-  background-image: url("../../../assets/images/wave3-light.svg"),
-    url("../../../assets/images/wave1-light.svg"),
-    linear-gradient(var(--color-surface), var(--color-surface));
-}
-
-@media (prefers-color-scheme: light) {
-  :global(html:not([data-theme="dark"]) .skills-container) {
-    background-image: url("../../../assets/images/wave3-light.svg"),
-      url("../../../assets/images/wave1-light.svg"),
-      linear-gradient(var(--color-surface), var(--color-surface));
   }
 }
 

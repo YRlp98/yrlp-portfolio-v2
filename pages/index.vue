@@ -2,7 +2,6 @@
 	<div class="index-container">
 		<HeroSection class="heroSection" />
 		<div class="aboutMe-container">
-			<WaveBackground class="waveBackground" />
 			<AboutMe class="default-margin" />
 		</div>
 		<div class="default-margin education-container">
@@ -25,7 +24,6 @@
 
 <script>
 import HeroSection from "../components/pages/home/HeroSection.vue";
-import WaveBackground from "../components/backgrounds/WaveBackground";
 import AboutMe from "../components/pages/home/AboutMe.vue";
 import Education from "../components/pages/home/Education.vue";
 import Experience from "../components/pages/home/Experience.vue";
@@ -40,7 +38,6 @@ export default {
 
 	components: {
 		HeroSection,
-		WaveBackground,
 		AboutMe,
 		Education,
 		Experience,
@@ -133,10 +130,6 @@ export default {
 
 .aboutMe-container {
 	position: relative;
-
-	.waveBackground {
-		top: -200px;
-	}
 }
 
 .education-container {
@@ -165,10 +158,6 @@ export default {
 @include mediaQueryMin("md") {
 	.aboutMe-container {
 		margin-top: 150px;
-
-		.waveBackground {
-			top: -310px;
-		}
 	}
 
 	.education-container {
