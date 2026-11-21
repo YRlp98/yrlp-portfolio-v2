@@ -16,7 +16,8 @@
       <p>{{ $t(`skillDescriptions.${skill.id}`) }}</p>
       <a :href="skill.link" target="_blank" rel="noopener noreferrer"
         :aria-label="$t('readMoreAboutSkill', { skill: skill.title })">
-        {{ $t('readMore') }} <span aria-hidden="true">↗</span>
+        <span class="skill-help__link-label">{{ $t('readMore') }}</span>
+        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
       </a>
     </div>
   </div>
@@ -154,9 +155,33 @@ onBeforeUnmount(() => {
 }
 
 .skill-help__popover a {
-  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text);
+  transition: color 140ms ease;
+  /* Reading mode's page-wide link styles must not underline the icon. */
+  text-decoration: none !important;
+}
+
+.skill-help__link-label {
+  text-box: trim-both cap alphabetic;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* Preserve interaction colors over reading mode's page-wide link styles. */
+.skill-help__popover a:is(:focus-visible, :active) {
+  color: var(--color-accent) !important;
+}
+
+.skill-help__popover a:is(:focus-visible, :active) .skill-help__link-label {
+  text-decoration-thickness: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-help__popover a:hover { color: var(--color-accent) !important; }
+  .skill-help__popover a:hover .skill-help__link-label { text-decoration-thickness: 2px; }
 }
 
 @media (pointer: coarse) {
