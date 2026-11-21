@@ -82,6 +82,15 @@ export default defineNuxtConfig({
 
   // Vite: inject SCSS mixins globally (replaces @nuxtjs/style-resources)
   vite: {
+    optimizeDeps: {
+      include: [
+        '@oddbird/popover-polyfill',
+        '@vue/devtools-core',
+        'gsap',
+        'gsap/ScrollTrigger',
+        'interestfor',
+      ],
+    },
     css: {
       preprocessorOptions: {
         scss: {
