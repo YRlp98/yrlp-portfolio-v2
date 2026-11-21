@@ -12,7 +12,7 @@ export function mount(component, initialProps = {}, globals = {}) {
   const app = createApp({ render: () => h(component, props) })
   app.component('AppImage', AppImage)
   app.config.globalProperties.$t = (key, values = {}) =>
-    (messages[key] || key).replace(/\{(\w+)\}/g, (_, name) => values[name])
+    (key.split('.').reduce((value, part) => value?.[part], messages) || key).replace(/\{(\w+)\}/g, (_, name) => values[name])
   Object.assign(app.config.globalProperties, globals)
   app.mount(element)
   apps.add(app)

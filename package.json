@@ -18,9 +18,11 @@
     "@nuxtjs/i18n": "^10.6.0",
     "@nuxtjs/robots": "^6.2.4",
     "@nuxtjs/sitemap": "^8.6.2",
+    "@oddbird/popover-polyfill": "^0.7.3",
     "@vercel/speed-insights": "^2.1.0",
     "caniuse-lite": "^1.0.30001823",
     "gsap": "^3.15.1",
+    "interestfor": "^1.0.14",
     "nuxt": "^4.6.4"
   },
   "overrides": {

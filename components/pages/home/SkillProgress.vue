@@ -2,9 +2,7 @@
   <div class="skillProgress-container">
     <div class="skillProgress-title">
       <h4>. {{ skill.title }}</h4>
-      <a :href="skill.link" target="_blank" rel="noopener noreferrer" :aria-label="$t('aboutSkill', { skill: skill.title })">
-        <AppImage src="/icons/question_icon.svg" alt="" />
-      </a>
+      <SkillHelp :skill="skill" />
     </div>
     <div class="skillProgress">
       <div :style="style" class="skillProgress-bar"></div>
@@ -13,8 +11,11 @@
 </template>
 
 <script>
+import SkillHelp from "~/components/widgets/SkillHelp.vue";
+
 export default {
   name: "SkillProgress",
+  components: { SkillHelp },
   props: {
     skill: {
       type: Object,
@@ -42,21 +43,11 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    gap: 4px;
 
     h4 {
       font-size: 1.125rem;
       color: var(--color-text);
-    }
-
-    a {
-      img {
-        margin-left: 5px;
-        margin-bottom: -2.5px;
-        height: 16px;
-        width: 16px;
-        cursor: pointer;
-        filter: var(--icon-monochrome-filter);
-      }
     }
   }
 
