@@ -1,38 +1,41 @@
 <template>
-  <div class="hamburger-menu">
-    <button type="button" class="menu__btn" :aria-label="$t('openMenu')"
-      :aria-expanded="isOpen" aria-controls="mobile-menu" @click="openMenu">
-      <span aria-hidden="true"></span>
-    </button>
+  <div class="hamburger-menu" :dir="activeLocale === 'fa' ? 'rtl' : 'ltr'">
+    <div class="menu__trigger-frame default-margin">
+      <button type="button" class="menu__btn menu__trigger" :aria-label="$t('openMenu')"
+        :aria-expanded="isOpen" aria-controls="mobile-menu" @click="openMenu">
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
 
     <dialog id="mobile-menu" ref="menuDialog" class="menu__box" :aria-label="$t('mobileNavigation')"
       @close="isOpen = false">
-      <form method="dialog">
-        <button type="submit" class="menu__btn menu__btn--close" :aria-label="$t('closeMenu')" autofocus>
-          <span aria-hidden="true"></span>
-        </button>
-      </form>
-      <nav :aria-label="$t('mobileNavigation')">
-        <ul>
-          <li>
-            <nuxt-link class="menu__item" :to="$localePath('/')" @click="closeMenu">{{ $t("home") }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link class="menu__item" :to="$localePath('/#homeAboutMe')" @click="closeMenu">{{ $t("aboutMe") }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link class="menu__item" :to="$localePath('/#homeSkills')" @click="closeMenu">{{ $t("skills") }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link class="menu__item" :to="$localePath('/projects')" @click="closeMenu">{{ $t("projects") }}</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link class="menu__item" :to="$localePath('/blog')" @click="closeMenu">{{ $t("blog") }}</nuxt-link>
-          </li>
-        </ul>
-      </nav>
-      <div class="settings-menu">
-        <SettingsMenu class="settingsMenu" @close="closeMenu" />
+      <header class="menu__header">
+        <div class="menu__header-content default-margin">
+          <nuxt-link class="menu__brand" :to="$localePath('/')" @click="closeMenu">
+            <AppImage src="/images/yr-logo-transparent.svg" :alt="$t('siteLogoAlt')" width="44" height="27" />
+          </nuxt-link>
+          <form method="dialog">
+            <button type="submit" class="menu__btn menu__btn--close" :aria-label="$t('closeMenu')" autofocus>
+              <span aria-hidden="true"></span>
+            </button>
+          </form>
+        </div>
+      </header>
+
+      <div class="menu__body">
+        <div class="menu__content default-margin">
+          <nav class="menu__nav" :aria-label="$t('mobileNavigation')">
+            <ul>
+              <li v-for="item in navItems" :key="item.path">
+                <nuxt-link class="menu__item" :to="$localePath(item.path)"
+                  :aria-current="isCurrent(item.path) ? (item.path.includes('#') ? 'location' : 'page') : undefined"
+                  @click="closeMenu">{{ $t(item.label) }}</nuxt-link>
+              </li>
+            </ul>
+          </nav>
+
+          <SettingsMenu class="menu__settings" compact @close="closeMenu" />
+        </div>
       </div>
     </dialog>
   </div>
@@ -44,8 +47,21 @@ import SettingsMenu from "./widgets/SettingsMenu.vue";
 export default {
   name: "NavbarMobile",
   components: { SettingsMenu },
+  setup() {
+    const { locale } = useI18n();
+    return { activeLocale: locale };
+  },
   data() {
-    return { isOpen: false };
+    return {
+      isOpen: false,
+      navItems: [
+        { label: 'home', path: '/' },
+        { label: 'aboutMe', path: '/#homeAboutMe' },
+        { label: 'skills', path: '/#homeSkills' },
+        { label: 'projects', path: '/projects' },
+        { label: 'blog', path: '/blog' },
+      ],
+    };
   },
   watch: {
     '$route.fullPath'() {
@@ -53,6 +69,11 @@ export default {
     },
   },
   methods: {
+    isCurrent(path) {
+      const [pathname, hash] = this.$localePath(path).split('#');
+      return this.$route.path.replace(/\/$/, '') === pathname.replace(/\/$/, '')
+        && this.$route.hash === (hash ? `#${hash}` : '');
+    },
     openMenu() {
       this.$refs.menuDialog.showModal();
       this.isOpen = true;
@@ -85,137 +106,165 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  top: 14px;
-  left: 14px;
-  width: 44px;
-  height: 44px;
-  cursor: pointer;
-  z-index: 1000;
+  position: relative;
+  inline-size: 44px;
+  block-size: 44px;
+  flex-shrink: 0;
+  box-sizing: border-box;
   border-radius: 12px;
-  background: var(--color-glass);
   border: 1px solid var(--color-border);
+  background: var(--color-glass);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(10px) saturate(170%);
   -webkit-backdrop-filter: blur(10px) saturate(170%);
-  transition: transform 0.2s ease, box-shadow 0.2s ease,
-    background 0.2s ease, border-color 0.2s ease;
+  color: var(--color-text);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 120ms ease, color 120ms ease;
+
+  &:active { background: var(--color-glass-hover); color: var(--color-accent); }
 }
 
-.menu__btn>span,
-.menu__btn>span::before,
-.menu__btn>span::after {
+.menu__trigger-frame {
+  position: fixed;
+  inset-block-start: max(1rem, env(safe-area-inset-top));
+  inset-inline: 0;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.menu__trigger { pointer-events: auto; }
+
+.menu__trigger-frame,
+.menu__header-content,
+.menu__content {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
   display: block;
   position: absolute;
-  width: 16px;
-  height: 2px;
-  background-color: var(--color-text);
-  transition-duration: 0.25s;
+  inline-size: 18px;
+  block-size: 2px;
+  background: currentColor;
 }
-
-.menu__btn>span::before {
-  content: "";
-  top: -8px;
-}
-
-.menu__btn>span::after {
-  content: "";
-  top: 8px;
-}
-
-.menu__btn--close>span {
-  transform: rotate(45deg);
-}
-
-.menu__btn--close>span::before {
-  top: 0;
-  transform: rotate(0);
-}
-
-.menu__btn--close>span::after {
-  top: 0;
-  transform: rotate(90deg);
-}
-
-.menu__btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  background: var(--color-surface-elevated);
-  border-color: var(--color-border);
-  box-shadow: var(--shadow-soft);
-}
-
-.menu__btn:hover>span,
-.menu__btn:hover>span::before,
-.menu__btn:hover>span::after {
-  background-color: var(--color-accent);
-}
-
-.menu__btn:active {
-  transform: translateY(0) scale(0.98);
-}
+.menu__btn > span::before { content: ""; inset-block-start: -6px; }
+.menu__btn > span::after { content: ""; inset-block-start: 6px; }
+.menu__btn--close > span { transform: rotate(45deg); }
+.menu__btn--close > span::before { inset-block-start: 0; transform: rotate(90deg); }
+.menu__btn--close > span::after { display: none; }
 
 .menu__box {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-width: none;
-  height: 100dvh;
-  max-height: 100dvh;
+  inset: 0;
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: 100dvh;
+  max-block-size: 100dvh;
   margin: 0;
-  padding: 80px 0;
+  padding: 0;
+  border: 0;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow: hidden;
   overscroll-behavior: contain;
-  list-style: none;
-  background-color: var(--gray-3);
-  box-shadow: var(--shadow-soft);
+  background: var(--color-surface);
   color: var(--color-text);
-
-  ul {
-    list-style: none;
-  }
 
   &::backdrop {
     overflow: hidden;
     overscroll-behavior: contain;
+    background: var(--color-surface);
   }
 
-  .settings-menu {
-    position: relative;
-    margin-top: 8px;
-    margin-inline-start: 0;
+  ul { list-style: none; }
 
-    .settingsMenu {
-      position: relative;
-      top: 0;
-      box-shadow: none;
-
-      :deep(.settings-menu-container) {
-        background-color: transparent;
-        padding-inline-start: 0;
-      }
-    }
-  }
+  &[open] { display: flex; flex-direction: column; }
 }
+
+.menu__content {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100%;
+  margin-inline: auto;
+}
+
+.menu__header {
+  flex: 0 0 auto;
+  padding-block: max(1rem, env(safe-area-inset-top)) 20px;
+  background: var(--color-surface);
+}
+
+.menu__header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Keep scrolling below the opaque header so items cannot show behind or above its controls.
+.menu__body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding-block-end: max(1rem, env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.menu__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  border-radius: 5px;
+  transition: background-color 120ms ease;
+
+  &:active { background: var(--color-glass-hover); }
+
+  img { display: block; inline-size: 44px; block-size: auto; filter: var(--icon-monochrome-filter); }
+}
+
+.menu__nav ul { display: grid; gap: 2px; }
 
 .menu__item {
-  display: block;
-  padding: 12.5px 24px;
+  display: flex;
+  align-items: center;
+  min-block-size: 44px;
+  box-sizing: border-box;
+  padding: 5px 8px;
+  border-radius: 5px;
   color: var(--color-text);
   text-decoration: none;
-  transition-duration: 0.25s;
-  cursor: pointer;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: start;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 120ms ease, color 120ms ease;
+
+  &[aria-current] { color: var(--color-accent); font-weight: 700; }
+  &:active { background: var(--color-glass-hover); color: var(--color-accent); }
 }
 
-.menu__item:hover {
-  background-color: var(--gray-2);
+.menu__settings { margin-block-start: auto; padding-block-start: 24px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .menu__btn:hover, .menu__item:hover, .menu__brand:hover { background: var(--color-glass-hover); }
+  .menu__btn:hover, .menu__item:hover { color: var(--color-accent); }
 }
 
-// Tablet
+@media (forced-colors: active) {
+  .menu__item[aria-current] { text-decoration: underline; }
+}
+
 @include mediaQueryMin("md") {
-  .hamburger-menu {
-    display: none;
-  }
+  .hamburger-menu { display: none; }
 }
 </style>
