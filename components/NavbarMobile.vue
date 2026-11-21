@@ -115,8 +115,8 @@ export default {
   border: 1px solid var(--color-border);
   background: var(--color-glass);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(10px) saturate(170%);
   -webkit-backdrop-filter: blur(10px) saturate(170%);
+  backdrop-filter: blur(10px) saturate(170%);
   color: var(--color-text);
   cursor: pointer;
   touch-action: manipulation;

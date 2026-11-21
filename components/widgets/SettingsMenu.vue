@@ -92,8 +92,8 @@ const availableLocales = computed(() =>
   color: var(--color-text);
   background-color: var(--color-glass);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   // border-radius: 8px;
   overflow: hidden;
   padding: 20px;
@@ -178,8 +178,8 @@ const availableLocales = computed(() =>
   padding: 0;
   background: transparent;
   box-shadow: none;
-  backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   overflow: visible;
 
   p { color: var(--color-text-muted); font-size: 0.813rem; text-align: start; }
