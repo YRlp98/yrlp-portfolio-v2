@@ -1,5 +1,5 @@
 <template>
-  <div class="settings-menu-container">
+  <div class="settings-menu-container" :dir="locale === 'fa' ? 'rtl' : 'ltr'">
     <div class="menu-theme">
       <p>{{ $t('theme') }}</p>
       <ul class="menu-bar">
@@ -24,6 +24,24 @@
       </ul>
     </div>
 
+    <div class="menu-reading">
+      <p>{{ $t('reading') }}</p>
+      <ul class="menu-bar">
+        <li>
+          <button type="button" @click="toggleReadingMode" :class="{ active: readingMode }" :aria-pressed="readingMode">
+            <i class="fa-solid fa-book-open theme-icon" aria-hidden="true"></i>
+            <span class="menu-label">{{ $t('readingMode') }}</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" @click="savePdf">
+            <i class="fa-solid fa-file-pdf theme-icon" aria-hidden="true"></i>
+            <span class="menu-label">{{ $t('savePdf') }}</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
     <div class="menu-language">
       <p>{{ $t('language') }}</p>
       <ul class="menu-bar">
@@ -39,11 +57,21 @@
 </template>
 
 <script setup>
-defineEmits(['close'])
+import { nextTick } from 'vue'
+
+const emit = defineEmits(['close'])
 
 const { locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const { theme, setTheme } = useTheme()
+const { readingMode, toggleReadingMode } = useReadingMode()
+
+async function savePdf() {
+  emit('close')
+  await nextTick()
+  await document.fonts?.ready
+  window.print()
+}
 
 const availableLocales = computed(() =>
   locales.value.filter((l) => l.code !== locale.value)
@@ -90,6 +118,7 @@ const availableLocales = computed(() =>
       font-family: inherit;
       font-size: 0.813rem;
       line-height: 1.7;
+      text-align: start;
       cursor: pointer;
       padding: 4px 10px;
       min-height: 44px;
@@ -131,8 +160,16 @@ const availableLocales = computed(() =>
     }
   }
 
+  .menu-reading,
   .menu-language {
     margin-top: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .settings-menu-container {
+    max-block-size: calc(100dvh - 8rem);
+    overflow-y: auto;
   }
 }
 

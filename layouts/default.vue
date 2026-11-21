@@ -6,6 +6,7 @@
     <Navbar />
     <main id="main-content" tabindex="-1">
       <NuxtPage />
+      <p class="print-source">{{ $t('homePageName') }} · <a :href="siteUrl">yrlp.ir</a></p>
     </main>
     <Footer />
   </div>
@@ -25,12 +26,14 @@ export default {
   },
   setup() {
     const { locale } = useI18n();
+    const { readingMode } = useReadingMode();
 
     useHead(() => ({
       htmlAttrs: {
         lang: locale.value === "fa" ? "fa" : "en",
         dir: locale.value === "en" ? "ltr" : undefined,
         'data-locale': locale.value,
+        'data-reading-mode': readingMode.value ? 'true' : undefined,
       },
       script: [
         {
@@ -84,6 +87,8 @@ export default {
         },
       ],
     }));
+
+    return { siteUrl };
   },
 };
 </script>
