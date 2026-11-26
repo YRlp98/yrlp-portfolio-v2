@@ -10,9 +10,7 @@
           <span>PORTFOLIO</span>
         </div>
 
-        <progress class="app-loader__track" :aria-label="$t('loading')"></progress>
-
-        <p class="app-loader__label">{{ $t("loading") }}</p>
+        <p class="app-loader__label" role="status">{{ $t("loading") }}</p>
       </div>
     </div>
   </Transition>
@@ -21,15 +19,12 @@
 <script setup>
 const nuxtApp = useNuxtApp();
 const isVisible = ref(false);
+const initialLoadStarted = useState("initial-page-loader-started", () => false);
 
-const ROUTE_DELAY = 140;
-const ROUTE_MINIMUM = 320;
+const MINIMUM_VISIBLE = 900;
 
 let shownAt = 0;
-let showTimer;
 let hideTimer;
-let removeLoadingStartHook;
-let removeLoadingEndHook;
 let removeErrorHook;
 
 function setDocumentBusy(isBusy) {
@@ -44,41 +39,35 @@ function setDocumentBusy(isBusy) {
 
 function showLoader() {
   window.clearTimeout(hideTimer);
-
-  window.clearTimeout(showTimer);
-  showTimer = window.setTimeout(() => {
-    shownAt = window.performance.now();
-    isVisible.value = true;
-    setDocumentBusy(true);
-  }, ROUTE_DELAY);
+  shownAt = window.performance.now();
+  isVisible.value = true;
+  setDocumentBusy(true);
 }
 
 function hideLoader() {
-  window.clearTimeout(showTimer);
-
+  setDocumentBusy(false);
   if (!isVisible.value) return;
 
   const elapsed = window.performance.now() - shownAt;
-
   window.clearTimeout(hideTimer);
   hideTimer = window.setTimeout(() => {
     isVisible.value = false;
-    setDocumentBusy(false);
-  }, Math.max(0, ROUTE_MINIMUM - elapsed));
+  }, Math.max(0, MINIMUM_VISIBLE - elapsed));
 }
 
 onMounted(() => {
-  removeLoadingStartHook = nuxtApp.hook("page:loading:start", showLoader);
-  removeLoadingEndHook = nuxtApp.hook("page:loading:end", hideLoader);
+  if (initialLoadStarted.value) return;
+  initialLoadStarted.value = true;
 
   removeErrorHook = nuxtApp.hook("app:error", hideLoader);
+  showLoader();
+  if (document.readyState === "complete") hideLoader();
+  else window.addEventListener("load", hideLoader, { once: true });
 });
 
 onBeforeUnmount(() => {
-  window.clearTimeout(showTimer);
   window.clearTimeout(hideTimer);
-  removeLoadingStartHook?.();
-  removeLoadingEndHook?.();
+  window.removeEventListener("load", hideLoader);
   removeErrorHook?.();
   setDocumentBusy(false);
 });
@@ -90,15 +79,12 @@ onBeforeUnmount(() => {
   --loader-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   position: fixed;
-  inset-inline-end: 16px;
-  inset-block-end: 16px;
+  inset: 0;
   z-index: 9999;
   display: grid;
   place-items: center;
-  padding: 20px;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  pointer-events: none;
+  box-sizing: border-box;
+  padding: 24px;
   overflow: hidden;
   color: var(--color-text);
   background-color: var(--color-surface);
@@ -124,7 +110,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(240px, calc(100vw - 74px));
+  width: min(280px, calc(100vw - 48px));
 }
 
 .app-loader__logo {
@@ -152,16 +138,6 @@ onBeforeUnmount(() => {
   height: 3px;
   border-radius: 50%;
   background-color: var(--color-accent);
-}
-
-.app-loader__track {
-  position: relative;
-  width: 176px;
-  height: 2px;
-  margin-top: 18px;
-  overflow: hidden;
-  border-radius: 999px;
-  accent-color: var(--color-accent);
 }
 
 .app-loader__label {
