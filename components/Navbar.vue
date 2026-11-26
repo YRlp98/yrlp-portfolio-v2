@@ -1,15 +1,16 @@
 <template>
   <nav class="navbar-container" :class="{ 'is-scrolled': isScrolled }" :aria-label="$t('primaryNavigation')">
     <div class="navbar default-margin">
-      <div class="navbar-more-wrap" @keydown.esc.stop="closeSettings" @focusout="handleFocusOut">
+      <div class="navbar-more-wrap" @focusout="handleFocusOut">
         <button ref="settingsToggle" type="button" class="navbar-more" :aria-label="$t('settings')"
-          :aria-expanded="isOpen" aria-controls="desktop-settings" @click.stop="isOpen = !isOpen">
+          :popovertarget="settingsId" :aria-expanded="isOpen" :aria-controls="settingsId">
           <AppImage src="/icons/more.svg" alt="" width="24" height="24" />
         </button>
-        <transition name="dropdown" appear>
-          <SettingsMenu id="desktop-settings" class="settingsMenu" v-if="isOpen" @close="isOpen = false"
-            v-click-outside="() => isOpen = false" @click.stop />
-        </transition>
+        <div :id="settingsId" ref="settingsPanel" popover="auto" class="settingsMenu desktop-settings-popover"
+          :dir="activeLocale === 'fa' ? 'rtl' : 'ltr'" role="group" :aria-label="$t('settings')"
+          @beforetoggle="prepareSettings" @toggle="syncSettingsState">
+          <SettingsMenu @close="closeSettings(true)" />
+        </div>
       </div>
       <ul class="navbar-items">
         <li>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import { useId } from "vue";
 import SettingsMenu from "./widgets/SettingsMenu.vue";
 
 export default {
@@ -46,19 +48,56 @@ export default {
   components: {
     SettingsMenu,
   },
+  setup() {
+    const { locale } = useI18n();
+    return { activeLocale: locale, settingsId: `desktop-settings-${useId()}` };
+  },
   data() {
     return {
       isOpen: false,
       isScrolled: false,
+      anchored: false,
     };
   },
+  watch: {
+    '$route.fullPath'() { this.closeSettings(); },
+  },
   methods: {
-    closeSettings() {
-      this.isOpen = false;
-      this.$refs.settingsToggle.focus();
+    closeSettings(restoreFocus = false) {
+      this.$refs.settingsPanel?.hidePopover?.();
+      if (restoreFocus) this.$refs.settingsToggle?.focus({ preventScroll: true });
+    },
+    prepareSettings(event) {
+      if (event.newState !== 'open') return;
+      if (window.innerWidth < 768) {
+        event.preventDefault();
+        return;
+      }
+      this.positionSettings();
+    },
+    syncSettingsState(event) {
+      this.isOpen = event.newState === 'open';
+      if (this.isOpen) this.positionSettings();
+    },
+    positionSettings() {
+      if (this.anchored) return;
+      const panel = this.$refs.settingsPanel;
+      const trigger = this.$refs.settingsToggle;
+      if (!panel || !trigger) return;
+      // Older browsers retain the same inward placement without CSS anchors.
+      const rect = trigger.getBoundingClientRect();
+      const width = Math.min(255, window.innerWidth - 24);
+      const inward = this.activeLocale === 'fa' ? rect.left : rect.right - width;
+      const left = Math.max(12, Math.min(inward, window.innerWidth - width - 12));
+      panel.style.setProperty('--settings-left', `${left}px`);
+      panel.style.setProperty('--settings-top', `${rect.bottom + 18}px`);
+    },
+    handleSettingsResize() {
+      if (window.innerWidth < 768) this.closeSettings();
+      else if (this.isOpen) this.positionSettings();
     },
     handleFocusOut(event) {
-      if (!event.currentTarget.contains(event.relatedTarget)) this.isOpen = false;
+      if (!event.currentTarget.contains(event.relatedTarget)) this.closeSettings();
     },
     handleScroll() {
       this.isScrolled = window.scrollY > 10;
@@ -66,12 +105,16 @@ export default {
   },
   mounted() {
     if (import.meta.client) {
+      this.anchored = CSS.supports("position-area: self-end span-self-start");
       this.handleScroll();
+      window.addEventListener("resize", this.handleSettingsResize, { passive: true });
       window.addEventListener("scroll", this.handleScroll, { passive: true });
     }
   },
   beforeUnmount() {
     if (import.meta.client) {
+      this.closeSettings();
+      window.removeEventListener("resize", this.handleSettingsResize);
       window.removeEventListener("scroll", this.handleScroll);
     }
   },
@@ -190,29 +233,7 @@ export default {
         align-items: center;
       }
 
-      .dropdown-enter-active,
-      .dropdown-leave-active {
-        transition: opacity 0.24s ease, transform 0.24s ease;
-        transform-origin: top center;
-      }
 
-      .dropdown-enter-from,
-      .dropdown-leave-to {
-        opacity: 0;
-        transform: translateY(-10px) scaleY(0.92);
-      }
-
-      .dropdown-enter-to,
-      .dropdown-leave-from {
-        opacity: 1;
-        transform: translateY(0) scaleY(1);
-      }
-
-      .settingsMenu {
-        position: absolute;
-        top: calc(100% + 18px);
-        inset-inline-end: 0;
-      }
     }
 
     &.is-scrolled .settingsMenu {
@@ -224,5 +245,77 @@ export default {
       border-radius: 8px;
     }
   }
+}
+</style>
+
+<style lang="scss">
+.desktop-settings-popover {
+  display: none;
+  position: fixed;
+  inset: auto;
+  top: var(--settings-top, 80px);
+  left: var(--settings-left, 12px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  inline-size: min(255px, calc(100dvw - 24px));
+  max-block-size: calc(100dvh - 100px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  color: var(--color-text);
+  background: var(--color-glass);
+  box-shadow: var(--shadow-soft);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 160ms;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+
+  > .settings-menu-container {
+    position: static;
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-block-size: none;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+.desktop-settings-popover:is(:popover-open, .\:popover-open) {
+  display: block;
+  opacity: 1;
+}
+
+@starting-style {
+  .desktop-settings-popover:is(:popover-open, .\:popover-open) { opacity: 0; }
+}
+
+@supports (position-area: self-end span-self-start) {
+  .desktop-settings-popover {
+    inset: auto;
+    margin: 18px 0;
+    position-area: self-end span-self-start;
+    position-try-fallbacks: flip-inline, flip-block, flip-block flip-inline;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .desktop-settings-popover { transform: translateY(-6px); }
+  .desktop-settings-popover:is(:popover-open, .\:popover-open) { transform: translateY(0); }
+  @starting-style {
+    .desktop-settings-popover:is(:popover-open, .\:popover-open) { transform: translateY(-6px); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-settings-popover { transition-duration: 80ms; }
+}
+@media print {
+  .desktop-settings-popover { display: none !important; }
 }
 </style>
